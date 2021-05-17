@@ -1,0 +1,215 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>IndexFiltrage</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-04-28"><meta name="DC.source" content="IndexFiltrage.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">% Script pour g&eacute;n&eacute;rer la documentation de chaque fonction se trouvant dans</span>
+<span class="comment">% le dossier cible, si la syntaxe des fonctions est respect&eacute;e.</span>
+
+<span class="comment">% Ce script g&eacute;n&egrave;re &eacute;galement un document maitre appel&eacute; Index Nom_du_dossier</span>
+<span class="comment">% regroupant l'ensemble des fonctions pr&eacute;sentes avec un lien vers leur</span>
+<span class="comment">% documentation.</span>
+
+<span class="comment">% !! Attention, si vous ajouter des fonctions par suite il faut supprimer</span>
+<span class="comment">% la fonction Index Nom_du_dossier avant de refaire tourner ce script !!</span>
+
+clear <span class="string">variables</span>
+close <span class="string">all</span>
+clc
+
+<span class="comment">% indiquer le path o&ugrave; lister les fonctions</span>
+path=input(<span class="string">'coller le path o&ugrave; les fonctions &agrave; lister se trouvent'</span>,<span class="string">'s'</span>);
+
+cd(path)
+mkdir <span class="string">Notice</span>
+<span class="comment">% dir path</span>
+FileInfos = dir(path);
+k=0;
+    <span class="keyword">for</span> i=1:length(FileInfos)
+        <span class="keyword">if</span> FileInfos(i).isdir==0 <span class="comment">%pour g&eacute;rer les sous dossiers pr&eacute;sents</span>
+        k=k+1;
+        ListF{k,1}=FileInfos(i).name;
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+
+<span class="comment">% PublishOptions</span>
+publishOptions.format=<span class="string">'html'</span>; <span class="comment">% Choix du format de la docu</span>
+<span class="comment">%publishOptions.format='pdf';</span>
+publishOptions.outputDir=[path <span class="string">'\Notice'</span>];
+publishOptions.evalCode = false; <span class="comment">% Evaluation de la fonction avant g&eacute;n&eacute;ration du doc d&eacute;sactiv&eacute;e</span>
+
+<span class="keyword">for</span> i=1:numel(ListF)
+  publish(ListF{i},publishOptions);
+<span class="keyword">end</span>
+
+
+<span class="comment">% Pour le docu maitre on r&eacute;cup&egrave;re le nom du dossier sur une id&eacute;e g&eacute;niale de</span>
+<span class="comment">% Laetitia &agrave; 18h26 le 16/12/2020</span>
+htap = flip(path);
+moN = strtok(htap,<span class="string">'\'</span>);
+Nom = flip(moN);
+
+<span class="comment">% Header du docu maitre (le nom du dossier)</span>
+Header = [<span class="string">'%% '</span> Nom];
+
+filename = [<span class="string">'Index'</span> Nom <span class="string">'.m'</span>];
+
+fid = fopen(filename,<span class="string">'wt'</span>);
+<span class="comment">% le titre du dossier</span>
+fprintf(fid,<span class="string">'%s\n'</span>,Header);
+fprintf(fid,<span class="string">'%s\n\n'</span>,<span class="string">'%% Main Functions'</span>);
+fprintf(fid,<span class="string">'%s\n'</span>,<span class="string">'%%'</span>);
+
+<span class="comment">% pr&eacute;allocation</span>
+linei=cell(numel(ListF),1);
+<span class="keyword">for</span> i=1:numel(ListF)
+   linei{i,1} = [<span class="string">'% * &lt;'</span> ListF{i}(1:end-2) <span class="string">'.html '</span> ListF{i}(1:end-2) <span class="string">'&gt;'</span>];
+   fprintf(fid,<span class="string">'%s\n'</span>,linei{i});
+<span class="keyword">end</span>
+
+fclose(fid);
+
+publish(filename,publishOptions);
+</pre><pre class="codeoutput error">Error using input
+Cannot call INPUT from EVALC.
+
+Error in IndexFiltrage (line 16)
+path=input('coller le path o&ugrave; les fonctions &agrave; lister se trouvent','s');
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% Script pour générer la documentation de chaque fonction se trouvant dans
+% le dossier cible, si la syntaxe des fonctions est respectée. 
+
+% Ce script génère également un document maitre appelé Index Nom_du_dossier
+% regroupant l'ensemble des fonctions présentes avec un lien vers leur
+% documentation. 
+
+% !! Attention, si vous ajouter des fonctions par suite il faut supprimer
+% la fonction Index Nom_du_dossier avant de refaire tourner ce script !!
+
+clear variables
+close all
+clc
+
+% indiquer le path où lister les fonctions
+path=input('coller le path où les fonctions à lister se trouvent','s');
+
+cd(path)
+mkdir Notice
+% dir path
+FileInfos = dir(path); 
+k=0;
+    for i=1:length(FileInfos)
+        if FileInfos(i).isdir==0 %pour gérer les sous dossiers présents
+        k=k+1;    
+        ListF{k,1}=FileInfos(i).name;
+        end
+    end
+
+% PublishOptions    
+publishOptions.format='html'; % Choix du format de la docu
+%publishOptions.format='pdf';
+publishOptions.outputDir=[path '\Notice'];
+publishOptions.evalCode = false; % Evaluation de la fonction avant génération du doc désactivée
+
+for i=1:numel(ListF)
+  publish(ListF{i},publishOptions);  
+end
+    
+
+% Pour le docu maitre on récupère le nom du dossier sur une idée géniale de
+% Laetitia à 18h26 le 16/12/2020
+htap = flip(path);
+moN = strtok(htap,'\');
+Nom = flip(moN);
+
+% Header du docu maitre (le nom du dossier)
+Header = ['%% ' Nom];
+
+filename = ['Index' Nom '.m']; 
+
+fid = fopen(filename,'wt');
+% le titre du dossier
+fprintf(fid,'%s\n',Header);
+fprintf(fid,'%s\n\n','%% Main Functions');
+fprintf(fid,'%s\n','%%');
+
+% préallocation
+linei=cell(numel(ListF),1);
+for i=1:numel(ListF)
+   linei{i,1} = ['% * <' ListF{i}(1:end-2) '.html ' ListF{i}(1:end-2) '>'];
+   fprintf(fid,'%s\n',linei{i});
+end
+
+fclose(fid);
+
+publish(filename,publishOptions);  
+
+
+
+##### SOURCE END #####
+--></body></html>
