@@ -14,8 +14,9 @@
 
 
 %% Création de la documentation
-DocGen.notice('/home/crex/projects/MatLab_Template/codes/Math', false);
-DocGen.notice('/home/crex/projects/MatLab_Template/codes/Plot', false);
+DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Math', false);
+DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot', false);
+DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot\Video', false);
 %DocGen.notice('/home/crex/projects/MatLab_Template/codes/Plot/Video', false);
 
 DocGen.noticeGlobale();

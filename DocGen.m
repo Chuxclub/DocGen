@@ -16,19 +16,19 @@
 classdef (Abstract) DocGen
     properties (Constant, Access = private)
         % SI LINUX:
-        GLOBAL_NOTICE_PATH = '/home/crex/projects/MatLab_Template/docs';
+        %GLOBAL_NOTICE_PATH = '/home/crex/projects/MatLab_Template/docs';
         % SI WINDOWS:
-        %GLOBAL_NOTICE_PATH = 'C:\Users\flori\projects\MatLab_Template\docs';
+        GLOBAL_NOTICE_PATH = 'E:\Git\projects\wip\DocGenTest\docs';
         
         % SI LINUX:
-        SEP_TOKEN = '/';
+        %SEP_TOKEN = '/';
         % SI WINDOWS:
-        %SEP_TOKEN = '\';
+        SEP_TOKEN = '\';
         
         % SI LINUX:
-        RECOVER_HTML_CMD = 'find ../codes | grep .html > List.txt';
+        %RECOVER_HTML_CMD = 'find ../codes | grep .html > List.txt';
         % SI WINDOWS:
-        %RECOVER_HTML_CMD = 'dir /s /b ..\codes\**\*.html > List.txt';
+        RECOVER_HTML_CMD = 'dir /s /b ..\codes\*.html > List.txt';
         
         DOC_NAME = 'Notice';
     end
@@ -81,6 +81,8 @@ classdef (Abstract) DocGen
             nbFichiers = numel(ListF);
             linei=cell(nbFichiers,1);
             for i=1:nbFichiers
+                % Création de l'index (cf. Markup) par une bullet list 
+                % (% *) et hyperliens (< ... >):
                 linei{i,1} = ['% * <' ListF{i}(1:end-2) '.html ' ListF{i}(1:end-2) '>'];
                 fprintf(fid,'%s\n',linei{i});
             end
@@ -140,7 +142,9 @@ classdef (Abstract) DocGen
             %  ---------- On publie l'index global ---------- %
             % Préallocation:
             for i=1:numel(ListeIndex)
-                ListeFormat{i,1} = ['% * <' ListeIndex{i} ' '  ListeIndex{i}(1:end-5) '>']; % (1:end-5) pour enlever le .html
+                % Création de l'index (cf. Markup) par une bullet list 
+                % (% *) et hyperliens (< ... >):
+                ListeFormat{i,1} = ['% * <' ListeIndex{i} ' '  Nom{i}(1:end-5) '>']; % (1:end-5) pour enlever le .html
                 fprintf(fid,'%s\n',ListeFormat{i});
             end
             fclose(fid);
