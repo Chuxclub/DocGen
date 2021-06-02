@@ -16,9 +16,14 @@
 classdef (Abstract) DocGen
     properties (Constant, Access = private)
         % SI LINUX:
-        %GLOBAL_NOTICE_PATH = '/home/crex/projects/MatLab_Template/docs';
+        %GLOBAL_NOTICE_SRC = '/home/crex/projects/MatLab_Template/codes';
         % SI WINDOWS:
-        GLOBAL_NOTICE_PATH = 'E:\Git\projects\wip\DocGenTest\docs';
+        GLOBAL_NOTICE_SRC = 'E:\Git\projects\wip\DocGenTest\codes';
+        
+        % SI LINUX:
+        %GLOBAL_NOTICE_DEST = '/home/crex/projects/MatLab_Template/docs';
+        % SI WINDOWS:
+        GLOBAL_NOTICE_DEST = 'E:\Git\projects\wip\DocGenTest\docs';
         
         % SI LINUX:
         %SEP_TOKEN = '/';
@@ -26,9 +31,9 @@ classdef (Abstract) DocGen
         SEP_TOKEN = '\';
         
         % SI LINUX:
-        %RECOVER_HTML_CMD = 'find ../codes | grep .html > List.txt';
+        %RECOVER_HTML_CMD = ['find ' DocGen.GLOBAL_NOTICE_SRC ' | grep .html > List.txt'];
         % SI WINDOWS:
-        RECOVER_HTML_CMD = 'dir /s /b ..\codes\*.html > List.txt';
+        RECOVER_HTML_CMD = ['dir /s /b ' DocGen.GLOBAL_NOTICE_SRC '\*.html > List.txt'];
         
         DOC_NAME = 'Notice';
     end
@@ -37,6 +42,48 @@ classdef (Abstract) DocGen
         function deleteNotice(path)
             cd(path);
             rmdir(DocGen.DOC_NAME, 's');
+        end
+        
+        function indexList = indexSelect(file)
+            htmlList=importdata(file);
+
+            h=0;
+            nbHtmlFiles = numel(htmlList);
+            for i=1:nbHtmlFiles
+                A{i,1}=strfind(htmlList{i,1},'Index');
+                if ~isempty(A{i,1})
+                    h = h+1;
+                    indexList{h,1} = htmlList{i,1};
+                end
+            end
+        end
+        
+        function recoverDocs()
+            [~,~] = dos(DocGen.RECOVER_HTML_CMD);
+        end
+        
+        function subpathsList = rootRemove(indexList, pathRoot)
+            nbIndexes = numel(indexList);
+            for i=1:nbIndexes
+                subpathsList{i} = erase(indexList{i}, pathRoot);
+            end
+        end
+        
+        function noticeGlobalTest()
+            DocGen.clearScript();
+            DocGen.recoverDocs();
+            indexList = DocGen.indexSelect('List.txt');
+            delete('List.txt');
+            subpathsList = DocGen.rootRemove(indexList, [DocGen.GLOBAL_NOTICE_SRC '\']);
+            
+            % Debug %
+            filename = 'rootRemoveDebug.txt';
+            fid = fopen(filename,'wt');
+            nbIndexes = numel(subpathsList);
+            for i=1:nbIndexes
+                 fprintf(fid, '%s\n', subpathsList{i});
+            end
+            fclose(fid);
         end
         
         function notice(path, eval)
@@ -103,11 +150,12 @@ classdef (Abstract) DocGen
         function noticeGlobale()
             DocGen.clearScript();
             
-            addpath(genpath(DocGen.GLOBAL_NOTICE_PATH))
-            cd(DocGen.GLOBAL_NOTICE_PATH)
+            addpath(genpath(DocGen.GLOBAL_NOTICE_DEST))
+            cd(DocGen.GLOBAL_NOTICE_DEST)
             
             % ----------------- Récupération des données ---------------- %
             [~,~]=dos(DocGen.RECOVER_HTML_CMD);
+            % toto = input("stop:");
             LISTE=importdata('List.txt');
             
             h=0;
@@ -125,7 +173,7 @@ classdef (Abstract) DocGen
             
             % ---------- On prépare les options de publication ---------- %
             publishOptions.format = 'html';
-            publishOptions.outputDir = DocGen.GLOBAL_NOTICE_PATH;
+            publishOptions.outputDir = DocGen.GLOBAL_NOTICE_DEST;
             publishOptions.evalCode = false;
             
             % ---------- On crée le script (.m) de l'index global qui sera publié ---------- %
