@@ -14,7 +14,6 @@
 
 DocGen.noticeGlobalTest();
 
-
 %% Création de la documentation
 DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Math', false);
 DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot', false);

@@ -69,20 +69,80 @@ classdef (Abstract) DocGen
             end
         end
         
+        function explodedSubpathRow = explodeSubpath(subPath)
+            explodedSubpathRow = regexp(subPath,DocGen.SEP_TOKEN,'split');
+        end
+        
+        function nodePath = recoverNodePath(fullSubpathRow,  nodePos)
+            subRowUptoNode = fullSubpathRow(1, [1:nodePos]);
+            nodePath = [DocGen.GLOBAL_NOTICE_SRC DocGen.SEP_TOKEN strjoin(subRowUptoNode, DocGen.SEP_TOKEN) ''];
+        end
+        
+        function globalIndexArray = globalIndexArrMake(subpathsList)
+            
+            % Init Data structures %
+            appendIdx = 1;
+            nbSubpaths = numel(subpathsList);
+            precPathRow = DocGen.explodeSubpath(subpathsList{1});
+            nbNodes = numel(precPathRow);
+            for i=1:nbNodes
+                nodePath = DocGen.recoverNodePath(precPathRow, i);
+                globalIndexArray{appendIdx} = [i, precPathRow(i), nodePath];
+                appendIdx = appendIdx + 1;
+            end
+            
+            % Global index making %
+            for i=2:nbSubpaths
+                currentSubpathRow = DocGen.explodeSubpath(subpathsList{i});
+                nbNodes = numel(currentSubpathRow);
+                
+                updatePrecPat = false;
+                for j=1:nbNodes
+                    if j > numel(precPathRow) || ~strcmp(precPathRow(j), currentSubpathRow(j))
+                        updatePrecPat = true;
+                    end
+
+                    if updatePrecPat
+                        nodePath = DocGen.recoverNodePath(currentSubpathRow, j);
+                        globalIndexArray{appendIdx} = [j, currentSubpathRow(j), nodePath];
+                        precPathRow(j) = currentSubpathRow(j);
+                        appendIdx = appendIdx + 1;
+                    end
+                end
+            end
+        end
+        
         function noticeGlobalTest()
             DocGen.clearScript();
             DocGen.recoverDocs();
             indexList = DocGen.indexSelect('List.txt');
             delete('List.txt');
             subpathsList = DocGen.rootRemove(indexList, [DocGen.GLOBAL_NOTICE_SRC '\']);
+            globalIndexArray = DocGen.globalIndexArrMake(subpathsList);
             
             % Debug %
-            filename = 'rootRemoveDebug.txt';
+%             filename = 'rootRemoveDebug.txt';
+%             fid = fopen(filename,'wt');
+%             nbIndexes = numel(subpathsList);
+%             for i=1:nbIndexes
+%                  fprintf(fid, '%s\n', subpathsList{i});
+%             end
+%             fclose(fid);
+
+            % Debug %
+            filename = 'globalIndexArrMakeDebug.txt';
             fid = fopen(filename,'wt');
-            nbIndexes = numel(subpathsList);
-            for i=1:nbIndexes
-                 fprintf(fid, '%s\n', subpathsList{i});
-            end
+            celldisp(globalIndexArray);
+            %fprintf(fid, '%s', globalIndexArray(:));
+%             nbNodes = numel(globalIndexArray);
+%             for i=1:nbNodes
+%                 for j=1:numel( globalIndexArray{i})
+%                     fprintf(fid, 'Depth: %s ', globalIndexArray(j, i));
+%                     fprintf(fid, 'Node: %s ', globalIndexArray(j, i));
+%                     fprintf(fid, 'Path: %s\n', globalIndexArray(j, i));
+%                     fprintf(fid, '\n\n');
+%                 end
+%             end
             fclose(fid);
         end
         
