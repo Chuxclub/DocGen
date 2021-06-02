@@ -130,20 +130,18 @@ classdef (Abstract) DocGen
 %             fclose(fid);
 
             % Debug %
-            filename = 'globalIndexArrMakeDebug.txt';
-            fid = fopen(filename,'wt');
-            celldisp(globalIndexArray);
-            %fprintf(fid, '%s', globalIndexArray(:));
-%             nbNodes = numel(globalIndexArray);
-%             for i=1:nbNodes
-%                 for j=1:numel( globalIndexArray{i})
-%                     fprintf(fid, 'Depth: %s ', globalIndexArray(j, i));
-%                     fprintf(fid, 'Node: %s ', globalIndexArray(j, i));
-%                     fprintf(fid, 'Path: %s\n', globalIndexArray(j, i));
-%                     fprintf(fid, '\n\n');
-%                 end
+%             filename = 'globalIndexArrMakeDebug.txt';
+%             fid = fopen(filename,'wt');
+%             %celldisp(globalIndexArray);
+%             %fprintf(fid, '%s', globalIndexArray(:));
+%             nbIndexEntries = numel(globalIndexArray);
+%             for i=1:nbIndexEntries
+%                 fprintf(fid, 'Depth: %i ', globalIndexArray{i}{1});
+%                 fprintf(fid, 'Node: %s ', globalIndexArray{i}{2});
+%                 fprintf(fid, 'Path: %s\n', globalIndexArray{i}{3});
+%                 fprintf(fid, '\n\n');
 %             end
-            fclose(fid);
+%             fclose(fid);
         end
         
         function notice(path, eval)
