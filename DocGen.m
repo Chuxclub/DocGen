@@ -15,20 +15,13 @@
 
 classdef (Abstract) DocGen
     properties (Constant, Access = private)
-        % SI LINUX:
-        %GLOBAL_NOTICE_SRC = '/home/crex/projects/MatLab_Template/codes';
-        % SI WINDOWS:
         GLOBAL_NOTICE_SRC = 'E:\Git\projects\wip\DocGenTest\codes';
-        
-        % SI LINUX:
-        %GLOBAL_NOTICE_DEST = '/home/crex/projects/MatLab_Template/docs';
-        % SI WINDOWS:
         GLOBAL_NOTICE_DEST = 'E:\Git\projects\wip\DocGenTest\docs';
         
-        % SI LINUX:
-        %SEP_TOKEN = '/';
-        % SI WINDOWS:
-        SEP_TOKEN = '\';
+        % Token de séparation des fichiers dans les chemins absolus. 
+        % Configuration nécessaire pour certains algorithmes utilisés dans
+        % DocGen. Si linux -> '/' :
+        SEP_TOKEN = '\'; 
         
         % SI LINUX:
         %RECOVER_HTML_CMD = ['find ' DocGen.GLOBAL_NOTICE_SRC ' | grep .html > List.txt'];
