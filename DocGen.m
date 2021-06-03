@@ -32,26 +32,19 @@ classdef (Abstract) DocGen
     end
     
     methods(Static)
+        
+        % ============ GETTERS ============ %
+        function sepToken = getSepToken()
+            sepToken = DocGen.SEP_TOKEN;
+        end
+        
+        
+        % ============== TODO ============= %
         function deleteNotice(path)
             cd(path);
             rmdir(DocGen.DOC_NAME, 's');
         end
-        
-        function fileList = fetchFiles(src, pattern, debugMode)
-            fileList = dir([src DocGen.SEP_TOKEN pattern]);
-               
-            if debugMode
-                dos(['dir /s /b ' src DocGen.SEP_TOKEN pattern ' > fetchFilesList.txt']);
-                
-                input(['You are in fetchFiles debug mode. This is just a ' 
-                'prompt. Feel free to check fetchFilesList.txt to be sure '
-                'that the correct files are being fetched. Press Enter '
-                'when you are done.']); 
-            
-                delete fetchFilesList.txt;
-            end 
-        end
-        
+
         function indexList = indexSelect(file)
             htmlList=importdata(file);
             
@@ -66,19 +59,12 @@ classdef (Abstract) DocGen
             end
         end
         
-        function recoverDocs()
+        function recoverHtmlDocs()
             [~,~] = dos(DocGen.RECOVER_HTML_CMD);
         end
-        
-        function subpathsList = rootRemove(indexList, pathRoot)
-            nbIndexes = numel(indexList);
-            for i=1:nbIndexes
-                subpathsList{i} = erase(indexList{i}, pathRoot);
-            end
-        end
-        
-        function explodedSubpathRow = explodeSubpath(subPath)
-            explodedSubpathRow = regexp(subPath,DocGen.SEP_TOKEN,'split');
+
+        function explodedSubpath = explodeSubpath(subPath)
+            explodedSubpath = regexp(subPath,DocGen.SEP_TOKEN,'split');
         end
         
         function nodePath = recoverNodePath(fullSubpathRow,  nodePos)
@@ -183,7 +169,7 @@ classdef (Abstract) DocGen
         
         function makeIndexGlobal(fid, isExhaustive)
             DocGen.clearScript();
-            DocGen.recoverDocs();
+            DocGen.recoverHtmlDocs();
             
             if ~isExhaustive
                 indexList = DocGen.indexSelect('List.txt');
@@ -191,8 +177,8 @@ classdef (Abstract) DocGen
                 indexList=importdata('List.txt');
             end
 
-            subpathsList = DocGen.rootRemove(indexList, [DocGen.GLOBAL_NOTICE_SRC '\']);
-            globalIndexArray = DocGen.globalIndexArrMake(subpathsList);
+            subPathsList = Index.cropPaths(indexList, [DocGen.GLOBAL_NOTICE_SRC '\']);
+            globalIndexArray = DocGen.globalIndexArrMake(subPathsList);
             DocGen.generateHTML(globalIndexArray, fid);
         end
         
@@ -206,7 +192,7 @@ classdef (Abstract) DocGen
             Nom = flip(moN);
             
             % ---------- On récupère les noms des scripts du dossier ---------- %
-            FileInfos = DocGen.fetchFiles(path, '*.m', false);
+            FileInfos = FilesTB.getFiles(path, '*.m', "");
             k=0;
             for i=1:length(FileInfos)
                 if FileInfos(i).isdir==0 %pour gérer les sous dossiers présents

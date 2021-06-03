@@ -12,7 +12,7 @@
 % "properties" selon votre système                                        %
 %                    -------------------------                            %
 
-%DocGen.noticeGlobalTest();
+FilesTB.getFilesDebug('E:\Git\projects\wip\DocGenTest\codes\', '*.m');
 
 %% Création de la documentation
 DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Math', false);
