@@ -12,16 +12,12 @@
 
 
 classdef FilesTB
-    properties(Constant, Access = private)
-        
-    end
-    
     methods(Static)
         function fileList = getFiles(src, pattern, filename)
             if filename == ""
-                fileList = dir([src DocGen.getSepToken() pattern]);
+                fileList = dir([src PathsTB.getSepToken() pattern]);
             else
-                sepToken = DocGen.getSepToken();
+                sepToken = PathsTB.getSepToken();
                 dos(['dir /s /b ' src sepToken pattern ' > ' filename]);
             end
         end
@@ -36,9 +32,5 @@ classdef FilesTB
             
             delete fetchFilesList.txt;
         end
-    end
-    
-    methods(Static, Access = private)
-        
     end
 end

@@ -43,16 +43,4 @@ classdef (Abstract) Index
             objSrc = obj.src;
         end
     end
-    
-    
-    methods(Static)
-        function subPathsList = cropPaths(pathsList, pattern)
-            nbPaths = numel(pathsList);
-            for i=1:nbPaths
-                subPathsList{i} = erase(pathsList{i}, pattern);
-            end
-        end
-        
-        
-    end
 end
