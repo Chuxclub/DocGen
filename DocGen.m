@@ -10,7 +10,7 @@
 %                                                                         %
 % IMPORTANT: Modifiez les variables globales dans "properties" ci-dessous %
 % selon votre système                                                     %
-%                    -------------------------                            % 
+%                    -------------------------                            %
 
 
 classdef (Abstract) DocGen
@@ -46,7 +46,7 @@ classdef (Abstract) DocGen
         
         function indexList = indexSelect(file)
             htmlList=importdata(file);
-
+            
             h=0;
             nbHtmlFiles = numel(htmlList);
             for i=1:nbHtmlFiles
@@ -101,7 +101,7 @@ classdef (Abstract) DocGen
                     if j > numel(precPathRow) || ~strcmp(precPathRow(j), currentSubpathRow(j))
                         updatePrecPat = true;
                     end
-
+                    
                     if updatePrecPat
                         nodePath = DocGen.recoverNodePath(currentSubpathRow, j);
                         globalIndexArray{appendIdx} = [j, currentSubpathRow(j), nodePath];
@@ -112,6 +112,113 @@ classdef (Abstract) DocGen
             end
         end
         
+        %         function generateHTML(globalIndexArray)
+        %             filename = 'globalIndexMarkup.m';
+        %             fid = fopen(filename,'wt');
+        %
+        %             fprintf(fid, '%% <html>\n');
+        %             fprintf(fid, '%% <ul>\n');
+        %
+        %             nbIndexEntries = numel(globalIndexArray);
+        %             for i=1:nbIndexEntries
+        %                 % Gestion des valeurs des profondeurs %
+        %                 currentDepth = globalIndexArray{i}{1};
+        %
+        %                 if(i+1 <= nbIndexEntries)
+        %                     nextDepth = globalIndexArray{i+1}{1};
+        %                 else
+        %                     nextDepth = 0; % Permet de forcer la fermeture des listes HTML
+        %                 end
+        %
+        %                 % Ouverture d'une entrée %
+        %                 fprintf(fid, '%%\t<li> ');
+        %
+        %                 % Gestion du contenu des entrées %
+        %                 if contains(globalIndexArray{i}{2}, '.html')
+        %                     fprintf(fid, '%% <a href="file:///%s">%s</a>', globalIndexArray{i}{3}, globalIndexArray{i}{2});
+        %                 else
+        %                     fprintf(fid, '%% %s', globalIndexArray{i}{2});
+        %                 end
+        %
+        %                 % Fermeture des entrées selon la profondeur %
+        %                 if(currentDepth < nextDepth)
+        %                     fprintf(fid, '%% <ul>\n');
+        %                 elseif(currentDepth > nextDepth)
+        %                     fprintf(fid, '%% </li>\n %% </ul>\n');
+        %                 else
+        %                     fprintf(fid, '%% </li>\n');
+        %                 end
+        %             end
+        %
+        %             fprintf(fid, '%% </ul>\n');
+        %             fprintf(fid, '%% </html>');
+        %             fclose(fid);
+        %         end
+        
+        function newPos = generateHTML_aux(globalIndexArray, fid, pos)
+            fprintf(fid, '\n%%\t<ul>');
+            
+            while pos <= size(globalIndexArray, 2)
+                % ======= GESTION VARIABLES ======== %
+                % Pour la lisibilité de ce code %
+                currentNodeDepth = globalIndexArray{pos}{1};
+                currentNodeName = globalIndexArray{pos}{2};
+                currentNodePath = globalIndexArray{pos}{3};
+                
+                % Essentiel pour gérer les fermetures de balise %
+                if(pos+1 <= size(globalIndexArray, 2))
+                    nextDepth = globalIndexArray{pos+1}{1};
+                else
+                    nextDepth = 0;
+                end
+                
+                % ========== GESTION HTML ========== %
+                % Ouverture d'une entrée %
+                fprintf(fid, '\n%%\t<li>');
+                
+                % Gestion du contenu des entrées %
+                if contains(currentNodeName, '.html')
+                    fprintf(fid, '<a href="file:///%s">%s</a>', currentNodePath, currentNodeName);
+                else
+                    fprintf(fid, '%s', currentNodeName);
+                end
+                
+                % Fermeture des entrées selon la profondeur %
+                if(currentNodeDepth < nextDepth)
+                    pos = DocGen.generateHTML_aux(globalIndexArray, fid, pos+1);
+                elseif(currentNodeDepth > nextDepth)
+                    for i=1:currentNodeDepth-nextDepth
+                        fprintf(fid, '\n%%</li>\n%%</ul>');
+                    end
+                    
+                    if nextDepth ~= 0
+                        fprintf(fid, '\n%%</li>');
+                    end
+                    break;
+                else 
+                    fprintf(fid, '\n%%</li>');
+                end
+                
+                % On boucle %
+                pos = pos+1;
+            end
+            
+            newPos = pos;
+        end
+        
+        function generateHTML(globalIndexArray)
+            filename = 'globalIndexMarkup.m';
+            fid = fopen(filename,'wt');
+            
+            fprintf(fid, '%%<html>\n');
+            if(size(globalIndexArray) ~= 0)
+                [~] = DocGen.generateHTML_aux(globalIndexArray, fid, 1);
+            end
+            fprintf(fid, '\n%%</html>');
+            
+            fclose(fid);
+        end
+        
         function noticeGlobalTest()
             DocGen.clearScript();
             DocGen.recoverDocs();
@@ -119,29 +226,30 @@ classdef (Abstract) DocGen
             delete('List.txt');
             subpathsList = DocGen.rootRemove(indexList, [DocGen.GLOBAL_NOTICE_SRC '\']);
             globalIndexArray = DocGen.globalIndexArrMake(subpathsList);
+            DocGen.generateHTML(globalIndexArray);
             
             % Debug %
-%             filename = 'rootRemoveDebug.txt';
-%             fid = fopen(filename,'wt');
-%             nbIndexes = numel(subpathsList);
-%             for i=1:nbIndexes
-%                  fprintf(fid, '%s\n', subpathsList{i});
-%             end
-%             fclose(fid);
-
+            %             filename = 'rootRemoveDebug.txt';
+            %             fid = fopen(filename,'wt');
+            %             nbIndexes = numel(subpathsList);
+            %             for i=1:nbIndexes
+            %                  fprintf(fid, '%s\n', subpathsList{i});
+            %             end
+            %             fclose(fid);
+            
             % Debug %
-%             filename = 'globalIndexArrMakeDebug.txt';
-%             fid = fopen(filename,'wt');
-%             %celldisp(globalIndexArray);
-%             %fprintf(fid, '%s', globalIndexArray(:));
-%             nbIndexEntries = numel(globalIndexArray);
-%             for i=1:nbIndexEntries
-%                 fprintf(fid, 'Depth: %i ', globalIndexArray{i}{1});
-%                 fprintf(fid, 'Node: %s ', globalIndexArray{i}{2});
-%                 fprintf(fid, 'Path: %s\n', globalIndexArray{i}{3});
-%                 fprintf(fid, '\n\n');
-%             end
-%             fclose(fid);
+            %             filename = 'globalIndexArrMakeDebug.txt';
+            %             fid = fopen(filename,'wt');
+            %             %celldisp(globalIndexArray);
+            %             %fprintf(fid, '%s', globalIndexArray(:));
+            %             nbIndexEntries = numel(globalIndexArray);
+            %             for i=1:nbIndexEntries
+            %                 fprintf(fid, 'Depth: %i ', globalIndexArray{i}{1});
+            %                 fprintf(fid, 'Node: %s ', globalIndexArray{i}{2});
+            %                 fprintf(fid, 'Path: %s\n', globalIndexArray{i}{3});
+            %                 fprintf(fid, '\n\n');
+            %             end
+            %             fclose(fid);
         end
         
         function notice(path, eval)
@@ -186,7 +294,7 @@ classdef (Abstract) DocGen
             nbFichiers = numel(ListF);
             linei=cell(nbFichiers,1);
             for i=1:nbFichiers
-                % Création de l'index (cf. Markup) par une bullet list 
+                % Création de l'index (cf. Markup) par une bullet list
                 % (% *) et hyperliens (< ... >):
                 linei{i,1} = ['% * <' ListF{i}(1:end-2) '.html ' ListF{i}(1:end-2) '>'];
                 fprintf(fid,'%s\n',linei{i});
@@ -248,7 +356,7 @@ classdef (Abstract) DocGen
             %  ---------- On publie l'index global ---------- %
             % Préallocation:
             for i=1:numel(ListeIndex)
-                % Création de l'index (cf. Markup) par une bullet list 
+                % Création de l'index (cf. Markup) par une bullet list
                 % (% *) et hyperliens (< ... >):
                 ListeFormat{i,1} = ['% * <' ListeIndex{i} ' '  Nom{i}(1:end-5) '>']; % (1:end-5) pour enlever le .html
                 fprintf(fid,'%s\n',ListeFormat{i});
