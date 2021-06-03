@@ -12,15 +12,15 @@
 % "properties" selon votre système                                        %
 %                    -------------------------                            %
 
-DocGen.noticeGlobalTest();
+%DocGen.noticeGlobalTest();
 
 %% Création de la documentation
 DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Math', false);
 DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot', false);
 DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot\Video', false);
-%DocGen.notice('/home/crex/projects/MatLab_Template/codes/Plot/Video', false);
+DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Location', false);
 
-DocGen.noticeGlobale();
+DocGen.noticeGlobale(true);
 
 %% Suppression rapide d'une ou plusieurs notices
 %DocGen.deleteNotice('/home/crex/projects/MatLab_Template/codes/Plot/Video');
