@@ -14,7 +14,6 @@
 classdef UtilsTB
     methods(Static)
         function clearScript()
-            % Début du script:
             clear variables
             close all
             clc

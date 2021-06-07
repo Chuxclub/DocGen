@@ -16,10 +16,11 @@ classdef IndexT < Index
     % ############ Méthodes principales ############ %
     methods
         % ~~~~~~~~~~~ Constructeur de l'objet "index hiérarchique":
-        function obj = IndexT(pattern, level, src, dest)
-            obj = obj@Index(pattern, level, src, dest);
+        function obj = IndexT(pattern, depth, src, dest)
+            obj = obj@Index(pattern, depth, src, dest);
         end
         
+        % ~~~~~~~~~~~ Construction de l'index hiérarchique:
         function makeIndexGlobal(obj, fid, isExhaustive)
             UtilsTB.clearScript();
             FilesTB.getFiles(obj.getSrc(), obj.getPattern(), 'List.txt');

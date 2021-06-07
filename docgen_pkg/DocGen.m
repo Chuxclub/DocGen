@@ -34,8 +34,7 @@ classdef (Abstract) DocGen
     methods(Static)
         % ============= GESTION DES NOTICES ============= %
         function deleteNotice(path)
-            cd(path);
-            rmdir(DocGen.DOC_NAME, 's');
+            rmdir([path PathsTB.getSepToken() DocGen.DOC_NAME], 's');
         end
         
         function notice(path, eval)
@@ -43,9 +42,7 @@ classdef (Abstract) DocGen
             cd(path);
             
             % ---------- On récupère le nom du dossier ---------- %
-            htap = flip(path);
-            moN = strtok(htap, PathsTB.getSepToken());
-            Nom = flip(moN);
+            Nom = PathsTB.getFileFromAbsolutePath(path);
             
             % ---------- On récupère les noms des scripts du dossier ---------- %
             FileInfos = FilesTB.getFiles(path, '*.m', "");
@@ -115,10 +112,7 @@ classdef (Abstract) DocGen
                 if ~isempty(A{i,1})
                     h=h+1;
                     ListeIndex{h,1}=LISTE{i,1};
-                    
-                    ListFlip = flip(ListeIndex{h,1});
-                    moN = strtok(ListFlip, PathsTB.getSepToken());
-                    Nom{h,1} = flip(moN);
+                    Nom{h,1} = PathsTB.getFileFromAbsolutePath(ListeIndex{h,1});
                 end
             end
             

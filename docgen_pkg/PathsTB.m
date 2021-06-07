@@ -42,6 +42,12 @@ classdef PathsTB
             explodedSubpath = regexp(subPath, explodeDelimiter, 'split');
         end
         
+        function filename = getFileFromAbsolutePath(path)
+            htap = flip(path);
+            emanelif = strtok(htap, PathsTB.getSepToken());
+            filename = flip(emanelif);
+        end
+        
         function matchingPathsList = selectFromPaths(pattern, filename)
             htmlList=importdata(filename);
             

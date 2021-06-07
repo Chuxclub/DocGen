@@ -13,15 +13,15 @@
 classdef (Abstract) Index
     properties (Access = private)
         pattern;
-        level;
+        depth;
         src;
         dest;
     end
     
     methods 
-        function obj = Index(pattern, level, src, dest)
+        function obj = Index(pattern, depth, src, dest)
             obj.pattern = pattern;
-            obj.level = level;
+            obj.depth = depth;
             obj.src = src;
             obj.dest = dest;
         end
@@ -32,8 +32,8 @@ classdef (Abstract) Index
             return;
         end
         
-        function objLevel = getLevel(obj)
-            objLevel = obj.level;
+        function objDepth = getDepth(obj)
+            objDepth = obj.depth;
             return;
         end
         

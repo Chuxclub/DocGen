@@ -24,4 +24,4 @@ DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Location',
 DocGen.noticeGlobale(true);
 
 %% Suppression rapide d'une ou plusieurs notices
-%DocGen.deleteNotice('/home/crex/projects/MatLab_Template/codes/Plot/Video');
+%DocGen.deleteNotice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Location');
