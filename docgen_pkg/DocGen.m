@@ -18,30 +18,25 @@
 %                    -------------------------                            %
 
 
+
 classdef (Abstract) DocGen
-    properties (Constant, Access = private)
-        GLOBAL_NOTICE_SRC = 'E:\Git\projects\wip\DocGenTest\codes';
-        GLOBAL_NOTICE_DEST = 'E:\Git\projects\wip\DocGenTest\docs';
-        
-        % SI LINUX:
-        %RECOVER_HTML_CMD = ['find ' DocGen.GLOBAL_NOTICE_SRC ' | grep .html > List.txt'];
-        % SI WINDOWS:
-        RECOVER_HTML_CMD = ['dir /s /b ' DocGen.GLOBAL_NOTICE_SRC '\*.html > List.txt'];
-        
-        DOC_NAME = 'Notice';
-    end
     
+    properties (Constant, Access = private)
+        DOC_NAME = 'Notice';
+    end   
+    
+    % ################ GESTION DES NOTICES ################ %
     methods(Static)
-        % ============= GESTION DES NOTICES ============= %
+        % ================ Supprimer une notice ================ %
         function deleteNotice(path)
             rmdir([path PathsTB.getSepToken() DocGen.DOC_NAME], 's');
         end
+       
         
+        % ================ Créer une notice locale ================ %
         function notice(path, eval)
             UtilsTB.clearScript();
             cd(path);
-            
-            % ---------- On récupère le nom du dossier ---------- %
             Nom = PathsTB.getFileFromAbsolutePath(path);
             
             % ---------- On récupère les noms des scripts du dossier ---------- %
@@ -71,7 +66,6 @@ classdef (Abstract) DocGen
             fprintf(fid,'%s\n\n','%% Main Functions');
             fprintf(fid,'%s\n','%%');
             
-            
             % ---------- On publie les fichiers ---------- %
             % Préallocation:
             nbFichiers = numel(ListF);
@@ -84,7 +78,6 @@ classdef (Abstract) DocGen
             end
             
             % Publication:
-            fclose(fid);
             for i=1:nbFichiers
                 publish(ListF{i},publishOptions);
             end
@@ -93,17 +86,22 @@ classdef (Abstract) DocGen
             publish(filename,publishOptions);
             
             % --------- Nettoyage des fichiers devenus inutiles --------- %
+            fclose(fid);
             delete(filename);
         end
         
-        function noticeGlobale(isIndexExhaustive)
+        
+        % ================ Créer une notice globale ================ %
+        function noticeGlobale(src, dest, isIndexExhaustive)
             UtilsTB.clearScript();
-            
-            addpath(genpath(DocGen.GLOBAL_NOTICE_DEST))
-            cd(DocGen.GLOBAL_NOTICE_DEST)
+            addpath(genpath(dest))
+            cd(dest)
             
             % ----------------- Récupération des données ---------------- %
-            [~,~]=dos(DocGen.RECOVER_HTML_CMD);
+            % SI LINUX:
+            % [~,~]=dos(['find ' src ' | grep .html > List.txt']);
+            % SI WINDOWS:
+            [~,~]=dos(['dir /s /b ' src '\*.html > List.txt']);
             LISTE=importdata('List.txt');
             
             h=0;
@@ -118,7 +116,7 @@ classdef (Abstract) DocGen
             
             % ---------- On prépare les options de publication ---------- %
             publishOptions.format = 'html';
-            publishOptions.outputDir = DocGen.GLOBAL_NOTICE_DEST;
+            publishOptions.outputDir = dest;
             publishOptions.evalCode = false;
             
             % ---------- On crée le script (.m) de l'index global qui sera publié ---------- %
@@ -134,16 +132,16 @@ classdef (Abstract) DocGen
             
             %  ---------- On publie l'index global ---------- %
             % Préallocation:
-            indexT = IndexT('*.html', 10, DocGen.GLOBAL_NOTICE_SRC, DocGen.GLOBAL_NOTICE_DEST);
+            indexT = IndexT('*.html', 10, src, dest);
             indexT.makeIndexGlobal(fid, isIndexExhaustive);
             
             % Publication:
             publish(filename,publishOptions);
             
             % --------- Nettoyage des fichiers devenus inutiles --------- %
-            delete List.txt;
             fclose(fid);
             delete IndexGlobal.m;
+            delete List.txt;
         end
     end
 end

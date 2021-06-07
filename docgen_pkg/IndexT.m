@@ -31,7 +31,7 @@ classdef IndexT < Index
                 indexList=importdata('List.txt');
             end
             
-            subPathsList = PathsTB.cropPaths(indexList, [obj.getSrc() '\']);
+            subPathsList = PathsTB.cropPaths(indexList, [obj.getSrc() PathsTB.getSepToken()]);
             globalIndexArray = obj.globalIndexArrMake(subPathsList);
             obj.generateHTML(globalIndexArray, fid);
         end
@@ -43,7 +43,7 @@ classdef IndexT < Index
         
         % ~~~~~~~~~~~ Index hiérarchique en tableau :        
         function globalIndexArray = globalIndexArrMake(obj, subpathsList)
-            % Init Data structures %
+            % Algorithm initialization %
             appendIdx = 1;
             nbSubpaths = numel(subpathsList);
             precPathRow = PathsTB.explodeSubpath(subpathsList{1}, PathsTB.getSepToken());
@@ -60,13 +60,13 @@ classdef IndexT < Index
                 currentSubpathRow = PathsTB.explodeSubpath(subpathsList{i}, PathsTB.getSepToken());
                 nbNodes = numel(currentSubpathRow);
                 
-                updatePrecPat = false;
+                updatePrecPath = false;
                 for j=1:nbNodes
                     if j > numel(precPathRow) || ~strcmp(precPathRow(j), currentSubpathRow(j))
-                        updatePrecPat = true;
+                        updatePrecPath = true;
                     end
                     
-                    if updatePrecPat
+                    if updatePrecPath
                         nodePath = [obj.getSrc() PathsTB.getSepToken() ...
                             PathsTB.concatSubpathFromNodesRow(currentSubpathRow, 1, j)];
                         globalIndexArray{appendIdx} = [j, currentSubpathRow(j), nodePath];
