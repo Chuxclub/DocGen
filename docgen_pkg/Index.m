@@ -10,7 +10,7 @@
 %                    -------------------------                            %
 
 
-classdef (Abstract) Index 
+classdef (Abstract) Index
     properties (Access = private)
         pattern;
         level;
@@ -27,20 +27,24 @@ classdef (Abstract) Index
         end
         
         % ============ GETTERS ============ %
-        function objDest = getDest(~)
+        function objDest = getDest(obj)
             objDest = obj.dest;
+            return;
         end
         
-        function objLevel = getLevel(~)
+        function objLevel = getLevel(obj)
             objLevel = obj.level;
+            return;
         end
         
-        function objPattern = getPattern(~)
+        function objPattern = getPattern(obj)
             objPattern = obj.pattern;
+            return;
         end
         
-        function objSrc = getSrc(~)
+        function objSrc = getSrc(obj)
             objSrc = obj.src;
+            return;
         end
     end
 end

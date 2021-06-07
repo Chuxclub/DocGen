@@ -117,7 +117,7 @@ classdef (Abstract) DocGen
                     ListeIndex{h,1}=LISTE{i,1};
                     
                     ListFlip = flip(ListeIndex{h,1});
-                    moN = strtok(ListFlip,PathsTB.getSepToken());
+                    moN = strtok(ListFlip, PathsTB.getSepToken());
                     Nom{h,1} = flip(moN);
                 end
             end
@@ -140,127 +140,16 @@ classdef (Abstract) DocGen
             
             %  ---------- On publie l'index global ---------- %
             % Préallocation:
-            DocGen.makeIndexGlobal(fid, isIndexExhaustive);
+            indexT = IndexT('*.html', 10, DocGen.GLOBAL_NOTICE_SRC, DocGen.GLOBAL_NOTICE_DEST);
+            indexT.makeIndexGlobal(fid, isIndexExhaustive);
             
             % Publication:
             publish(filename,publishOptions);
             
             % --------- Nettoyage des fichiers devenus inutiles --------- %
             delete List.txt;
+            fclose(fid);
             delete IndexGlobal.m;
         end
-
-        
-        % ============== A TRIER ============= %
-        function globalIndexArray = globalIndexArrMake(subpathsList)
-            % Init Data structures %
-            appendIdx = 1;
-            nbSubpaths = numel(subpathsList);
-            precPathRow = PathsTB.explodeSubpath(subpathsList{1}, PathsTB.getSepToken());
-            nbNodes = numel(precPathRow);
-            for i=1:nbNodes
-                nodePath = [DocGen.GLOBAL_NOTICE_SRC PathsTB.getSepToken() ...
-                            PathsTB.concatSubpathFromNodesRow(precPathRow, 1, i)];
-                globalIndexArray{appendIdx} = [i, precPathRow(i), nodePath];
-                appendIdx = appendIdx + 1;
-            end
-            
-            % Global index making %
-            for i=2:nbSubpaths
-                currentSubpathRow = PathsTB.explodeSubpath(subpathsList{i}, PathsTB.getSepToken());
-                nbNodes = numel(currentSubpathRow);
-                
-                updatePrecPat = false;
-                for j=1:nbNodes
-                    if j > numel(precPathRow) || ~strcmp(precPathRow(j), currentSubpathRow(j))
-                        updatePrecPat = true;
-                    end
-                    
-                    if updatePrecPat
-                        nodePath = [DocGen.GLOBAL_NOTICE_SRC PathsTB.getSepToken() ...
-                            PathsTB.concatSubpathFromNodesRow(currentSubpathRow, 1, j)];
-                        globalIndexArray{appendIdx} = [j, currentSubpathRow(j), nodePath];
-                        precPathRow(j) = currentSubpathRow(j);
-                        appendIdx = appendIdx + 1;
-                    end
-                end
-            end
-        end
-        
-        function newPos = generateHTML_aux(globalIndexArray, fid, pos)
-            fprintf(fid, '\n%% \t<ul>');
-            
-            while pos <= size(globalIndexArray, 2)
-                % ~~~~~~~~ GESTION VARIABLES ~~~~~~~~ %
-                % Pour la lisibilité de ce code %
-                currentNodeDepth = globalIndexArray{pos}{1};
-                currentNodeName = globalIndexArray{pos}{2};
-                currentNodePath = globalIndexArray{pos}{3};
-                
-                % Essentiel pour gérer les fermetures de balise %
-                if(pos+1 <= size(globalIndexArray, 2))
-                    nextDepth = globalIndexArray{pos+1}{1};
-                else
-                    nextDepth = 0;
-                end
-                
-                % ~~~~~~~~ GESTION HTML ~~~~~~~~ %
-                % Ouverture d'une entrée %
-                fprintf(fid, '\n%% \t<li>');
-                
-                % Gestion du contenu des entrées %
-                if contains(currentNodeName, '.html')
-                    fprintf(fid, '<a href="file:///%s">%s</a>', currentNodePath, currentNodeName);
-                else
-                    fprintf(fid, '%s', currentNodeName);
-                end
-                
-                % Fermeture des entrées selon la profondeur %
-                if(currentNodeDepth < nextDepth)
-                    pos = DocGen.generateHTML_aux(globalIndexArray, fid, pos+1);
-                elseif(currentNodeDepth > nextDepth)
-                    for i=1:currentNodeDepth-nextDepth
-                        fprintf(fid, '\n%% </li>\n%% </ul>');
-                    end
-                    
-                    if nextDepth ~= 0
-                        fprintf(fid, '\n%% </li>');
-                    end
-                    break;
-                else 
-                    fprintf(fid, '\n%% </li>');
-                end
-                
-                % On boucle %
-                pos = pos+1;
-            end
-            
-            newPos = pos;
-        end
-        
-        function generateHTML(globalIndexArray, fid)
-            fprintf(fid, '%% <html>');
-            if(size(globalIndexArray) ~= 0)
-                [~] = DocGen.generateHTML_aux(globalIndexArray, fid, 1);
-            end
-            fprintf(fid, '\n%% </html>');
-            
-            fclose(fid);
-        end
-        
-        function makeIndexGlobal(fid, isExhaustive)
-            UtilsTB.clearScript();
-            FilesTB.getFiles(DocGen.GLOBAL_NOTICE_SRC, '*.html', 'List.txt');
-            
-            if ~isExhaustive
-                indexList = PathsTB.selectFromPaths('Index', 'List.txt');
-            else
-                indexList=importdata('List.txt');
-            end
-
-            subPathsList = PathsTB.cropPaths(indexList, [DocGen.GLOBAL_NOTICE_SRC '\']);
-            globalIndexArray = DocGen.globalIndexArrMake(subPathsList);
-            DocGen.generateHTML(globalIndexArray, fid);
-        end     
     end
 end

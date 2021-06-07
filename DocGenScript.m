@@ -12,9 +12,10 @@
 % "properties" selon votre système                                        %
 %                    -------------------------                            %
 
-% FilesTB.getFilesDebug('E:\Git\projects\wip\DocGenTest\codes\', '*.m');
 
 %% Création de la documentation
+addpath('E:\Git\projects\wip\DocGenTest\lib\DocGen\docgen_pkg');
+
 DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Math', false);
 DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot', false);
 DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot\Video', false);
