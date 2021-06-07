@@ -1,0 +1,359 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>IndexT</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-06-07"><meta name="DC.source" content="IndexT.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">% ======================================================================= %</span>
+<span class="comment">% ========================= LA TOOLBOX DOCGEN =========================== %</span>
+<span class="comment">% ======================================================================= %</span>
+
+<span class="comment">%                    -------------------------                            %</span>
+<span class="comment">% Auteurs: Florian Legendre (script original)                             %</span>
+<span class="comment">%                                                                         %</span>
+<span class="comment">% Objectif: Fournir les m&eacute;thodes communes aux index hi&eacute;rarchiques.        %</span>
+<span class="comment">%                                                                         %</span>
+<span class="comment">%                    -------------------------                            %</span>
+
+
+
+<span class="keyword">classdef</span> IndexT &lt; Index
+
+    <span class="comment">% ############ M&eacute;thodes principales ############ %</span>
+    <span class="keyword">methods</span>
+        <span class="comment">% ~~~~~~~~~~~ Constructeur de l'objet "index hi&eacute;rarchique":</span>
+        <span class="keyword">function</span> obj = IndexT(pattern, depth, src, dest)
+            obj = obj@Index(pattern, depth, src, dest);
+        <span class="keyword">end</span>
+
+        <span class="comment">% ~~~~~~~~~~~ Construction de l'index hi&eacute;rarchique:</span>
+        <span class="keyword">function</span> makeIndexGlobal(obj, fid, isExhaustive)
+            UtilsTB.clearScript();
+            FilesTB.getFiles(obj.getSrc(), obj.getPattern(), <span class="string">'List.txt'</span>);
+
+            <span class="keyword">if</span> ~isExhaustive
+                indexList = PathsTB.selectFromPaths(<span class="string">'Index'</span>, <span class="string">'List.txt'</span>);
+            <span class="keyword">else</span>
+                indexList=importdata(<span class="string">'List.txt'</span>);
+            <span class="keyword">end</span>
+
+            subPathsList = PathsTB.cropPaths(indexList, [obj.getSrc() PathsTB.getSepToken()]);
+            globalIndexArray = obj.globalIndexArrMake(subPathsList);
+            obj.generateHTML(globalIndexArray, fid);
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+
+
+    <span class="comment">% ############ M&eacute;thodes auxiliaires (cf. MANUEL_DEV.pdf) ############ %</span>
+    <span class="keyword">methods</span> (Access = private)
+
+        <span class="comment">% ~~~~~~~~~~~ Index hi&eacute;rarchique en tableau :</span>
+        <span class="keyword">function</span> globalIndexArray = globalIndexArrMake(obj, subpathsList)
+            <span class="comment">% Algorithm initialization %</span>
+            appendIdx = 1;
+            nbSubpaths = numel(subpathsList);
+            precPathRow = PathsTB.explodeSubpath(subpathsList{1}, PathsTB.getSepToken());
+            nbNodes = numel(precPathRow);
+            <span class="keyword">for</span> i=1:nbNodes
+                nodePath = [obj.getSrc() PathsTB.getSepToken() <span class="keyword">...</span>
+                    PathsTB.concatSubpathFromNodesRow(precPathRow, 1, i)];
+                globalIndexArray{appendIdx} = [i, precPathRow(i), nodePath];
+                appendIdx = appendIdx + 1;
+            <span class="keyword">end</span>
+
+            <span class="comment">% Global index making %</span>
+            <span class="keyword">for</span> i=2:nbSubpaths
+                currentSubpathRow = PathsTB.explodeSubpath(subpathsList{i}, PathsTB.getSepToken());
+                nbNodes = numel(currentSubpathRow);
+
+                updatePrecPath = false;
+                <span class="keyword">for</span> j=1:nbNodes
+                    <span class="keyword">if</span> j &gt; numel(precPathRow) || ~strcmp(precPathRow(j), currentSubpathRow(j))
+                        updatePrecPath = true;
+                    <span class="keyword">end</span>
+
+                    <span class="keyword">if</span> updatePrecPath
+                        nodePath = [obj.getSrc() PathsTB.getSepToken() <span class="keyword">...</span>
+                            PathsTB.concatSubpathFromNodesRow(currentSubpathRow, 1, j)];
+                        globalIndexArray{appendIdx} = [j, currentSubpathRow(j), nodePath];
+                        precPathRow(j) = currentSubpathRow(j);
+                        appendIdx = appendIdx + 1;
+                    <span class="keyword">end</span>
+                <span class="keyword">end</span>
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+
+
+        <span class="comment">% ~~~~~~~~~~~ Index hi&eacute;rarchique en HTML appel de la r&eacute;cursive:</span>
+        <span class="keyword">function</span> generateHTML(obj, globalIndexArray, fid)
+            fprintf(fid, <span class="string">'%% &lt;html&gt;'</span>);
+            <span class="keyword">if</span>(size(globalIndexArray) ~= 0)
+                [~] = obj.generateHTML_aux(globalIndexArray, fid, 1);
+            <span class="keyword">end</span>
+            fprintf(fid, <span class="string">'\n%% &lt;/html&gt;'</span>);
+        <span class="keyword">end</span>
+
+
+        <span class="comment">% ~~~~~~~~~~~ Index hi&eacute;rarchique en HTML - la r&eacute;cursive:</span>
+        <span class="keyword">function</span> newPos = generateHTML_aux(obj, globalIndexArray, fid, pos)
+            fprintf(fid, <span class="string">'\n%% \t&lt;ul&gt;'</span>);
+
+            <span class="keyword">while</span> pos &lt;= size(globalIndexArray, 2)
+                <span class="comment">% ~~~~~~~~ GESTION VARIABLES ~~~~~~~~ %</span>
+                <span class="comment">% Pour la lisibilit&eacute; de ce code %</span>
+                currentNodeDepth = globalIndexArray{pos}{1};
+                currentNodeName = globalIndexArray{pos}{2};
+                currentNodePath = globalIndexArray{pos}{3};
+
+                <span class="comment">% Essentiel pour g&eacute;rer les fermetures de balise %</span>
+                <span class="keyword">if</span>(pos+1 &lt;= size(globalIndexArray, 2))
+                    nextDepth = globalIndexArray{pos+1}{1};
+                <span class="keyword">else</span>
+                    nextDepth = 0;
+                <span class="keyword">end</span>
+
+                <span class="comment">% ~~~~~~~~ GESTION HTML ~~~~~~~~ %</span>
+                <span class="comment">% Ouverture d'une entr&eacute;e %</span>
+                fprintf(fid, <span class="string">'\n%% \t&lt;li&gt;'</span>);
+
+                <span class="comment">% Gestion du contenu des entr&eacute;es %</span>
+                <span class="keyword">if</span> contains(currentNodeName, <span class="string">'.html'</span>)
+                    fprintf(fid, <span class="string">'&lt;a href="file:///%s"&gt;%s&lt;/a&gt;'</span>, currentNodePath, currentNodeName);
+                <span class="keyword">else</span>
+                    fprintf(fid, <span class="string">'%s'</span>, currentNodeName);
+                <span class="keyword">end</span>
+
+                <span class="comment">% Fermeture des entr&eacute;es selon la profondeur %</span>
+                <span class="keyword">if</span>(currentNodeDepth &lt; nextDepth)
+                    pos = obj.generateHTML_aux(globalIndexArray, fid, pos+1);
+                <span class="keyword">elseif</span>(currentNodeDepth &gt; nextDepth)
+                    <span class="keyword">for</span> i=1:currentNodeDepth-nextDepth
+                        fprintf(fid, <span class="string">'\n%% &lt;/li&gt;\n%% &lt;/ul&gt;'</span>);
+                    <span class="keyword">end</span>
+
+                    <span class="keyword">if</span> nextDepth ~= 0
+                        fprintf(fid, <span class="string">'\n%% &lt;/li&gt;'</span>);
+                    <span class="keyword">end</span>
+                    <span class="keyword">break</span>;
+                <span class="keyword">else</span>
+                    fprintf(fid, <span class="string">'\n%% &lt;/li&gt;'</span>);
+                <span class="keyword">end</span>
+
+                <span class="comment">% On boucle %</span>
+                pos = pos+1;
+            <span class="keyword">end</span>
+
+            newPos = pos;
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% ======================================================================= %
+% ========================= LA TOOLBOX DOCGEN =========================== %
+% ======================================================================= %
+
+%                    REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-                            %
+% Auteurs: Florian Legendre (script original)                             %
+%                                                                         %
+% Objectif: Fournir les méthodes communes aux index hiérarchiques.        %
+%                                                                         %
+%                    REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH-                            %
+
+
+
+classdef IndexT < Index
+    
+    % ############ Méthodes principales ############ %
+    methods
+        % ~~~~~~~~~~~ Constructeur de l'objet "index hiérarchique":
+        function obj = IndexT(pattern, depth, src, dest)
+            obj = obj@Index(pattern, depth, src, dest);
+        end
+        
+        % ~~~~~~~~~~~ Construction de l'index hiérarchique:
+        function makeIndexGlobal(obj, fid, isExhaustive)
+            UtilsTB.clearScript();
+            FilesTB.getFiles(obj.getSrc(), obj.getPattern(), 'List.txt');
+            
+            if ~isExhaustive
+                indexList = PathsTB.selectFromPaths('Index', 'List.txt');
+            else
+                indexList=importdata('List.txt');
+            end
+            
+            subPathsList = PathsTB.cropPaths(indexList, [obj.getSrc() PathsTB.getSepToken()]);
+            globalIndexArray = obj.globalIndexArrMake(subPathsList);
+            obj.generateHTML(globalIndexArray, fid);
+        end
+    end
+    
+    
+    % ############ Méthodes auxiliaires (cf. MANUEL_DEV.pdf) ############ %
+    methods (Access = private)
+        
+        % ~~~~~~~~~~~ Index hiérarchique en tableau :        
+        function globalIndexArray = globalIndexArrMake(obj, subpathsList)
+            % Algorithm initialization %
+            appendIdx = 1;
+            nbSubpaths = numel(subpathsList);
+            precPathRow = PathsTB.explodeSubpath(subpathsList{1}, PathsTB.getSepToken());
+            nbNodes = numel(precPathRow);
+            for i=1:nbNodes
+                nodePath = [obj.getSrc() PathsTB.getSepToken() ...
+                    PathsTB.concatSubpathFromNodesRow(precPathRow, 1, i)];
+                globalIndexArray{appendIdx} = [i, precPathRow(i), nodePath];
+                appendIdx = appendIdx + 1;
+            end
+            
+            % Global index making %
+            for i=2:nbSubpaths
+                currentSubpathRow = PathsTB.explodeSubpath(subpathsList{i}, PathsTB.getSepToken());
+                nbNodes = numel(currentSubpathRow);
+                
+                updatePrecPath = false;
+                for j=1:nbNodes
+                    if j > numel(precPathRow) || ~strcmp(precPathRow(j), currentSubpathRow(j))
+                        updatePrecPath = true;
+                    end
+                    
+                    if updatePrecPath
+                        nodePath = [obj.getSrc() PathsTB.getSepToken() ...
+                            PathsTB.concatSubpathFromNodesRow(currentSubpathRow, 1, j)];
+                        globalIndexArray{appendIdx} = [j, currentSubpathRow(j), nodePath];
+                        precPathRow(j) = currentSubpathRow(j);
+                        appendIdx = appendIdx + 1;
+                    end
+                end
+            end
+        end
+        
+        
+        % ~~~~~~~~~~~ Index hiérarchique en HTML appel de la récursive:
+        function generateHTML(obj, globalIndexArray, fid)
+            fprintf(fid, '%% <html>');
+            if(size(globalIndexArray) ~= 0)
+                [~] = obj.generateHTML_aux(globalIndexArray, fid, 1);
+            end
+            fprintf(fid, '\n%% </html>');
+        end
+        
+        
+        % ~~~~~~~~~~~ Index hiérarchique en HTML - la récursive:
+        function newPos = generateHTML_aux(obj, globalIndexArray, fid, pos)
+            fprintf(fid, '\n%% \t<ul>');
+            
+            while pos <= size(globalIndexArray, 2)
+                % ~~~~~~~~ GESTION VARIABLES ~~~~~~~~ %
+                % Pour la lisibilité de ce code %
+                currentNodeDepth = globalIndexArray{pos}{1};
+                currentNodeName = globalIndexArray{pos}{2};
+                currentNodePath = globalIndexArray{pos}{3};
+                
+                % Essentiel pour gérer les fermetures de balise %
+                if(pos+1 <= size(globalIndexArray, 2))
+                    nextDepth = globalIndexArray{pos+1}{1};
+                else
+                    nextDepth = 0;
+                end
+                
+                % ~~~~~~~~ GESTION HTML ~~~~~~~~ %
+                % Ouverture d'une entrée %
+                fprintf(fid, '\n%% \t<li>');
+                
+                % Gestion du contenu des entrées %
+                if contains(currentNodeName, '.html')
+                    fprintf(fid, '<a href="file:///%s">%s</a>', currentNodePath, currentNodeName);
+                else
+                    fprintf(fid, '%s', currentNodeName);
+                end
+                
+                % Fermeture des entrées selon la profondeur %
+                if(currentNodeDepth < nextDepth)
+                    pos = obj.generateHTML_aux(globalIndexArray, fid, pos+1);
+                elseif(currentNodeDepth > nextDepth)
+                    for i=1:currentNodeDepth-nextDepth
+                        fprintf(fid, '\n%% </li>\n%% </ul>');
+                    end
+                    
+                    if nextDepth ~= 0
+                        fprintf(fid, '\n%% </li>');
+                    end
+                    break;
+                else
+                    fprintf(fid, '\n%% </li>');
+                end
+                
+                % On boucle %
+                pos = pos+1;
+            end
+            
+            newPos = pos;
+        end
+    end
+end
+##### SOURCE END #####
+--></body></html>

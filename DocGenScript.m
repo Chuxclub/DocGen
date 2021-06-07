@@ -16,7 +16,7 @@
 %% Création de la documentation
 
 % Chemin vers les modules utilisés par ce script:
-addpath('E:\Git\projects\wip\DocGenTest\lib\DocGen\docgen_pkg');
+addpath('E:\Git\projects\wip\DocGenTest\lib\DocGen\codes');
 
 % Fonction et génération des notices locales:
 % Premier argument   = la racine à partir de laquelle on génère la notice locale.
@@ -27,6 +27,8 @@ DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot', false);
 DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot\Video', false);
 DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Location', false);
 
+% DocGen.notice('E:\Git\projects\wip\DocGenTest\lib\DocGen\codes', false);
+
 
 % Fonctionnement et génération de la (ou des?) notice globale:
 % Premier argument   = la racine à partir de laquelle on génère la notice globale. 
@@ -35,6 +37,9 @@ DocGen.notice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Location',
 %                      index des notices locales.
 DocGen.noticeGlobale('E:\Git\projects\wip\DocGenTest\codes', ...
                      'E:\Git\projects\wip\DocGenTest\docs', true);
+                 
+% DocGen.noticeGlobale('E:\Git\projects\wip\DocGenTest\lib\DocGen\codes', ...
+%                      'E:\Git\projects\wip\DocGenTest\lib\DocGen\docs', true);
 
                  
 %% Suppression rapide d'une ou plusieurs notices
