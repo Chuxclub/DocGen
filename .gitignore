@@ -1,1 +1,28 @@
+## Fichiers temporaires générés par MatLab:
 *.asv
+
+
+## Pour DocGen:
+Notice*/*
+
+
+## Bonnes pratiques globales:
+datas/*
+!datas/README.md
+
+docs/doc_ext/*
+!docs/doc_ext/README.md
+
+lib/*
+!lib/README.md
+lib/lib_ext/*
+!lib/lib_ext/README.md
+
+res/*
+!res/README.md
+res/res_ext/*
+!res/res_ext/README.md
+
+
+## Vos fichiers ignorés:
+

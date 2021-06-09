@@ -11,7 +11,7 @@
 %                    -------------------------                            %
 
 
-classdef FilesTB
+classdef (Abstract) FilesTB
     methods(Static)
         function fileList = getFiles(src, pattern, filename)
             if filename == ""
