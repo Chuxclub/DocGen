@@ -27,27 +27,12 @@ classdef (Abstract) DocGen
     
     % ################ GESTION DES NOTICES ################ %
     methods(Static)
-        % ================ Supprimer une notice ================ %
-        function deleteNotice(path)
-            rmdir([path PathsTB.getSepToken() DocGen.DOC_NAME], 's');
-        end
-       
         
         % ================ Créer une notice locale ================ %
-        function notice(path, eval)
+        function makeLocalDoc(path, eval)
             UtilsTB.clearScript();
             cd(path);
-            Nom = PathsTB.getFileFromAbsolutePath(path);
-            
-            % ---------- On récupère les noms des scripts du dossier ---------- %
-            FileInfos = FilesTB.getFiles(path, '*.m', "");
-            k=0;
-            for i=1:length(FileInfos)
-                if FileInfos(i).isdir==0 %pour gérer les sous dossiers présents
-                    k=k+1;
-                    ListF{k,1}=FileInfos(i).name;
-                end
-            end
+            folderToDocument = PathsTB.cropToLastNode(path);
             
             % ---------- On prépare les options de publication ---------- %
             publishOptions.format='html';
@@ -55,93 +40,35 @@ classdef (Abstract) DocGen
             publishOptions.outputDir=[path PathsTB.getSepToken() DocGen.DOC_NAME];
             publishOptions.evalCode = eval;
             
-            % ---------- On prépare le contenu de l'index ---------- %
-            % Header du dossier maître (le nom du dossier dont on génère la doc):
-            Header = ['%% ' Nom];
-            filename = ['Index' Nom '.m'];
-            fid = fopen(filename,'wt');
+            docPageName = ['Index' folderToDocument '.m'];
+            fid = fopen(docPageName,'wt');
             
-            % Titre du dossier:
-            fprintf(fid,'%s\n',Header);
-            fprintf(fid,'%s\n\n','%% Main Functions');
-            fprintf(fid,'%s\n','%%');
+            Header.makeHeader(fid, 'DocGen Project', 'GAD Matlab made in Robioss', ... 
+                              'Marien Couvertier, Florian Legendre');
             
-            % ---------- On publie les fichiers ---------- %
-            % Préallocation:
-            nbFichiers = numel(ListF);
-            linei=cell(nbFichiers,1);
-            for i=1:nbFichiers
-                % Création de l'index (cf. Markup) par une bullet list
-                % (% *) et hyperliens (< ... >):
-                linei{i,1} = ['% * <' ListF{i}(1:end-2) '.html ' ListF{i}(1:end-2) '>'];
-                fprintf(fid,'%s\n',linei{i});
-            end
-            
-            % Publication:
-            for i=1:nbFichiers
-                publish(ListF{i},publishOptions);
-            end
+%             % ---------- On prépare le contenu de l'index ---------- %
+%             % Header du dossier maître (le nom du dossier dont on génère la doc):
+%             Header = ['%% ' folderToDocument];
+%             
+%             % Titre du dossier:
+%             fprintf(fid,'%s\n',Header);
+%             fprintf(fid,'%s\n\n','%% Main Functions');
+%             fprintf(fid,'%s\n','%%');
+%                       
+%             Manual.makeLocalManual(fid, path, eval);
             
             %  ---------- On publie l'index ---------- %
-            publish(filename,publishOptions);
+            publish(docPageName,publishOptions);
             
             % --------- Nettoyage des fichiers devenus inutiles --------- %
             fclose(fid);
-            delete(filename);
+            delete(docPageName);
         end
         
         
         % ================ Créer une notice globale ================ %
-        function noticeGlobale(src, dest, isIndexExhaustive)
-            UtilsTB.clearScript();
-            addpath(genpath(dest))
-            cd(dest)
-            
-            % ----------------- Récupération des données ---------------- %
-            % SI LINUX:
-            % [~,~]=dos(['find ' src ' | grep .html > List.txt']);
-            % SI WINDOWS:
-            [~,~]=dos(['dir /s /b ' src '\*.html > List.txt']);
-            LISTE=importdata('List.txt');
-            
-            h=0;
-            for i=1:numel(LISTE)
-                A{i,1}=strfind(LISTE{i,1},'Index');
-                if ~isempty(A{i,1})
-                    h=h+1;
-                    ListeIndex{h,1}=LISTE{i,1};
-                    Nom{h,1} = PathsTB.getFileFromAbsolutePath(ListeIndex{h,1});
-                end
-            end
-            
-            % ---------- On prépare les options de publication ---------- %
-            publishOptions.format = 'html';
-            publishOptions.outputDir = dest;
-            publishOptions.evalCode = false;
-            
-            % ---------- On crée le script (.m) de l'index global qui sera publié ---------- %
-            filename = ('IndexGlobal.m');
-            fid = fopen(filename,'wt');
-            
-            % ---------- On prépare le contenu de l'index global (son .m) ---------- %
-            fprintf(fid,'%s\n\n','%% Index Global');
-            fprintf(fid,'%s\n\n','%% Purpose');
-            fprintf(fid,'%s\n','% Index global de toute la documentation des fonctions contenues dans les différents dossiers');
-            fprintf(fid,'%s\n\n','%% Main Index');
-            fprintf(fid,'%s\n','%%');
-            
-            %  ---------- On publie l'index global ---------- %
-            % Préallocation:
-            indexT = IndexT('*.html', 10, src, dest);
-            indexT.makeIndexGlobal(fid, isIndexExhaustive);
-            
-            % Publication:
-            publish(filename,publishOptions);
-            
-            % --------- Nettoyage des fichiers devenus inutiles --------- %
-            fclose(fid);
-            delete IndexGlobal.m;
-            delete List.txt;
+        function makeGlobalDoc(src, dest, isIndexExhaustive)
+            Manual.makeGlobalManual(src, dest, isIndexExhaustive);
         end
     end
 end

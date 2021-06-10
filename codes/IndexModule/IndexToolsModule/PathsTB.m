@@ -38,14 +38,14 @@ classdef PathsTB
             end
         end
         
-        function explodedSubpath = explodeSubpath(subPath, explodeDelimiter)
-            explodedSubpath = regexp(subPath, explodeDelimiter, 'split');
-        end
-        
-        function filename = getFileFromAbsolutePath(path)
+        function nodeName = cropToLastNode(path)
             htap = flip(path);
             emanelif = strtok(htap, PathsTB.getSepToken());
-            filename = flip(emanelif);
+            nodeName = flip(emanelif);
+        end
+        
+        function explodedSubpath = explodeSubpath(subPath, explodeDelimiter)
+            explodedSubpath = regexp(subPath, explodeDelimiter, 'split');
         end
         
         function matchingPathsList = selectFromPaths(pattern, filename)
