@@ -59,11 +59,7 @@ classdef (Abstract) Manual
         
         
         % ================ Créer une notice globale ================ %
-        function makeGlobalManual(src, dest, isIndexExhaustive)
-            UtilsTB.clearScript();
-            addpath(genpath(dest))
-            cd(dest)
-            
+        function makeGlobalManual(fid, src, dest, isIndexExhaustive)
             % ----------------- Récupération des données ---------------- %
             % SI LINUX:
             % [~,~]=dos(['find ' src ' | grep .html > List.txt']);
@@ -81,15 +77,6 @@ classdef (Abstract) Manual
                 end
             end
             
-            % ---------- On prépare les options de publication ---------- %
-            publishOptions.format = 'html';
-            publishOptions.outputDir = dest;
-            publishOptions.evalCode = false;
-            
-            % ---------- On crée le script (.m) de l'index global qui sera publié ---------- %
-            filename = ('IndexGlobal.m');
-            fid = fopen(filename,'wt');
-            
             % ---------- On prépare le contenu de l'index global (son .m) ---------- %
             fprintf(fid,'%s\n\n','%% Index Global');
             fprintf(fid,'%s\n\n','%% Purpose');
@@ -97,17 +84,12 @@ classdef (Abstract) Manual
             fprintf(fid,'%s\n\n','%% Main Index');
             fprintf(fid,'%s\n','%%');
             
-            %  ---------- On publie l'index global ---------- %
+            %  ---------- On crée l'index global ---------- %
             % Préallocation:
             indexT = IndexT('*.html', 10, src, dest);
             indexT.makeIndexGlobal(fid, isIndexExhaustive);
             
-            % Publication:
-            publish(filename,publishOptions);
-            
             % --------- Nettoyage des fichiers devenus inutiles --------- %
-            fclose(fid);
-            delete IndexGlobal.m;
             delete List.txt;
         end
     end

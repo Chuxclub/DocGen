@@ -40,6 +40,8 @@ classdef (Abstract) DocGen
             publishOptions.outputDir=[path PathsTB.getSepToken() DocGen.DOC_NAME];
             publishOptions.evalCode = eval;
             
+            
+            % ---------- On crée le script (.m) de la notice locale qui sera publiée ---------- %
             docPageName = ['Index' folderToDocument '.m'];
             fid = fopen(docPageName,'wt');
             
@@ -57,7 +59,7 @@ classdef (Abstract) DocGen
                       
             Manual.makeLocalManual(fid, path, publishOptions);
             
-            %  ---------- On publie l'index ---------- %
+            % ----------------------- Publication ----------------------- %
             publish(docPageName,publishOptions);
             
             % --------- Nettoyage des fichiers devenus inutiles --------- %
@@ -68,7 +70,30 @@ classdef (Abstract) DocGen
         
         % ================ Créer une notice globale ================ %
         function makeGlobalDoc(src, dest, isIndexExhaustive)
-            Manual.makeGlobalManual(src, dest, isIndexExhaustive);
+            UtilsTB.clearScript();
+            addpath(genpath(dest))
+            cd(dest)
+            
+            % ---------- On prépare les options de publication ---------- %
+            publishOptions.format = 'html';
+            publishOptions.outputDir = dest;
+            publishOptions.evalCode = false;
+            
+            % ---------- On crée le script (.m) de la notice globale qui sera publiée ---------- %
+            filename = ('IndexGlobal.m');
+            fid = fopen(filename,'wt');
+            
+            Header.makeHeader(fid, 'DocGen Project', 'GAD Matlab made in Robioss', ... 
+                              'Marien Couvertier, Florian Legendre');
+                          
+            Manual.makeGlobalManual(fid, src, dest, isIndexExhaustive);
+            
+            % ----------------------- Publication ----------------------- %
+            publish(filename,publishOptions);
+            
+            % --------- Nettoyage des fichiers devenus inutiles --------- %
+            fclose(fid);
+            delete IndexGlobal.m;
         end
     end
 end

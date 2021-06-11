@@ -22,7 +22,7 @@ classdef (Abstract) Header
             fprintf(fid, ['<p>' authors '</p>']);
             fprintf(fid, ['<p> Documentation générée le <span style="font-size: 14px; font-weight: bold;">' datestr(datetime('today')) '</span></p>']);
             fprintf(fid, ' </div>');
-            fprintf(fid, ' </html>');
+            fprintf(fid, ' </html>\n');
         end
     end
 end
