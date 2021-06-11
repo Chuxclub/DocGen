@@ -30,7 +30,7 @@ DocGen.makeLocalDoc('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot', false
 DocGen.makeLocalDoc('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot\Video', false);
 DocGen.makeLocalDoc('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Location', false);
 
-% DocGen.notice('E:\Git\projects\wip\DocGenTest\lib\DocGen\codes', false);
+% DocGen.notice('E:\Git\project\wip\DocGenTest\lib\DocGen\codes', false);
 
 
 % Fonctionnement et génération de la (ou des?) notice globale:
@@ -38,8 +38,8 @@ DocGen.makeLocalDoc('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Loca
 % Second argument    = la destination où on place la notice globale. 
 % Troisième argument = on affiche tous les fichiers '.html' ou seulement les 
 %                      index des notices locales.
-% DocGen.makeGlobalDoc('E:\Git\projects\wip\DocGenTest\codes', ...
-%                      'E:\Git\projects\wip\DocGenTest\docs', true);
+DocGen.makeGlobalDoc('E:\Git\projects\wip\DocGenTest\codes', ...
+                     'E:\Git\projects\wip\DocGenTest\docs', true);
                  
 % DocGen.noticeGlobale('E:\Git\projects\wip\DocGenTest\lib\DocGen\codes', ...
 %                      'E:\Git\projects\wip\DocGenTest\lib\DocGen\docs', true);

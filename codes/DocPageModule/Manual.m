@@ -29,7 +29,7 @@ classdef (Abstract) Manual
     methods(Static)
 
         % ================ Créer une notice locale ================ %
-        function makeLocalManual(fid, path, eval)
+        function makeLocalManual(fid, path, publishOptions)
             % ---------- On récupère les noms des scripts du dossier ---------- %
             FileInfos = FilesTB.getFiles(path, '*.m', "");
             k=0;
