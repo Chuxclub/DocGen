@@ -31,12 +31,17 @@ classdef DocGen
     % ################ GESTION DES NOTICES ################ %
     methods
         % ================ Constructeur d'une instance de DocGen ================ %
-        function obj = DocGen(authors, contact,  project_name, project_subname, sepToken)
+        function obj = DocGen(authors, contact,  project_name, project_subname, docGenPath, sepToken)
             obj.AUTHORS = authors;
             obj.CONTACT = contact;
             obj.PROJECT_NAME = project_name;
             obj.PROJECT_SUBNAME = project_subname;
             PathsTB.setgetVar(sepToken);
+            
+            addpath([docGenPath '\codes']);
+            addpath([docGenPath '\codes\DocPageModule']);
+            addpath([docGenPath '\codes\IndexModule']);
+            addpath([docGenPath '\codes\IndexModule\IndexToolsModule']);
         end
         
         % ================ Créer une notice locale ================ %
