@@ -3,13 +3,13 @@
 % ======================================================================= %
 
 %                    -------------------------                            %
-% Auteurs: Marien Couvertier (script original), Florian Legendre (màj)    %
+% Auteurs: Marien Couvertier (script original), Florian Legendre (m�j)    %
 %                                                                         %
-% Objectif: Fournir un espace unique de mise à jour de la documentation   %
+% Objectif: Fournir un espace unique de mise �jour de la documentation   %
 % du projet.                                                              %
 %                                                                         %
 % IMPORTANT: Modifiez les variables globales dans DocGen.m, dans          %
-% "properties" selon votre système                                        %
+% "properties" selon votre syst�me                                        %
 %                    -------------------------                            %
 
 
@@ -21,28 +21,26 @@ addpath('D:\Git\projects\wip\DocGenTest\lib\DocGen\codes\DocPageModule');
 addpath('D:\Git\projects\wip\DocGenTest\lib\DocGen\codes\IndexModule');
 addpath('D:\Git\projects\wip\DocGenTest\lib\DocGen\codes\IndexModule\IndexToolsModule');
 
-% Fonction et génération des notices locales:
+docGen = DocGen('Marien Couvertier, Florian Legendre', 'florian.legendre@etu.univ-poitiers.fr',  ...
+                 'DocGen', 'GAD Matlab made in Robioss', '\');
+
+% Fonction et g�n�ration des notices locales:
 % Premier argument   = la racine à partir de laquelle on génère la notice locale.
 % Second argument    = est-ce qu'on évalue les fonctions des scripts
 %                      présents dans la racine ou non?
-DocGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Math', false);
-DocGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot', false);
-DocGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot\Video', false);
-DocGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Location', false);
-% 
-% % DocGen.notice('E:\Git\project\wip\DocGenTest\lib\DocGen\codes', false);
-% 
-% 
+docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Math', false);
+docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot', false);
+docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot\Video', false);
+docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Location', false);
+
+
 % % Fonctionnement et génération de la (ou des?) notice globale:
 % % Premier argument   = la racine à partir de laquelle on génère la notice globale. 
 % % Second argument    = la destination où on place la notice globale. 
 % % Troisième argument = on affiche tous les fichiers '.html' ou seulement les 
 % %                      index des notices locales.
-DocGen.makeGlobalDoc('D:\Git\projects\wip\DocGenTest\codes', ...
+docGen.makeGlobalDoc('D:\Git\projects\wip\DocGenTest\codes', ...
                      'D:\Git\projects\wip\DocGenTest\docs', false);
-                 
-% DocGen.noticeGlobale('E:\Git\projects\wip\DocGenTest\lib\DocGen\codes', ...
-%                      'E:\Git\projects\wip\DocGenTest\lib\DocGen\docs', true);
 
                  
 %% Suppression rapide d'une ou plusieurs notices

@@ -12,23 +12,26 @@
 
 
 classdef PathsTB
-    properties (Constant, Access = private)
-        % Token de séparation des fichiers dans les chemins absolus. 
-        % Configuration nécessaire pour certains algorithmes utilisés dans
-        % DocGen. Si linux -> '/' :
-        SEP_TOKEN = '\'; 
+    properties (Access = private)
+%         % Token de s�paration des fichiers dans les chemins absolus. 
+%         % Configuration nécessaire pour certains algorithmes utilisés dans
+%         % DocGen. Si linux -> '/' :
+%         SEP_TOKEN = '\'; 
     end
     
     methods(Static)
-        % =================== GETTERS =================== %
-        function sepToken = getSepToken()
-            sepToken = PathsTB.SEP_TOKEN;
+        function sepToken = setgetVar(config)
+            persistent SEP_TOKEN;
+            if nargin            
+                SEP_TOKEN = config;
+            end
+            sepToken = SEP_TOKEN;
         end
         
         % ============== LA BOITE A OUTILS ============== %
         function nodePath = concatSubpathFromNodesRow(pathRow, start, stop)
             subPathUptoNode = pathRow(1, [start:stop]);
-            nodePath = strjoin(subPathUptoNode, PathsTB.SEP_TOKEN);
+            nodePath = strjoin(subPathUptoNode, PathsTB.setgetVar);
         end
         
         function subPathsList = cropPaths(pathsList, pattern)
@@ -40,7 +43,7 @@ classdef PathsTB
         
         function nodeName = cropToLastNode(path)
             htap = flip(path);
-            emanelif = strtok(htap, PathsTB.getSepToken());
+            emanelif = strtok(htap, PathsTB.setgetVar);
             nodeName = flip(emanelif);
         end
         

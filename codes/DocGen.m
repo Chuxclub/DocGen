@@ -19,29 +19,36 @@
 
 
 
-classdef (Abstract) DocGen
-    
-    properties (Constant, Access = private)
-        AUTHORS = 'Marien Couvertier, Florian Legendre';
-        CONTACT = 'florian.legendre@etu.univ-poitiers.fr';
+classdef DocGen
+    properties (SetAccess = immutable)
+        AUTHORS;
+        CONTACT;
         DOC_NAME = 'Notice';
-        PROJECT_NAME = 'DocGen';
-        PROJECT_SUBNAME = 'GAD Matlab made in Robioss'
+        PROJECT_NAME;
+        PROJECT_SUBNAME;
     end   
     
     % ################ GESTION DES NOTICES ################ %
-    methods(Static)
+    methods
+        % ================ Constructeur d'une instance de DocGen ================ %
+        function obj = DocGen(authors, contact,  project_name, project_subname, sepToken)
+            obj.AUTHORS = authors;
+            obj.CONTACT = contact;
+            obj.PROJECT_NAME = project_name;
+            obj.PROJECT_SUBNAME = project_subname;
+            PathsTB.setgetVar(sepToken);
+        end
         
         % ================ Créer une notice locale ================ %
-        function makeLocalDoc(path, eval)
+        function makeLocalDoc(obj, path, eval)
             UtilsTB.clearScript();
             cd(path);
             folderToDocument = PathsTB.cropToLastNode(path);
             
             % ---------- On prépare les options de publication ---------- %
             publishOptions.format='html';
-            mkdir(DocGen.DOC_NAME);
-            publishOptions.outputDir=[path PathsTB.getSepToken() DocGen.DOC_NAME];
+            mkdir(obj.DOC_NAME);
+            publishOptions.outputDir=[path PathsTB.setgetVar obj.DOC_NAME];
             publishOptions.evalCode = eval;
             
             
@@ -49,9 +56,9 @@ classdef (Abstract) DocGen
             docPageName = ['Index' folderToDocument '.m'];
             fid = fopen(docPageName,'wt');
             
-            Header.makeHeader(fid, DocGen.PROJECT_NAME, DocGen.PROJECT_SUBNAME, DocGen.AUTHORS, DocGen.CONTACT);
+            Header.makeHeader(fid, obj.PROJECT_NAME, obj.PROJECT_SUBNAME, obj.AUTHORS, obj.CONTACT);
             
-            % Header du dossier maÃ®tre (le nom du dossier dont on gÃ©nÃ¨re la doc):
+            % Header du dossier maître (le nom du dossier dont on génère la doc):
             header = ['Notice locale du module: ' folderToDocument];
             
             % Titre du dossier:
@@ -72,7 +79,7 @@ classdef (Abstract) DocGen
         
         
         % ================ Créer une notice globale ================ %
-        function makeGlobalDoc(src, dest, isIndexExhaustive)
+        function makeGlobalDoc(obj, src, dest, isIndexExhaustive)
             UtilsTB.clearScript();
             addpath(genpath(dest))
             cd(dest)
@@ -86,7 +93,7 @@ classdef (Abstract) DocGen
             docPageName = ('IndexGlobal.m');
             fid = fopen(docPageName,'wt');
             
-            Header.makeHeader(fid, DocGen.PROJECT_NAME, DocGen.PROJECT_SUBNAME, DocGen.AUTHORS, DocGen.CONTACT);    
+            Header.makeHeader(fid, obj.PROJECT_NAME, obj.PROJECT_SUBNAME, obj.AUTHORS, obj.CONTACT);    
             Manual.makeGlobalManual(fid, src, dest, isIndexExhaustive);
             
             % ----------------------- Publication ----------------------- %

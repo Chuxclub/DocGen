@@ -31,7 +31,7 @@ classdef IndexT < Index
                 indexList=importdata('List.txt');
             end
             
-            subPathsList = PathsTB.cropPaths(indexList, [obj.getSrc() PathsTB.getSepToken()]);
+            subPathsList = PathsTB.cropPaths(indexList, [obj.getSrc() PathsTB.setgetVar]);
             globalIndexArray = obj.globalIndexArrMake(subPathsList);
             obj.generateHTML(globalIndexArray, fid);
         end
@@ -46,10 +46,10 @@ classdef IndexT < Index
             % Algorithm initialization %
             appendIdx = 1;
             nbSubpaths = numel(subpathsList);
-            precPathRow = PathsTB.explodeSubpath(subpathsList{1}, PathsTB.getSepToken());
+            precPathRow = PathsTB.explodeSubpath(subpathsList{1}, PathsTB.setgetVar);
             nbNodes = numel(precPathRow);
             for i=1:nbNodes
-                nodePath = [obj.getSrc() PathsTB.getSepToken() ...
+                nodePath = [obj.getSrc() PathsTB.setgetVar ...
                     PathsTB.concatSubpathFromNodesRow(precPathRow, 1, i)];
                 globalIndexArray{appendIdx} = [i, precPathRow(i), nodePath];
                 appendIdx = appendIdx + 1;
@@ -57,7 +57,7 @@ classdef IndexT < Index
             
             % Global index making %
             for i=2:nbSubpaths
-                currentSubpathRow = PathsTB.explodeSubpath(subpathsList{i}, PathsTB.getSepToken());
+                currentSubpathRow = PathsTB.explodeSubpath(subpathsList{i}, PathsTB.setgetVar);
                 nbNodes = numel(currentSubpathRow);
                 
                 updatePrecPath = false;
@@ -67,7 +67,7 @@ classdef IndexT < Index
                     end
                     
                     if updatePrecPath
-                        nodePath = [obj.getSrc() PathsTB.getSepToken() ...
+                        nodePath = [obj.getSrc() PathsTB.setgetVar ...
                             PathsTB.concatSubpathFromNodesRow(currentSubpathRow, 1, j)];
                         globalIndexArray{appendIdx} = [j, currentSubpathRow(j), nodePath];
                         precPathRow(j) = currentSubpathRow(j);

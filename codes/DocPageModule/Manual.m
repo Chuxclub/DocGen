@@ -3,16 +3,16 @@
 % ======================================================================= %
 
 %                    -------------------------                            %
-% Auteurs: Marien Couvertier (script original), Florian Legendre (mÃ j)    %
+% Auteurs: Marien Couvertier (script original), Florian Legendre (màj)    %
 %                                                                         %
-% Objectif: Fournir des fonctions globales utilisÃ©es dans DocGenScript.m  %
-% pour mettre Ã  jour la documentation d'un projet.                        %
+% Objectif: Fournir des fonctions globales utilisées dans DocGenScript.m  %
+% pour mettre Ã  jour la documentation d'un projet.                       %
 %                                                                         %
 % IMPORTANT: Modifiez les variables globales dans "properties" ci-dessous %
-%            selon votre systÃ¨me                                          %
+%            selon votre système                                          %
 %                                                                         %
-% IMPORTANT 2: Si vous Ãªtes sous Linux, allez dans PathsTB.m pour         %
-%              configurer le caractÃ¨re de sÃ©paration des fichiers appelÃ©  %
+% IMPORTANT 2: Si vous êtes sous Linux, allez dans PathsTB.m pour         %
+%              configurer le caractère de séparation des fichiers appelé  %
 %              SEP_TOKEN.                                                 %
 %                                                                         %
 %                    -------------------------                            %
@@ -28,35 +28,35 @@ classdef (Abstract) Manual
     % ################ GESTION DES NOTICES ################ %
     methods(Static)
 
-        % ================ CrÃ©er une notice locale ================ %
+        % ================ Créer une notice locale ================ %
         function makeLocalManual(fid, path, publishOptions)
-            % ---------- On rÃ©cupÃ¨re les noms des scripts du dossier ---------- %
+            % ---------- On récupère les noms des scripts du dossier ---------- %
             FileInfos = FilesTB.getFiles(path, '*.m', "");
             k=0;
             for i=1:length(FileInfos)
-                if FileInfos(i).isdir==0 %pour gÃ©rer les sous dossiers prÃ©sents
+                if FileInfos(i).isdir==0 %pour gérer les sous dossiers présents
                     k=k+1;
                     ListF{k,1}=FileInfos(i).name;
                 end
             end
             
             % ---------- On publie les fichiers ---------- %
-            % PrÃ©allocation:
+            % Préallocation:
             nbFichiers = numel(ListF);
-            
-            indexA = IndexA('*.html', 10, path, './');
-            indexA.makeIndexA(fid);
             
             % Publication:
             for i=1:nbFichiers
                 publish(ListF{i}, publishOptions);
             end
+            
+            indexA = IndexA('*.html', 10, path, './');
+            indexA.makeIndexA(fid);
         end
         
         
-        % ================ CrÃ©er une notice globale ================ %
+        % ================ Créer une notice globale ================ %
         function makeGlobalManual(fid, src, dest, isIndexExhaustive)
-            % ----------------- RÃ©cupÃ©ration des donnÃ©es ---------------- %
+            % ----------------- Récupération des donnÃ©es ---------------- %
             % SI LINUX:
             % [~,~]=dos(['find ' src ' | grep .html > List.txt']);
             % SI WINDOWS:
@@ -73,15 +73,15 @@ classdef (Abstract) Manual
                 end
             end
             
-            % ---------- On prÃ©pare le contenu de l'index global (son .m) ---------- %
+            % ---------- On prépare le contenu de l'index global (son .m) ---------- %
             fprintf(fid,'%s\n\n','%% Index Global');
             fprintf(fid,'%s\n\n','%% Purpose');
-            fprintf(fid,'%s\n','% Index global de toute la documentation des fonctions contenues dans les diffÃ©rents dossiers');
+            fprintf(fid,'%s\n','% Index global de toute la documentation des fonctions contenues dans les différents dossiers');
             fprintf(fid,'%s\n\n','%% Main Index');
             fprintf(fid,'%s\n','%%');
             
-            %  ---------- On crÃ©e l'index global ---------- %
-            % PrÃ©allocation:
+            %  ---------- On crée l'index global ---------- %
+            % Préallocation:
             indexT = IndexT('*.html', 10, src, dest);
             indexT.makeIndexT(fid, isIndexExhaustive);
             

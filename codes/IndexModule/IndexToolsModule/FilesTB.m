@@ -15,9 +15,9 @@ classdef (Abstract) FilesTB
     methods(Static)
         function fileList = getFiles(src, pattern, filename)
             if filename == ""
-                fileList = dir([src PathsTB.getSepToken() pattern]);
+                fileList = dir([src PathsTB.setgetVar pattern]);
             else
-                sepToken = PathsTB.getSepToken();
+                sepToken = PathsTB.setgetVar;
                 dos(['dir /s /b ' src sepToken pattern ' > ' filename]);
             end
         end

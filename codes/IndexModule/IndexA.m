@@ -19,7 +19,7 @@ classdef IndexA < Index
         % ~~~~~~~~~~~ Construction de l'index hiérarchique:
         function makeIndexA(obj, fid)
             UtilsTB.clearScript();
-            fileInfos = FilesTB.getFiles([obj.getSrc() '\Notice'], obj.getPattern(), '');
+            fileInfos = FilesTB.getFiles([obj.getSrc() '\Notice'], obj.getPattern(), "");
             
             % ---------- On récupère les noms des html du dossier ---------- %
             k=0;
