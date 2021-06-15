@@ -23,6 +23,7 @@ classdef (Abstract) DocGen
     
     properties (Constant, Access = private)
         AUTHORS = 'Marien Couvertier, Florian Legendre';
+        CONTACT = 'florian.legendre@etu.univ-poitiers.fr';
         DOC_NAME = 'Notice';
         PROJECT_NAME = 'DocGen';
         PROJECT_SUBNAME = 'GAD Matlab made in Robioss'
@@ -48,7 +49,7 @@ classdef (Abstract) DocGen
             docPageName = ['Index' folderToDocument '.m'];
             fid = fopen(docPageName,'wt');
             
-            Header.makeHeader(fid, DocGen.PROJECT_NAME, DocGen.PROJECT_SUBNAME, DocGen.AUTHORS);
+            Header.makeHeader(fid, DocGen.PROJECT_NAME, DocGen.PROJECT_SUBNAME, DocGen.AUTHORS, DocGen.CONTACT);
             
             % Header du dossier maître (le nom du dossier dont on génère la doc):
             header = ['Notice locale du module: ' folderToDocument];
@@ -85,7 +86,7 @@ classdef (Abstract) DocGen
             docPageName = ('IndexGlobal.m');
             fid = fopen(docPageName,'wt');
             
-            Header.makeHeader(fid, DocGen.PROJECT_NAME, DocGen.PROJECT_SUBNAME, DocGen.AUTHORS);    
+            Header.makeHeader(fid, DocGen.PROJECT_NAME, DocGen.PROJECT_SUBNAME, DocGen.AUTHORS, DocGen.CONTACT);    
             Manual.makeGlobalManual(fid, src, dest, isIndexExhaustive);
             
             % ----------------------- Publication ----------------------- %
