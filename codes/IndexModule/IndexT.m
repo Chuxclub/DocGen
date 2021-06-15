@@ -21,7 +21,7 @@ classdef IndexT < Index
         end
         
         % ~~~~~~~~~~~ Construction de l'index hiérarchique:
-        function makeIndexGlobal(obj, fid, isExhaustive)
+        function makeIndexT(obj, fid, isExhaustive)
             UtilsTB.clearScript();
             FilesTB.getFiles(obj.getSrc(), obj.getPattern(), 'List.txt');
             

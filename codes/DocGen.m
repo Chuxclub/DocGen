@@ -22,33 +22,34 @@
 classdef (Abstract) DocGen
     
     properties (Constant, Access = private)
+        AUTHORS = 'Marien Couvertier, Florian Legendre';
         DOC_NAME = 'Notice';
+        PROJECT_NAME = 'DocGen';
+        PROJECT_SUBNAME = 'GAD Matlab made in Robioss'
     end   
     
     % ################ GESTION DES NOTICES ################ %
     methods(Static)
         
-        % ================ Cr√©er une notice locale ================ %
+        % ================ CrÈer une notice locale ================ %
         function makeLocalDoc(path, eval)
             UtilsTB.clearScript();
             cd(path);
             folderToDocument = PathsTB.cropToLastNode(path);
             
-            % ---------- On pr√©pare les options de publication ---------- %
+            % ---------- On prÈpare les options de publication ---------- %
             publishOptions.format='html';
             mkdir(DocGen.DOC_NAME);
             publishOptions.outputDir=[path PathsTB.getSepToken() DocGen.DOC_NAME];
             publishOptions.evalCode = eval;
             
             
-            % ---------- On cr√©e le script (.m) de la notice locale qui sera publi√©e ---------- %
+            % ---------- On crÈe la page .m de la notice locale qui sera publiÈe ---------- %
             docPageName = ['Index' folderToDocument '.m'];
             fid = fopen(docPageName,'wt');
             
-            Header.makeHeader(fid, 'DocGen Project', 'GAD Matlab made in Robioss', ... 
-                              'Marien Couvertier, Florian Legendre');
+            Header.makeHeader(fid, DocGen.PROJECT_NAME, DocGen.PROJECT_SUBNAME, DocGen.AUTHORS);
             
-            % ---------- On pr√©pare le contenu de l'index ---------- %
             % Header du dossier ma√Ætre (le nom du dossier dont on g√©n√®re la doc):
             header = ['Notice locale du module: ' folderToDocument];
             
@@ -56,8 +57,9 @@ classdef (Abstract) DocGen
             fprintf(fid,'\n%%%% \n%% <html> <h2 style="border-bottom: 0; color:#d55000; font-size:1.3em; margin-top: 50px;"> %s </h2> </html>\n',header);
             fprintf(fid,'\n%%%% \n%% <html> <h3 style="border-bottom: 1px solid #d6d4d4; margin-bottom: 0;"> Main Functions </h3> </html>\n');
             fprintf(fid,'%s\n','%%');
-                      
+            
             Manual.makeLocalManual(fid, path, publishOptions);
+            
             
             % ----------------------- Publication ----------------------- %
             publish(docPageName,publishOptions);
@@ -68,28 +70,26 @@ classdef (Abstract) DocGen
         end
         
         
-        % ================ Cr√©er une notice globale ================ %
+        % ================ CrÈer une notice globale ================ %
         function makeGlobalDoc(src, dest, isIndexExhaustive)
             UtilsTB.clearScript();
             addpath(genpath(dest))
             cd(dest)
             
-            % ---------- On pr√©pare les options de publication ---------- %
+            % ---------- On prÈpare les options de publication ---------- %
             publishOptions.format = 'html';
             publishOptions.outputDir = dest;
             publishOptions.evalCode = false;
             
-            % ---------- On cr√©e le script (.m) de la notice globale qui sera publi√©e ---------- %
-            filename = ('IndexGlobal.m');
-            fid = fopen(filename,'wt');
+            % ---------- On crÈe la page .m de la notice globale qui sera publiÈe ---------- %
+            docPageName = ('IndexGlobal.m');
+            fid = fopen(docPageName,'wt');
             
-            Header.makeHeader(fid, 'DocGen Project', 'GAD Matlab made in Robioss', ... 
-                              'Marien Couvertier, Florian Legendre');
-                          
+            Header.makeHeader(fid, DocGen.PROJECT_NAME, DocGen.PROJECT_SUBNAME, DocGen.AUTHORS);    
             Manual.makeGlobalManual(fid, src, dest, isIndexExhaustive);
             
             % ----------------------- Publication ----------------------- %
-            publish(filename,publishOptions);
+            publish(docPageName,publishOptions);
             
             % --------- Nettoyage des fichiers devenus inutiles --------- %
             fclose(fid);

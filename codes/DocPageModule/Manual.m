@@ -43,17 +43,13 @@ classdef (Abstract) Manual
             % ---------- On publie les fichiers ---------- %
             % Préallocation:
             nbFichiers = numel(ListF);
-            linei=cell(nbFichiers,1);
-            for i=1:nbFichiers
-                % Création de l'index (cf. Markup) par une bullet list
-                % (% *) et hyperliens (< ... >):
-                linei{i,1} = ['% * <' ListF{i}(1:end-2) '.html ' ListF{i}(1:end-2) '>'];
-                fprintf(fid,'%s\n',linei{i});
-            end
+            
+            indexA = IndexA('*.html', 10, path, './');
+            indexA.makeIndexA(fid);
             
             % Publication:
             for i=1:nbFichiers
-                publish(ListF{i},publishOptions);
+                publish(ListF{i}, publishOptions);
             end
         end
         
@@ -87,7 +83,7 @@ classdef (Abstract) Manual
             %  ---------- On crée l'index global ---------- %
             % Préallocation:
             indexT = IndexT('*.html', 10, src, dest);
-            indexT.makeIndexGlobal(fid, isIndexExhaustive);
+            indexT.makeIndexT(fid, isIndexExhaustive);
             
             % --------- Nettoyage des fichiers devenus inutiles --------- %
             delete List.txt;
