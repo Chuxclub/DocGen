@@ -25,7 +25,7 @@
 docGen = DocGen('Marien Couvertier, Florian Legendre', ...                 
                 'florian.legendre@etu.univ-poitiers.fr',  ...              
                 'DocGen', ...                                              
-                'GAD Matlab made in Robioss', ...                          
+                'GAD Matlab crÈÈ par Robioss', ...                          
                 'D:\Git\projects\wip\DocGenTest\lib\DocGen', ...           
                 '\');
 
@@ -38,6 +38,7 @@ docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Math', false
 docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot', false);
 docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot\Video', false);
 docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Location', false);
+docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Programmes', false);
 
 
 % ~~~~~~~ Fonctionnement et g√©n√©ration de la (ou des?) notice globale  ~~~~~~~ %
@@ -46,7 +47,7 @@ docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Loca
 % Argument 3: On affiche tous les fichiers '.html' ou seulement les 
 %             index des notices locales.
 docGen.makeGlobalDoc('D:\Git\projects\wip\DocGenTest\codes', ...
-                     'D:\Git\projects\wip\DocGenTest\docs', false);
+                     'D:\Git\projects\wip\DocGenTest\docs', true);
 
                  
 %% Suppression rapide d'une ou plusieurs notices

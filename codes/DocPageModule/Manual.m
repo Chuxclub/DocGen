@@ -74,11 +74,11 @@ classdef (Abstract) Manual
             end
             
             % ---------- On prépare le contenu de l'index global (son .m) ---------- %
-            fprintf(fid,'%s\n\n','%% Index Global');
-            fprintf(fid,'%s\n\n','%% Purpose');
-            fprintf(fid,'%s\n','% Index global de toute la documentation des fonctions contenues dans les différents dossiers');
-            fprintf(fid,'%s\n\n','%% Main Index');
-            fprintf(fid,'%s\n','%%');
+%             fprintf(fid,'%s\n\n','%% Index Global');
+%             fprintf(fid,'%s\n\n','%% Purpose');
+%             fprintf(fid,'%s\n','% Index global de toute la documentation des fonctions contenues dans les différents dossiers');
+%             fprintf(fid,'%s\n\n','%% Main Index');
+%             fprintf(fid,'%s\n','%%');
             
             %  ---------- On crée l'index global ---------- %
             % Préallocation:
