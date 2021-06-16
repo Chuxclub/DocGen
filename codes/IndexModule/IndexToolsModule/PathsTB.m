@@ -11,14 +11,7 @@
 %                    -------------------------                            %
 
 
-classdef PathsTB
-    properties (Access = private)
-%         % Token de s�paration des fichiers dans les chemins absolus. 
-%         % Configuration nécessaire pour certains algorithmes utilisés dans
-%         % DocGen. Si linux -> '/' :
-%         SEP_TOKEN = '\'; 
-    end
-    
+classdef PathsTB 
     methods(Static)
         function sepToken = setgetVar(config)
             persistent SEP_TOKEN;
@@ -45,6 +38,18 @@ classdef PathsTB
             htap = flip(path);
             emanelif = strtok(htap, PathsTB.setgetVar);
             nodeName = flip(emanelif);
+        end
+        
+        function matchingPathsList = excludeFromPaths(pattern, filesList) 
+            h=0;
+            nbHtmlFiles = numel(filesList);
+            
+            for i=1:nbHtmlFiles
+                if isempty(strfind(filesList(i, 1).name, pattern))
+                    h = h+1;
+                    matchingPathsList{h,1} = filesList(i, 1).name;
+                end
+            end
         end
         
         function explodedSubpath = explodeSubpath(subPath, explodeDelimiter)

@@ -5,7 +5,7 @@
 %                    -------------------------                            %
 % Auteurs: Florian Legendre (script original)                             %
 %                                                                         %
-% Objectif: Fournir les mÃ©thodes spÃ©cifiques aux index alphabÃ©tiques.     %
+% Objectif: Fournir les méthodes spécifiques aux index alphabétiques.     %
 %                                                                         %
 %                    -------------------------                            %
 
@@ -16,22 +16,20 @@ classdef IndexA < Index
             obj@Index(pattern, level, src, dest);
         end
         
-        % ~~~~~~~~~~~ Construction de l'index hiÃ©rarchique:
+        % ~~~~~~~~~~~ Construction de l'index hiérarchique:
         function makeIndexA(obj, fid)
             UtilsTB.clearScript();
-            fileInfos = FilesTB.getFiles([obj.getSrc() '\Notice'], obj.getPattern(), "");
             
-            % ---------- On rÃ©cupÃ¨re les noms des html du dossier ---------- %
-            k=0;
-            for i=1:length(fileInfos)
-                if fileInfos(i).isdir==0 %pour gÃ©rer les sous dossiers prÃ©sents
-                    k=k+1;
-                    ListF{k}=fileInfos(i).name;
-                end
-            end
+            % Récupération et tri des scripts publiés en html (ils doivent 
+            % donc avoir été publiés avant de lancer cette méthode). La 
+            % récupération est limitée au dossier courant défini dans la 
+            % propriété Src de l'indexA instancié:
+            fileInfosStruct = FilesTB.getFiles([obj.getSrc() '\Notice'], obj.getPattern(), "");
+            fileNamesArr = PathsTB.excludeFromPaths('Index', fileInfosStruct);
+            sortedFilesList = sort(lower(fileNamesArr));
             
-            sortedFilesList = sort(lower(ListF));
-            
+            % On écrit l'index alphabétique par des balises html directement 
+            % dans le fichier désigné par le fid:
             fprintf(fid, '\n%%%%\n%% <html>\n');
             fprintf(fid, '%% <ul>\n');
             
