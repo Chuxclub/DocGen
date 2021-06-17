@@ -23,11 +23,11 @@ classdef (Abstract) Manual
     
     properties (Constant, Access = private)
         DOC_NAME = 'Notice';
-    end   
+    end
     
     % ################ GESTION DES NOTICES ################ %
     methods(Static)
-
+        
         % ================ Créer une notice locale ================ %
         function makeLocalManual(fid, path, publishOptions)
             % ---------- On récupère les noms des scripts du dossier ---------- %
@@ -49,8 +49,17 @@ classdef (Abstract) Manual
                 publish(ListF{i}, publishOptions);
             end
             
+            fprintf(fid,'\n%%%% \n%% <html> <div style="display: table; width: 100%%;">');
             indexA = IndexA('*.html', 10, path, './');
             indexA.makeIndexA(fid);
+            
+            readme = FilesTB.getFiles(path, 'README.md', "");
+            
+            if ~isempty(readme)
+                fprintf(fid, "\n%% <div style='display: table-cell; float: right;'> <embed src='..\\README.md' style='height: 40vh; width:70vw;'> </div>");
+            end
+            
+            fprintf(fid,'\n%% </div> </html>');
         end
         
         
@@ -72,13 +81,6 @@ classdef (Abstract) Manual
                     Nom{h,1} = PathsTB.cropToLastNode(ListeIndex{h,1});
                 end
             end
-            
-            % ---------- On prépare le contenu de l'index global (son .m) ---------- %
-%             fprintf(fid,'%s\n\n','%% Index Global');
-%             fprintf(fid,'%s\n\n','%% Purpose');
-%             fprintf(fid,'%s\n','% Index global de toute la documentation des fonctions contenues dans les différents dossiers');
-%             fprintf(fid,'%s\n\n','%% Main Index');
-%             fprintf(fid,'%s\n','%%');
             
             %  ---------- On crée l'index global ---------- %
             % Préallocation:

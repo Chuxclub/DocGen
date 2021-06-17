@@ -15,7 +15,7 @@
 %% Configuration de DocGen
 % Configuration de DocGen => pour plus d'optimisation exécutez cette 
 %                            section qu'une seule fois (Ctrl+Entrée).
-docgenCodesPath = 'D:\Git\projects\wip\DocGenTest\lib\DocGen\codes';
+docgenCodesPath = 'E:\Git\projects\wip\DocGenTest\lib\DocGen\codes';
 addpath(docgenCodesPath);
 
 
@@ -40,11 +40,11 @@ docGen = DocGen('Marien Couvertier, Florian Legendre', ...
 % Argument 1: La racine à partir de laquelle on génère la notice locale.
 % Argument 2: Est-ce qu'on évalue les fonctions des scripts présents dans 
 %             la racine ou non?
-docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Math', false);
-docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot', false);
-docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot\Video', false);
-docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Location', false);
-docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Programmes', false);
+docGen.makeLocalDoc('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Math', false);
+docGen.makeLocalDoc('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot', false);
+docGen.makeLocalDoc('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot\Video', false);
+docGen.makeLocalDoc('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Location', false);
+docGen.makeLocalDoc('E:\Git\projects\wip\DocGenTest\codes\Programmes', false);
 
 
 % ~~~~~~~ Fonctionnement et génération de la (ou des?) notice globale  ~~~~~~~ %
@@ -52,8 +52,8 @@ docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Programmes', false);
 % Argument 2: La destination oÃ¹ on place la notice globale. 
 % Argument 3: On affiche tous les fichiers '.html' ou seulement les 
 %             index des notices locales.
-docGen.makeGlobalDoc('D:\Git\projects\wip\DocGenTest\codes', ...
-                     'D:\Git\projects\wip\DocGenTest\docs', true);
+docGen.makeGlobalDoc('E:\Git\projects\wip\DocGenTest\codes', ...
+                     'E:\Git\projects\wip\DocGenTest\docs', true);
 
                 
 %% Suppression rapide d'une ou plusieurs notices

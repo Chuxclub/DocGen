@@ -30,7 +30,7 @@ classdef IndexA < Index
             
             % On écrit l'index alphabétique par des balises html directement 
             % dans le fichier désigné par le fid:
-            fprintf(fid, '\n%%%%\n%% <html>\n');
+            fprintf(fid, '\n%% <div style="display: table-cell; vertical-align: top;">\n');
             fprintf(fid, '%% <ul>\n');
             
             previousInitial = 'a';
@@ -47,7 +47,7 @@ classdef IndexA < Index
             end
             
             fprintf(fid, '%% </ul>\n');
-            fprintf(fid, '%% </html>');
+            fprintf(fid, '%% </div>');
         end
     end
 end
