@@ -26,7 +26,7 @@ classdef IndexA < Index
             % propriété Src de l'indexA instancié:
             fileInfosStruct = FilesTB.getFiles([obj.getSrc() '\Notice'], obj.getPattern(), "");
             fileNamesArr = PathsTB.excludeFromPaths('Index', fileInfosStruct);
-            sortedFilesList = sort(lower(fileNamesArr));
+            sortedFilesList = SortsTB.bubbleSortCaseUnsensitive(fileNamesArr);
             
             % On écrit l'index alphabétique par des balises html directement 
             % dans le fichier désigné par le fid:

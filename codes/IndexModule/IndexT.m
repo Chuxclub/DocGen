@@ -32,7 +32,8 @@ classdef IndexT < Index
             end
             
             subPathsList = PathsTB.cropPaths(indexList, [obj.getSrc() PathsTB.setgetVar]);
-            globalIndexArray = obj.globalIndexArrMake(subPathsList);
+            sortedSubPathsList = SortsTB.bubbleSortCaseUnsensitive(subPathsList);
+            globalIndexArray = obj.globalIndexArrMake(sortedSubPathsList);
             obj.generateHTML(globalIndexArray, fid);
         end
     end
