@@ -1,5 +1,5 @@
 % ======================================================================= %
-% ========== LE SCRIPT DE MISE Ã€ JOUR DE VOTRE DOCUMENTATION ============ %
+% ========== LE SCRIPT DE MISE A JOUR DE VOTRE DOCUMENTATION ============ %
 % ======================================================================= %
 
 %                    -------------------------                            %
@@ -12,8 +12,12 @@
 % "properties" selon votre système                                        %
 %                    -------------------------                            %
 
+%% Configuration de DocGen
+% Configuration de DocGen => pour plus d'optimisation exécutez cette 
+%                            section qu'une seule fois (Ctrl+Entrée).
+docgenCodesPath = 'D:\Git\projects\wip\DocGenTest\lib\DocGen\codes';
+addpath(docgenCodesPath);
 
-%% CrÃ©ation de la documentation
 
 % ~~~~~~~ Initialisation de DocGen avec configurations ~~~~~~~ %
 % Argument 1: auteurs
@@ -26,13 +30,15 @@ docGen = DocGen('Marien Couvertier, Florian Legendre', ...
                 'florian.legendre@etu.univ-poitiers.fr',  ...              
                 'DocGen', ...                                              
                 'GAD Matlab créé par Robioss', ...                          
-                'D:\Git\projects\wip\DocGenTest\lib\DocGen', ...           
+                docgenCodesPath, ...           
                 '\');
 
-            
+
+%% Création de la documentation
+
 % ~~~~~~~ Fonction et génération des notices locales ~~~~~~~ %
-% Argument 1: La racine Ã partir de laquelle on gÃ©nÃ¨re la notice locale.
-% Argument 2: Est-ce qu'on évalue les fonctions des scripts prÃ©sents dans 
+% Argument 1: La racine à partir de laquelle on génère la notice locale.
+% Argument 2: Est-ce qu'on évalue les fonctions des scripts présents dans 
 %             la racine ou non?
 docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Math', false);
 docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Plot', false);
@@ -41,15 +47,15 @@ docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Loca
 docGen.makeLocalDoc('D:\Git\projects\wip\DocGenTest\codes\Programmes', false);
 
 
-% ~~~~~~~ Fonctionnement et gÃ©nÃ©ration de la (ou des?) notice globale  ~~~~~~~ %
-% Argument 1: La racine Ã  partir de laquelle on gÃ©nÃ¨re la notice globale. 
+% ~~~~~~~ Fonctionnement et génération de la (ou des?) notice globale  ~~~~~~~ %
+% Argument 1: La racine à partir de laquelle on génère la notice globale. 
 % Argument 2: La destination oÃ¹ on place la notice globale. 
 % Argument 3: On affiche tous les fichiers '.html' ou seulement les 
 %             index des notices locales.
 docGen.makeGlobalDoc('D:\Git\projects\wip\DocGenTest\codes', ...
                      'D:\Git\projects\wip\DocGenTest\docs', true);
 
-                 
+                
 %% Suppression rapide d'une ou plusieurs notices
 %DocGen.deleteNotice('E:\Git\projects\wip\DocGenTest\codes\Fonctions\Spatial_Location');
 

@@ -32,10 +32,9 @@ classdef DocGen
     methods
         % ================ Constructeur d'une instance de DocGen ================ %
         function obj = DocGen(authors, contact,  project_name, project_subname, docGenPath, sepToken)
-            addpath([docGenPath '\codes']);
-            addpath([docGenPath '\codes\DocPageModule']);
-            addpath([docGenPath '\codes\IndexModule']);
-            addpath([docGenPath '\codes\IndexModule\IndexToolsModule']);
+            addpath([docGenPath '\DocPageModule']);
+            addpath([docGenPath '\IndexModule']);
+            addpath([docGenPath '\IndexModule\IndexToolsModule']);
             
             obj.AUTHORS = authors;
             obj.CONTACT = contact;
