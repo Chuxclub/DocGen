@@ -13,12 +13,12 @@
 
 classdef PathsTB 
     methods(Static)
-        function sepToken = setgetVar(config)
-            persistent SEP_TOKEN;
+        function pathFilesSep = setgetVar(config)
+            persistent PATH_FILES_SEP;
             if nargin            
-                SEP_TOKEN = config;
+                PATH_FILES_SEP = config;
             end
-            sepToken = SEP_TOKEN;
+            pathFilesSep = PATH_FILES_SEP;
         end
         
         % ============== LA BOITE A OUTILS ============== %

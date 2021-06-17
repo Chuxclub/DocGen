@@ -34,7 +34,8 @@ classdef DocGen
         function obj = DocGen(authors, contact,  project_name, project_subname, docGenPath, sepToken)
             addpath([docGenPath '\DocPageModule']);
             addpath([docGenPath '\IndexModule']);
-            addpath([docGenPath '\IndexModule\IndexToolsModule']);
+            addpath([docGenPath '\MatlabModule']);
+            addpath([docGenPath '\StringModule']);
             
             obj.AUTHORS = authors;
             obj.CONTACT = contact;
