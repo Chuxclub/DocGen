@@ -50,13 +50,15 @@ classdef (Abstract) Manual
             end
             
             fprintf(fid,'\n%%%% \n%% <html> <div style="display: table; width: 100%%;">');
+            fprintf(fid, '\n%% <div style="display: table-cell; vertical-align: top;">\n');
             indexA = IndexA('*.html', 10, path, './');
             indexA.makeIndexA(fid);
+            fprintf(fid, '%% </div>');
             
             readme = FilesTB.getFiles(path, 'README.html', "");
             
             if ~isempty(readme)
-                fprintf(fid, "\n%% <div style='display: table-cell; float: right;'> <embed src='..\\README.html' style='height: 40vh; width:70vw;'> </div>");
+                fprintf(fid, "\n%% <div style='display: table-cell; float: right;'> <iframe src='..\\README.html' style='height: 80vh; width:70vw;'> </iframe> </div>");
             end
             
             fprintf(fid,'\n%% </div> </html>');
@@ -65,27 +67,21 @@ classdef (Abstract) Manual
         
         % ================ Créer une notice globale ================ %
         function makeGlobalManual(fid, src, dest, isIndexExhaustive)
-            % ----------------- Récupération des donnÃ©es ---------------- %
-            % SI LINUX:
-            % [~,~]=dos(['find ' src ' | grep .html > List.txt']);
-            % SI WINDOWS:
-            [~,~]=dos(['dir /s /b ' src '\*.html > List.txt']);
-            LISTE=importdata('List.txt');
-            
-            h=0;
-            for i=1:numel(LISTE)
-                A{i,1}=strfind(LISTE{i,1},'Index');
-                if ~isempty(A{i,1})
-                    h=h+1;
-                    ListeIndex{h,1}=LISTE{i,1};
-                    Nom{h,1} = PathsTB.cropToLastNode(ListeIndex{h,1});
-                end
-            end
-            
-            %  ---------- On crée l'index global ---------- %
-            % Préallocation:
+            fprintf(fid,'\n%%%% \n%% <html> <div style="display: table; width: 100%%;">');
+            fprintf(fid, '\n%% <div style="display: table-cell; vertical-align: top;">');
             indexT = IndexT('*.html', 10, src, dest);
             indexT.makeIndexT(fid, isIndexExhaustive);
+            fprintf(fid, '\n%% </div>');
+            
+            readme = FilesTB.getFiles(src, 'README.html', "");
+            
+            if ~isempty(readme)
+                fprintf(fid, "\n");
+                htmlTag = ["% <div style='display: table-cell; float: right;'> <iframe src='" src "\README.html' style='height: 80vh; width:70vw;'></iframe> </div>"];
+                fprintf(fid, "%s", htmlTag);
+            end
+            
+            fprintf(fid,'\n%% </div> </html>');
             
             % --------- Nettoyage des fichiers devenus inutiles --------- %
             delete List.txt;

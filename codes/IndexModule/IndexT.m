@@ -82,11 +82,11 @@ classdef IndexT < Index
         
         % ~~~~~~~~~~~ Index hiérarchique en HTML appel de la récursive:
         function generateHTML(obj, globalIndexArray, fid)
-            fprintf(fid, '%% <html>');
+%             fprintf(fid, '%% <html>');
             if(size(globalIndexArray) ~= 0)
                 [~] = obj.generateHTML_aux(globalIndexArray, fid, 1);
             end
-            fprintf(fid, '\n%% </html>');
+%             fprintf(fid, '\n%% </html>');
         end
         
         

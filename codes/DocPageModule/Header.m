@@ -22,7 +22,7 @@ classdef (Abstract) Header
             fprintf(fid, ['<p style="margin: 0 0 5px; padding:  10px 0 0 0">Auteurs: ' authors '</p>']);
             fprintf(fid, ['<p>Nous contacter: <a href="mailto:' contact '">' contact '</a> </p>']);
             
-            fprintf(fid, ['<p style="margin: 0 0 10px; padding: 0"> Documentation générée le <span style="font-size: 14px; font-weight: bold;">' datestr(datetime('today')) '</span></p>']);
+            fprintf(fid, ['<p style="margin: 0 0 10px; padding: 0"> Documentation générée le <span style="font-size: 14px; font-weight: bold;">' datestr(datetime('today')) '</span> par DocGen</p>']);
             fprintf(fid, ' </div>');
             fprintf(fid, ' </html>\n');
         end

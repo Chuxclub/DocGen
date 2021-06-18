@@ -67,6 +67,7 @@ classdef DocGen
             header = ['Notice locale du module: ' folderToDocument];
             
             % Titre du dossier:
+            fprintf(fid,'\n%%%% \n%% <html> <style> .content{padding: 0 20px 20px 20px;} </style> </html>\n');
             fprintf(fid,'\n%%%% \n%% <html> <h2 style="border-bottom: 0; color:#d55000; font-size:1.3em; margin-top: 50px;"> %s </h2> </html>\n',header);
             fprintf(fid,'\n%%%% \n%% <html> <h3 style="border-bottom: 1px solid #d6d4d4; margin-bottom: 0;"> Main Functions </h3> </html>\n');
             
@@ -103,6 +104,7 @@ classdef DocGen
             header = 'Page d''accueil';
             
             % Titre du dossier:
+            fprintf(fid,'\n%%%% \n%% <html> <style> .content{padding: 0 20px 20px 20px;} </style> </html>\n');
             fprintf(fid,'\n%%%% \n%% <html> <h2 style="border-bottom: 0; color:#d55000; font-size:1.3em; margin-top: 50px;"> %s </h2> </html>\n',header);
             fprintf(fid,'\n%%%% \n%% <html> <h3 style="border-bottom: 1px solid #d6d4d4; margin-bottom: 0;"> Main Functions </h3> </html>\n');
             fprintf(fid,'%s\n','%%');
