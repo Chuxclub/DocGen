@@ -40,14 +40,26 @@ classdef PathsTB
             nodeName = flip(emanelif);
         end
         
-        function matchingPathsList = excludeFromPaths(pattern, filesList) 
+        function matchingPathsList = excludeFromPathsList(pattern, filesList) 
             h=0;
             nbHtmlFiles = numel(filesList);
             
             for i=1:nbHtmlFiles
-                if isempty(strfind(filesList(i, 1).name, pattern))
+                if ~contains(filesList(i, 1), pattern)
                     h = h+1;
-                    matchingPathsList{h,1} = filesList(i, 1).name;
+                    matchingPathsList{h,1} = filesList(i, 1);
+                end
+            end
+        end
+        
+        function matchingPathsStruct = excludeFromPathsStruct(pattern, filesStruct) 
+            h=0;
+            nbHtmlFiles = numel(filesStruct);
+            
+            for i=1:nbHtmlFiles
+                if isempty(strfind(filesStruct(i, 1).name, pattern))
+                    h = h+1;
+                    matchingPathsStruct{h,1} = filesStruct(i, 1).name;
                 end
             end
         end

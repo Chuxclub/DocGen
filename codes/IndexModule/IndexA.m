@@ -25,7 +25,7 @@ classdef IndexA < Index
             % récupération est limitée au dossier courant défini dans la 
             % propriété Src de l'indexA instancié:
             fileInfosStruct = FilesTB.getFiles([obj.getSrc() '\Notice'], obj.getPattern(), "");
-            fileNamesArr = PathsTB.excludeFromPaths('Index', fileInfosStruct);
+            fileNamesArr = PathsTB.excludeFromPathsStruct('Index', fileInfosStruct);
             sortedFilesList = SortsTB.bubbleSortCaseUnsensitive(fileNamesArr);
             
             % On écrit l'index alphabétique par des balises html directement 

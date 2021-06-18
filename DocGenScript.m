@@ -53,7 +53,7 @@ docGen.makeLocalDoc('E:\Git\projects\wip\DocGenTest\codes\Programmes', false);
 % Argument 3: On affiche tous les fichiers '.html' ou seulement les 
 %             index des notices locales.
 docGen.makeGlobalDoc('E:\Git\projects\wip\DocGenTest\codes', ...
-                     'E:\Git\projects\wip\DocGenTest\docs', true);
+                     'E:\Git\projects\wip\DocGenTest\docs', false);
 
                 
 %% Suppression rapide d'une ou plusieurs notices

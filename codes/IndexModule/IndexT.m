@@ -31,7 +31,8 @@ classdef IndexT < Index
                 indexList=importdata('List.txt');
             end
             
-            subPathsList = PathsTB.cropPaths(indexList, [obj.getSrc() PathsTB.setgetVar]);
+            subPathsList = PathsTB.excludeFromPathsList('README.html', indexList); 
+            subPathsList = PathsTB.cropPaths(subPathsList, [obj.getSrc() PathsTB.setgetVar]);
             sortedSubPathsList = SortsTB.bubbleSortCaseUnsensitive(subPathsList);
             globalIndexArray = obj.globalIndexArrMake(sortedSubPathsList);
             obj.generateHTML(globalIndexArray, fid);
@@ -47,7 +48,7 @@ classdef IndexT < Index
             % Algorithm initialization %
             appendIdx = 1;
             nbSubpaths = numel(subpathsList);
-            precPathRow = PathsTB.explodeSubpath(subpathsList{1}, PathsTB.setgetVar);
+            precPathRow = PathsTB.explodeSubpath(subpathsList{1}{1}, PathsTB.setgetVar);
             nbNodes = numel(precPathRow);
             for i=1:nbNodes
                 nodePath = [obj.getSrc() PathsTB.setgetVar ...
@@ -58,7 +59,7 @@ classdef IndexT < Index
             
             % Global index making %
             for i=2:nbSubpaths
-                currentSubpathRow = PathsTB.explodeSubpath(subpathsList{i}, PathsTB.setgetVar);
+                currentSubpathRow = PathsTB.explodeSubpath(subpathsList{i}{1}, PathsTB.setgetVar);
                 nbNodes = numel(currentSubpathRow);
                 
                 updatePrecPath = false;

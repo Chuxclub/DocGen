@@ -53,10 +53,10 @@ classdef (Abstract) Manual
             indexA = IndexA('*.html', 10, path, './');
             indexA.makeIndexA(fid);
             
-            readme = FilesTB.getFiles(path, 'README.md', "");
+            readme = FilesTB.getFiles(path, 'README.html', "");
             
             if ~isempty(readme)
-                fprintf(fid, "\n%% <div style='display: table-cell; float: right;'> <embed src='..\\README.md' style='height: 40vh; width:70vw;'> </div>");
+                fprintf(fid, "\n%% <div style='display: table-cell; float: right;'> <embed src='..\\README.html' style='height: 40vh; width:70vw;'> </div>");
             end
             
             fprintf(fid,'\n%% </div> </html>');
