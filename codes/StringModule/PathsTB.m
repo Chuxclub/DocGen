@@ -11,6 +11,7 @@
 %                    -------------------------                            %
 
 
+%%  Le code source
 classdef PathsTB 
     methods(Static)
         function pathFilesSep = setgetVar(config)

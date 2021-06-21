@@ -1,22 +1,17 @@
-% ======================================================================= %
-% ========================= LA TOOLBOX DOCGEN =========================== %
-% ======================================================================= %
+%% Index alphabétiques
 
-%                    -------------------------                            %
-% Auteurs: Florian Legendre (script original)                             %
-%                                                                         %
-% Objectif: Fournir les méthodes spécifiques aux index alphabétiques.     %
-%                                                                         %
-%                    -------------------------                            %
+% Auteurs: Florian Legendre (script original)
+% Objectif: Fournir les méthodes spécifiques aux index alphabétiques.
 
 
+%%  Le code source
 classdef IndexA < Index
     methods
         function obj = IndexA(pattern, src, dest)
             obj@Index(pattern, src, dest);
         end
         
-        % ~~~~~~~~~~~ Construction de l'index hiérarchique:
+        % ~~~~~~~~~~ Construction de l'index alphabétique:
         function makeIndexA(obj, fid)
             UtilsTB.clearScript();
             
@@ -25,7 +20,7 @@ classdef IndexA < Index
             % récupération est limitée au dossier courant défini dans la 
             % propriété Src de l'indexA instancié:
             fileInfosStruct = FilesTB.getFiles([obj.getSrc() '\Notice'], obj.getPattern(), "");
-            fileNamesArr = PathsTB.excludeFromPathsStruct('Index', fileInfosStruct);
+            fileNamesArr = PathsTB.excludeFromPathsStruct('ManPage_', fileInfosStruct);
             sortedFilesList = SortsTB.bubbleSortCaseUnsensitive(fileNamesArr);
             
             % On écrit l'index alphabétique par des balises html directement 

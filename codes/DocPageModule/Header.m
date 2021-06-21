@@ -1,16 +1,10 @@
-% ======================================================================= %
-% ========================= LA TOOLBOX DOCGEN =========================== %
-% ======================================================================= %
+%% Index hiérarchiques
 
-%                    -------------------------                            %
-% Auteurs: Florian Legendre (script original)                             %
-%                                                                         %
-% Objectif: Fournir les méthodes spécifiques pour générer les header des  %
-%           pages de documentation.                                       %
-%                                                                         %
-%                    -------------------------                            %
+% Auteurs: Florian Legendre (script original)
+% Objectif: Fournir les méthodes spécifiques pour générer les header des pages de documentation.
 
 
+%%  Le code source
 classdef (Abstract) Header
     methods (Static)
         function makeHeader(fid, title, longTitle, authors, contact)
@@ -31,7 +25,7 @@ classdef (Abstract) Header
             fprintf(fid, '%%%%');
             fprintf(fid, '\n%% <html>');
             fprintf(fid, '<style>.button {display: block; width: 115px; height: 25px; background: #ffd384; padding: 10px; text-align: center; border-radius: 5px; color: white; font-weight: bold; line-height: 25px; }</style>');
-            hyperButton = ['<a href="file:///' [href '\IndexGlobal.html'] '" class="button">' content '</a>'];
+            hyperButton = ['<a href="file:///' [href '\ManPage_Global.html'] '" class="button">' content '</a>'];
             fprintf(fid, "%s", hyperButton);
             fprintf(fid, ' </html>\n');
         end

@@ -1,16 +1,12 @@
-% ======================================================================= %
-% ========================= LA TOOLBOX DOCGEN =========================== %
-% ======================================================================= %
+%% Boîte à outils généraliste Matlab
 
-%                    -------------------------                            %
-% Auteurs: Florian Legendre (script original)                             %
-%                                                                         %
-% Objectif: Fournir des mÃ©thodes utilisables sur n'importe quel projet    %
-%           Matlab                                                        %
-%                                                                         %
-%                    -------------------------                            %
+% Auteurs: Florian Legendre (script original)                             
+
+% Objectif: Fournir des méthodes utilisables sur n'importe quel projet    
+%           Matlab                                                        
 
 
+%%  Le code source
 classdef UtilsTB
     methods(Static)
         function clearScript()

@@ -1,15 +1,10 @@
-% ======================================================================= %
-% ========================= LA TOOLBOX DOCGEN =========================== %
-% ======================================================================= %
+%% Index hiérarchiques
 
-%                    -------------------------                            %
-% Auteurs: Florian Legendre (script original)                             %
-%                                                                         %
-% Objectif: Fournir les méthodes communes à n'importe quel type d'index.  %
-%                                                                         %
-%                    -------------------------                            %
+% Auteurs: Florian Legendre (script original)
+% Objectif: Fournir les méthodes communes à n'importe quel type d'index
 
 
+%%  Le code source
 classdef (Abstract) Index
     properties (Access = private)
         pattern;

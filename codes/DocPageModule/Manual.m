@@ -1,33 +1,17 @@
-% ======================================================================= %
-% ========================= LA TOOLBOX DOCGEN =========================== %
-% ======================================================================= %
+%% Pages de manuel
 
-%                    -------------------------                            %
-% Auteurs: Marien Couvertier (script original), Florian Legendre (màj)    %
-%                                                                         %
-% Objectif: Fournir des fonctions globales utilisées dans DocGenScript.m  %
-% pour mettre à jour la documentation d'un projet.                        %
-%                                                                         %
-% IMPORTANT: Modifiez les variables globales dans "properties" ci-dessous %
-%            selon votre système                                          %
-%                                                                         %
-% IMPORTANT 2: Si vous êtes sous Linux, allez dans PathsTB.m pour         %
-%              configurer le caractère de séparation des fichiers appelé  %
-%              SEP_TOKEN.                                                 %
-%                                                                         %
-%                    -------------------------                            %
+% Auteurs: Marien Couvertier (script original), Florian Legendre (màj)    
+
+% Objectif: Fournir des fonctions globales utilisées dans DocGenScript.m  
+% pour générer des pages de manuel (aussi appelées notices). Une page de 
+% manuel étant l'association d'un index local ou global avec un README 
+% local ou global.
 
 
-
+%%  Le code source
 classdef (Abstract) Manual
     
-    properties (Constant, Access = private)
-        DOC_NAME = 'Notice';
-    end
-    
-    % ################ GESTION DES NOTICES ################ %
     methods(Static)
-        
         % ================ Créer une notice locale ================ %
         function makeLocalManual(fid, path, publishOptions)
             % ---------- On récupère les noms des scripts du dossier ---------- %

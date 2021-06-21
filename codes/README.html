@@ -1,0 +1,53 @@
+<h1> DocGen </h1>
+Auteur(s): Florian Legendre
+<br/><br/>
+
+
+<h2> Que contient ce dossier? </h2>
+<ul>
+<li> DocPageModule/ => Contient toutes les classes permettant de créer la banière (ou header) des pages de documentation et les pages de documentations elles-mêmes (locales et globales) </li>
+<li> IndexModule/ => Contient toutes les classes permettant de générer des index (aka. table des matières) de types divers. J'en compte pour l'instant deux: les index alphabétiques 
+				(les entrées sont triées selon l'ordre alphabétique) et les index hiérarchiques (les entrées sont triées selon leur place dans une arborescence ou un ordre hiérarchique quelconque) </li>
+<li> MatlabModule/ => Contient les classes (une seule pour l'instant) générales à Matlab et qui permettent de standardiser certains éléments de code que j'utilise beaucoup (comme le clearScript() ) </li>
+<li> StringModule/ => Contient les classes permettant de manipuler des chaînes de caractère plus facilement. Cela inclut des chaînes de caractère très spécifiques comme les chemins absolus ou les noms de 
+				 fichiers qui nécessitent, après traitement, des appels systèmes </li>
+</ul>
+<br/>
+
+<h2> Comment contribuer? </h2>
+
+<h3> Prérequis à la contribution </h3>
+
+Ce projet est versionné sous Git. Toute participation à ce projet implique que vous sachiez utiliser Git. Si besoin, voici un lien contenant des diapositives de formation et un site internet d'exercice:
+<a href="https://github.com/Chuxclub/GitLearn"> https://github.com/Chuxclub/GitLearn </a>. Votre autoformation devrait vous prendre une dizaine d'heures. A raison d'1 heure par jour vous serez capable 
+de participer à n'importe quel projet versionné et d'utiliser toute la puissance de ce logiciel sur vos propres projets. Vous gagnez en temps et en sécurité!
+
+<h3> Exigences concernant les contributions </h3>
+Ce projet suit le paradigme orienté objet. Une maîtrise experte de ce paradigme n'est pas nécessaire pour participer mais une connaissance suffisante est tout de même attendue.
+
+Quelques conventions de nommage:
+<ul>
+	<li>maFonction</li>
+	<li>maVariable</li>
+	<li>MA_CONSTANTE</li>
+	<li>MaClasse</li>
+</ul>
+<br/>
+
+
+<h2> Par où commencer? </h2>
+Pour découvrir le code:
+<ol>
+	<li>Aller dans codes/ puis ouvrir DocGen.m</li>
+	<li>Suivre le chemin de construction d'une notice locale => vous passerez par les fichiers IndexModule/IndexA.m, DocPageModule/Manual.m, etc. en autres choses...</li>
+	<li>Faire de même avec une notice globale</li>
+</ol>
+
+Pour commencer à contribuer (la difficulté/connaissance du code estimée est notée avec des étoiles *** sur 5):
+<ul>
+	<li>** Clarifier les entrées sorties de chaque méthode (quelles structures de données en entrée? En sortie?) </li>
+	<li>*** Modifier le code pour le rendre plus modulaire </li>
+	<li>** Tester la résistance du code aux crashs/bugs et débugger en conséquence</li>
+	<li>**** Implanter un index alphabétique de toutes les fonctions du projet accessible par un bouton sous le header </li>
+	<li>***** Implanter un système ou plugin permettant de générer des graphes d'appels de fonctions qui s'afficheront dans les notices générées </li>
+</ul>

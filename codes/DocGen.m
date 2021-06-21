@@ -1,24 +1,12 @@
-% ======================================================================= %
-% ========================= LA TOOLBOX DOCGEN =========================== %
-% ======================================================================= %
+%% DocGen
 
-%                    -------------------------                            %
-% Auteurs: Marien Couvertier (script original), Florian Legendre (màj)    %
-%                                                                         %
-% Objectif: Fournir des fonctions globales utilisées dans DocGenScript.m  %
-% pour mettre à jour la documentation d'un projet.                        %
-%                                                                         %
-% IMPORTANT: Modifiez les variables globales dans "properties" ci-dessous %
-%            selon votre système                                          %
-%                                                                         %
-% IMPORTANT 2: Si vous êtes sous Linux, allez dans PathsTB.m pour         %
-%              configurer le caractère de séparation des fichiers appelé  %
-%              SEP_TOKEN.                                                 %
-%                                                                         %
-%                    -------------------------                            %
+% Auteurs: Marien Couvertier (script original), Florian Legendre (màj)    
+
+% Objectif: Fournir des fonctions globales utilisées dans DocGenScript.m  
+% pour mettre à jour la documentation d'un projet.                        
 
 
-
+%%  Le code source
 classdef DocGen
     properties (SetAccess = immutable)
         AUTHORS;
@@ -62,7 +50,7 @@ classdef DocGen
             publishOptions.evalCode = eval;
             
             % ---------- On crée la page .m de la notice locale qui sera publiée ---------- %
-            docPageName = ['Index' folderToDocument '.m'];
+            docPageName = ['ManPage_' folderToDocument '.m'];
             fid = fopen(docPageName,'wt');
             
             Header.makeHeader(fid, obj.PROJECT_NAME, obj.PROJECT_SUBNAME, obj.AUTHORS, obj.CONTACT);
@@ -99,7 +87,7 @@ classdef DocGen
             publishOptions.evalCode = false;
             
             % ---------- On crée la page .m de la notice globale qui sera publiée ---------- %
-            docPageName = ('IndexGlobal.m');
+            docPageName = ('ManPage_Global.m');
             fid = fopen(docPageName,'wt');
             
             Header.makeHeader(fid, obj.PROJECT_NAME, obj.PROJECT_SUBNAME, obj.AUTHORS, obj.CONTACT);
@@ -120,7 +108,7 @@ classdef DocGen
             
             % --------- Nettoyage des fichiers devenus inutiles --------- %
             fclose(fid);
-            delete IndexGlobal.m;
+            delete ManPage_Global.m;
         end
     end
 end

@@ -1,16 +1,12 @@
-% ======================================================================= %
-% ========================= LA TOOLBOX DOCGEN =========================== %
-% ======================================================================= %
+%% Boîte à outils permettant de gérer les fichiers du système
 
-%                    -------------------------                            %
-% Auteurs: Florian Legendre (script original)                             %
-%                                                                         %
-% Objectif: Fournir des mÃ©thodes permettant de rÃ©cupÃ©rer des listes de    %
-%           de fichiers, de manipuler ces listes, etc.                    %
-%                                                                         %
-%                    -------------------------                            %
+% Auteurs: Florian Legendre (script original)                             
+
+% Objectif: Fournir des méthodes permettant de récupérer des listes de  
+%           de fichiers, de manipuler ces listes, etc.                    
 
 
+%%  Le code source
 classdef (Abstract) FilesTB
     methods(Static)
         function fileList = getFiles(src, pattern, filename)

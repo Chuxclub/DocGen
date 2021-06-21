@@ -1,16 +1,12 @@
-% ======================================================================= %
-% ========================= LA TOOLBOX DOCGEN =========================== %
-% ======================================================================= %
+%% Boîte à outils contenant des algorithmes de tri
 
-%                    -------------------------                            %
-% Auteurs: Florian Legendre (script original)                             %
-%                                                                         %
-% Objectif: Fournir des méthodes  de tri utilisables sur n'importe quel   %
-%           projet Matlab                                                 %
-%                                                                         %
-%                    -------------------------                            %
+% Auteurs: Florian Legendre (script original)                             
+
+% Objectif: Fournir des méthodes de tri utilisables sur n'importe quel   
+%           projet Matlab                                                 
 
 
+%%  Le code source
 classdef SortsTB
     methods(Static)
         function sortedArray = bubbleSortCaseUnsensitive(arrayToSort)

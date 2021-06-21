@@ -16,9 +16,9 @@
 %% Configuration de DocGen
 % Configuration de DocGen => pour plus d'optimisation exécutez cette 
 %                            section qu'une seule fois (Ctrl+Entrée).
-docgenCodesPath = 'D:\Git\projects\wip\DocGenTest\lib\DocGen\codes';
-projectCodesPath = 'D:\Git\projects\wip\DocGenTest\codes';
-projectGlobalDocDest = 'D:\Git\projects\wip\DocGenTest\docs';
+docgenCodesPath = 'D:\Git\projects\wip\DocGen\codes';
+projectCodesPath = 'D:\Git\projects\wip\DocGen\codes';
+projectGlobalDocDest = 'D:\Git\projects\wip\DocGen\docs';
 addpath(docgenCodesPath);
 
 % ~~~~~~~ Initialisation de DocGen avec configurations ~~~~~~~ %
@@ -46,11 +46,10 @@ docGen = DocGen('Marien Couvertier, Florian Legendre', ...
 % Argument 1: La racine à partir de laquelle on génère la notice locale.
 % Argument 2: Est-ce qu'on évalue les fonctions des scripts présents dans 
 %             la racine ou non?
-docGen.makeLocalDoc([projectCodesPath '\Fonctions\Math'], false);
-docGen.makeLocalDoc([projectCodesPath '\Fonctions\Plot'], false);
-docGen.makeLocalDoc([projectCodesPath '\Fonctions\Plot\Video'], false);
-docGen.makeLocalDoc([projectCodesPath '\Fonctions\Spatial_Location'], false);
-docGen.makeLocalDoc([projectCodesPath '\Programmes'], false);
+docGen.makeLocalDoc([projectCodesPath '\DocPageModule'], false);
+docGen.makeLocalDoc([projectCodesPath '\IndexModule'], false);
+docGen.makeLocalDoc([projectCodesPath '\MatlabModule'], false);
+docGen.makeLocalDoc([projectCodesPath '\StringModule'], false);
 
 
 %% Création de la documentation globale au projet

@@ -1,32 +1,26 @@
-% ======================================================================= %
-% ========================= LA TOOLBOX DOCGEN =========================== %
-% ======================================================================= %
+%% Index hiérarchiques
 
-%                    -------------------------                            %
-% Auteurs: Florian Legendre (script original)                             %
-%                                                                         %
-% Objectif: Fournir les méthodes communes aux index hiérarchiques.        %
-%                                                                         %
-%                    -------------------------                            %
+% Auteurs: Florian Legendre (script original)
+% Objectif: Fournir les méthodes communes aux index hiérarchiques
 
 
-
+%%  Le code source
 classdef IndexT < Index
     
-    % ############ MÃ©thodes principales ############ %
+    % ############ Méthodes principales ############ %
     methods
-        % ~~~~~~~~~~~ Constructeur de l'objet "index hiÃ©rarchique":
+        % ~~~~~~~~~~~ Constructeur de l'objet "index hiérarchique":
         function obj = IndexT(pattern, src, dest)
             obj = obj@Index(pattern, src, dest);
         end
         
-        % ~~~~~~~~~~~ Construction de l'index hiÃ©rarchique:
+        % ~~~~~~~~~~~ Construction de l'index hiérarchique:
         function makeIndexT(obj, fid, isExhaustive)
             UtilsTB.clearScript();
             FilesTB.getFiles(obj.getSrc(), obj.getPattern(), 'List.txt');
             
             if ~isExhaustive
-                indexList = PathsTB.selectFromPaths('Index', 'List.txt');
+                indexList = PathsTB.selectFromPaths('ManPage_', 'List.txt');
             else
                 indexList=importdata('List.txt');
             end
@@ -40,10 +34,10 @@ classdef IndexT < Index
     end
     
     
-    % ############ MÃ©thodes auxiliaires (cf. MANUEL_DEV.pdf) ############ %
+    % ############ Méthodes auxiliaires (cf. MANUEL_DEV.pdf) ############ %
     methods (Access = private)
         
-        % ~~~~~~~~~~~ Index hiÃ©rarchique en tableau :        
+        % ~~~~~~~~~~~ Index hiérarchique en tableau :        
         function globalIndexArray = globalIndexArrMake(obj, subpathsList)
             % Algorithm initialization %
             appendIdx = 1;
@@ -80,28 +74,26 @@ classdef IndexT < Index
         end
         
         
-        % ~~~~~~~~~~~ Index hiÃ©rarchique en HTML appel de la rÃ©cursive:
+        % ~~~~~~~~~~~ Index hiérarchique en HTML appel de la récursive:
         function generateHTML(obj, globalIndexArray, fid)
-%             fprintf(fid, '%% <html>');
             if(size(globalIndexArray) ~= 0)
                 [~] = obj.generateHTML_aux(globalIndexArray, fid, 1);
             end
-%             fprintf(fid, '\n%% </html>');
         end
         
         
-        % ~~~~~~~~~~~ Index hiÃ©rarchique en HTML - la rÃ©cursive:
+        % ~~~~~~~~~~~ Index hiérarchique en HTML - la récursive:
         function newPos = generateHTML_aux(obj, globalIndexArray, fid, pos)
             fprintf(fid, '\n%% \t<ul>');
             
             while pos <= size(globalIndexArray, 2)
                 % ~~~~~~~~ GESTION VARIABLES ~~~~~~~~ %
-                % Pour la lisibilitÃ© de ce code %
+                % Pour la lisibilité de ce code %
                 currentNodeDepth = globalIndexArray{pos}{1};
                 currentNodeName = globalIndexArray{pos}{2};
                 currentNodePath = globalIndexArray{pos}{3};
                 
-                % Essentiel pour gÃ©rer les fermetures de balise %
+                % Essentiel pour gérer les fermetures de balise %
                 if(pos+1 <= size(globalIndexArray, 2))
                     nextDepth = globalIndexArray{pos+1}{1};
                 else
@@ -109,17 +101,17 @@ classdef IndexT < Index
                 end
                 
                 % ~~~~~~~~ GESTION HTML ~~~~~~~~ %
-                % Ouverture d'une entrÃ©e %
+                % Ouverture d'une entrée %
                 fprintf(fid, '\n%% \t<li>');
                 
-                % Gestion du contenu des entrÃ©es %
+                % Gestion du contenu des entrées %
                 if contains(currentNodeName, '.html')
                     fprintf(fid, '<a href="file:///%s">%s</a>', currentNodePath, currentNodeName);
                 else
                     fprintf(fid, '%s', currentNodeName);
                 end
                 
-                % Fermeture des entrÃ©es selon la profondeur %
+                % Fermeture des entrées selon la profondeur %
                 if(currentNodeDepth < nextDepth)
                     pos = obj.generateHTML_aux(globalIndexArray, fid, pos+1);
                 elseif(currentNodeDepth > nextDepth)
