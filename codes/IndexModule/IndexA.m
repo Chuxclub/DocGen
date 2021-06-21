@@ -12,8 +12,8 @@
 
 classdef IndexA < Index
     methods
-        function obj = IndexA(pattern, level, src, dest)
-            obj@Index(pattern, level, src, dest);
+        function obj = IndexA(pattern, src, dest)
+            obj@Index(pattern, src, dest);
         end
         
         % ~~~~~~~~~~~ Construction de l'index hiérarchique:

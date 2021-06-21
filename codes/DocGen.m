@@ -3,16 +3,16 @@
 % ======================================================================= %
 
 %                    -------------------------                            %
-% Auteurs: Marien Couvertier (script original), Florian Legendre (mÃ j)    %
+% Auteurs: Marien Couvertier (script original), Florian Legendre (màj)    %
 %                                                                         %
-% Objectif: Fournir des fonctions globales utilisÃ©es dans DocGenScript.m  %
-% pour mettre Ã  jour la documentation d'un projet.                        %
+% Objectif: Fournir des fonctions globales utilisées dans DocGenScript.m  %
+% pour mettre à jour la documentation d'un projet.                        %
 %                                                                         %
 % IMPORTANT: Modifiez les variables globales dans "properties" ci-dessous %
-%            selon votre systÃ¨me                                          %
+%            selon votre système                                          %
 %                                                                         %
-% IMPORTANT 2: Si vous Ãªtes sous Linux, allez dans PathsTB.m pour         %
-%              configurer le caractÃ¨re de sÃ©paration des fichiers appelÃ©  %
+% IMPORTANT 2: Si vous êtes sous Linux, allez dans PathsTB.m pour         %
+%              configurer le caractère de séparation des fichiers appelé  %
 %              SEP_TOKEN.                                                 %
 %                                                                         %
 %                    -------------------------                            %
@@ -61,7 +61,6 @@ classdef DocGen
             publishOptions.outputDir=[path PathsTB.setgetVar obj.DOC_NAME];
             publishOptions.evalCode = eval;
             
-            
             % ---------- On crée la page .m de la notice locale qui sera publiée ---------- %
             docPageName = ['Index' folderToDocument '.m'];
             fid = fopen(docPageName,'wt');
@@ -78,7 +77,6 @@ classdef DocGen
             fprintf(fid,'\n%%%% \n%% <html> <h3 style="border-bottom: 1px solid #d6d4d4; margin-bottom: 0;"> Main Functions </h3> </html>\n');
             
             Manual.makeLocalManual(fid, path, publishOptions);
-            
             
             % ----------------------- Publication ----------------------- %
             publish(docPageName,publishOptions);

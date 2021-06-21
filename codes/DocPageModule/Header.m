@@ -5,7 +5,7 @@
 %                    -------------------------                            %
 % Auteurs: Florian Legendre (script original)                             %
 %                                                                         %
-% Objectif: Fournir les mÃ©thodes spÃ©cifiques pour gÃ©nÃ©rer les header des  %
+% Objectif: Fournir les méthodes spécifiques pour générer les header des  %
 %           pages de documentation.                                       %
 %                                                                         %
 %                    -------------------------                            %

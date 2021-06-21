@@ -16,11 +16,10 @@
 %% Configuration de DocGen
 % Configuration de DocGen => pour plus d'optimisation exécutez cette 
 %                            section qu'une seule fois (Ctrl+Entrée).
-docgenCodesPath = 'd:\Git\projects\wip\DocGenTest\lib\DocGen\codes';
+docgenCodesPath = 'D:\Git\projects\wip\DocGenTest\lib\DocGen\codes';
+projectCodesPath = 'D:\Git\projects\wip\DocGenTest\codes';
+projectGlobalDocDest = 'D:\Git\projects\wip\DocGenTest\docs';
 addpath(docgenCodesPath);
-
-projectCodesPath = 'd:\Git\projects\wip\DocGenTest\codes';
-projectGlobalDocDest = 'd:\Git\projects\wip\DocGenTest\docs';
 
 % ~~~~~~~ Initialisation de DocGen avec configurations ~~~~~~~ %
 % Argument 1: auteurs

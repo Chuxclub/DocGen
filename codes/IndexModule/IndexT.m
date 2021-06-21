@@ -5,7 +5,7 @@
 %                    -------------------------                            %
 % Auteurs: Florian Legendre (script original)                             %
 %                                                                         %
-% Objectif: Fournir les méthodes communes aux index hiérarchiques.        %
+% Objectif: Fournir les m�thodes communes aux index hi�rarchiques.        %
 %                                                                         %
 %                    -------------------------                            %
 
@@ -16,8 +16,8 @@ classdef IndexT < Index
     % ############ Méthodes principales ############ %
     methods
         % ~~~~~~~~~~~ Constructeur de l'objet "index hiérarchique":
-        function obj = IndexT(pattern, depth, src, dest)
-            obj = obj@Index(pattern, depth, src, dest);
+        function obj = IndexT(pattern, src, dest)
+            obj = obj@Index(pattern, src, dest);
         end
         
         % ~~~~~~~~~~~ Construction de l'index hiérarchique:

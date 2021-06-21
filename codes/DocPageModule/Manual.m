@@ -6,7 +6,7 @@
 % Auteurs: Marien Couvertier (script original), Florian Legendre (màj)    %
 %                                                                         %
 % Objectif: Fournir des fonctions globales utilisées dans DocGenScript.m  %
-% pour mettre Ã  jour la documentation d'un projet.                       %
+% pour mettre à jour la documentation d'un projet.                        %
 %                                                                         %
 % IMPORTANT: Modifiez les variables globales dans "properties" ci-dessous %
 %            selon votre système                                          %
@@ -51,7 +51,7 @@ classdef (Abstract) Manual
             
             fprintf(fid,'\n%%%% \n%% <html> <div style="display: table; width: 100%%;">');
             fprintf(fid, '\n%% <div style="display: table-cell; vertical-align: top;">\n');
-            indexA = IndexA('*.html', 10, path, './');
+            indexA = IndexA('*.html', path, './');
             indexA.makeIndexA(fid);
             fprintf(fid, '%% </div>');
             
@@ -69,7 +69,7 @@ classdef (Abstract) Manual
         function makeGlobalManual(fid, src, dest, isIndexExhaustive)
             fprintf(fid,'\n%%%% \n%% <html> <div style="display: table; width: 100%%;">');
             fprintf(fid, '\n%% <div style="display: table-cell; vertical-align: top;">');
-            indexT = IndexT('*.html', 10, src, dest);
+            indexT = IndexT('*.html', src, dest);
             indexT.makeIndexT(fid, isIndexExhaustive);
             fprintf(fid, '\n%% </div>');
             

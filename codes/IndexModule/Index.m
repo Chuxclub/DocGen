@@ -5,7 +5,7 @@
 %                    -------------------------                            %
 % Auteurs: Florian Legendre (script original)                             %
 %                                                                         %
-% Objectif: Fournir les mÃ©thodes communes Ã  n'importe quel type d'index.  %
+% Objectif: Fournir les méthodes communes à n'importe quel type d'index.  %
 %                                                                         %
 %                    -------------------------                            %
 
@@ -13,15 +13,13 @@
 classdef (Abstract) Index
     properties (Access = private)
         pattern;
-        depth;
         src;
         dest;
     end
     
     methods 
-        function obj = Index(pattern, depth, src, dest)
+        function obj = Index(pattern, src, dest)
             obj.pattern = pattern;
-            obj.depth = depth;
             obj.src = src;
             obj.dest = dest;
         end
@@ -29,11 +27,6 @@ classdef (Abstract) Index
         % ============ GETTERS ============ %
         function objDest = getDest(obj)
             objDest = obj.dest;
-            return;
-        end
-        
-        function objDepth = getDepth(obj)
-            objDepth = obj.depth;
             return;
         end
         
