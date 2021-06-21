@@ -24,6 +24,8 @@ classdef DocGen
         AUTHORS;
         CONTACT;
         DOC_NAME = 'Notice';
+        PROJECT_CODES_PATH;
+        PROJECT_GLOBAL_DOC_DEST;
         PROJECT_NAME;
         PROJECT_SUBNAME;
     end   
@@ -31,7 +33,8 @@ classdef DocGen
     % ################ GESTION DES NOTICES ################ %
     methods
         % ================ Constructeur d'une instance de DocGen ================ %
-        function obj = DocGen(authors, contact,  project_name, project_subname, docGenPath, sepToken)
+        function obj = DocGen(authors, contact, docGenPath, projectCodesPath, projectGlobalDocDest, ...
+                              projectName, projectSubname, sepToken)
             addpath([docGenPath '\DocPageModule']);
             addpath([docGenPath '\IndexModule']);
             addpath([docGenPath '\MatlabModule']);
@@ -39,8 +42,10 @@ classdef DocGen
             
             obj.AUTHORS = authors;
             obj.CONTACT = contact;
-            obj.PROJECT_NAME = project_name;
-            obj.PROJECT_SUBNAME = project_subname;
+            obj.PROJECT_CODES_PATH = projectCodesPath;
+            obj.PROJECT_GLOBAL_DOC_DEST = projectGlobalDocDest;
+            obj.PROJECT_NAME = projectName;
+            obj.PROJECT_SUBNAME = projectSubname;
             PathsTB.setgetVar(sepToken);
         end
         
@@ -62,6 +67,7 @@ classdef DocGen
             fid = fopen(docPageName,'wt');
             
             Header.makeHeader(fid, obj.PROJECT_NAME, obj.PROJECT_SUBNAME, obj.AUTHORS, obj.CONTACT);
+            Header.makeHyperButton(fid, obj.PROJECT_GLOBAL_DOC_DEST, "Accueil");
             
             % Header du dossier maître (le nom du dossier dont on génère la doc):
             header = ['Notice locale du module: ' folderToDocument];

@@ -77,7 +77,7 @@ classdef (Abstract) Manual
             
             if ~isempty(readme)
                 fprintf(fid, "\n");
-                htmlTag = ["% <div style='display: table-cell; float: right;'> <iframe src='" src "\README.html' style='height: 80vh; width:70vw;'></iframe> </div>"];
+                htmlTag = ["% <div style='display: table-cell; float: right;'> <iframe src='file:///" src "\README.html' style='height: 80vh; width:70vw;'></iframe> </div>"];
                 fprintf(fid, "%s", htmlTag);
             end
             

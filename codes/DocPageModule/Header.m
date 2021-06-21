@@ -26,5 +26,14 @@ classdef (Abstract) Header
             fprintf(fid, ' </div>');
             fprintf(fid, ' </html>\n');
         end
+        
+        function makeHyperButton(fid, href, content)
+            fprintf(fid, '%%%%');
+            fprintf(fid, '\n%% <html>');
+            fprintf(fid, '<style>.button {display: block; width: 115px; height: 25px; background: #ffd384; padding: 10px; text-align: center; border-radius: 5px; color: white; font-weight: bold; line-height: 25px; }</style>');
+            hyperButton = ['<a href="file:///' [href '\IndexGlobal.html'] '" class="button">' content '</a>'];
+            fprintf(fid, "%s", hyperButton);
+            fprintf(fid, ' </html>\n');
+        end
     end
 end
