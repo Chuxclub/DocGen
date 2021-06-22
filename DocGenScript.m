@@ -16,9 +16,9 @@
 %% Configuration de DocGen
 % Configuration de DocGen => pour plus d'optimisation exécutez cette 
 %                            section qu'une seule fois (Ctrl+Entrée).
-docgenCodesPath = 'D:\Git\projects\wip\DocGen\codes';
-projectCodesPath = 'D:\Git\projects\wip\DocGen\codes';
-projectGlobalDocDest = 'D:\Git\projects\wip\DocGen\docs';
+docgenCodesPath = 'E:\Git\projects\wip\DocGen\codes';
+projectCodesPath = 'E:\Git\projects\wip\DocGen\codes';
+projectGlobalDocDest = 'E:\Git\projects\wip\DocGen\docs';
 addpath(docgenCodesPath);
 
 % ~~~~~~~ Initialisation de DocGen avec configurations ~~~~~~~ %

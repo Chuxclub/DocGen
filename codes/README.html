@@ -1,26 +1,50 @@
-<h1> DocGen </h1>
+<h1> DocGen - Codes Sources </h1>
 Auteur(s): Florian Legendre
-<br/><br/>
+<br/><br/><hr/>
 
 
 <h2> Que contient ce dossier? </h2>
 <ul>
 <li> DocPageModule/ => Contient toutes les classes permettant de créer la banière (ou header) des pages de documentation et les pages de documentations elles-mêmes (locales et globales) </li>
-<li> IndexModule/ => Contient toutes les classes permettant de générer des index (aka. table des matières) de types divers. J'en compte pour l'instant deux: les index alphabétiques 
+<li> IndexModule/ => Contient toutes les classes permettant de générer des index (aka. table des matières) de types divers. J'en compte pour l'instant deux: les index alphabétiques
 				(les entrées sont triées selon l'ordre alphabétique) et les index hiérarchiques (les entrées sont triées selon leur place dans une arborescence ou un ordre hiérarchique quelconque) </li>
 <li> MatlabModule/ => Contient les classes (une seule pour l'instant) générales à Matlab et qui permettent de standardiser certains éléments de code que j'utilise beaucoup (comme le clearScript() ) </li>
-<li> StringModule/ => Contient les classes permettant de manipuler des chaînes de caractère plus facilement. Cela inclut des chaînes de caractère très spécifiques comme les chemins absolus ou les noms de 
+<li> StringModule/ => Contient les classes permettant de manipuler des chaînes de caractère plus facilement. Cela inclut des chaînes de caractère très spécifiques comme les chemins absolus ou les noms de
 				 fichiers qui nécessitent, après traitement, des appels systèmes </li>
 </ul>
-<br/>
+<br/><hr/>
 
 <h2> Comment contribuer? </h2>
 
 <h3> Prérequis à la contribution </h3>
 
 Ce projet est versionné sous Git. Toute participation à ce projet implique que vous sachiez utiliser Git. Si besoin, voici un lien contenant des diapositives de formation et un site internet d'exercice:
-<a href="https://github.com/Chuxclub/GitLearn"> https://github.com/Chuxclub/GitLearn </a>. Votre autoformation devrait vous prendre une dizaine d'heures. A raison d'1 heure par jour vous serez capable 
-de participer à n'importe quel projet versionné et d'utiliser toute la puissance de ce logiciel sur vos propres projets. Vous gagnez en temps et en sécurité!
+<a href="https://github.com/Chuxclub/GitLearn"> https://github.com/Chuxclub/GitLearn </a>. Votre autoformation devrait vous prendre une dizaine d'heures. A raison d'1 heure par jour vous serez capable
+de participer à n'importe quel projet versionné et d'utiliser toute la puissance de ce logiciel sur vos propres projets. Vous gagnez en temps et en sécurité!<br/>
+
+Ce projet est documenté par DocGen (il s'autodocumente). Il est donc attendu que la documentation soit régulièrement mise à jour par exécution du script <i>DocGenScript.m</i>. Si vous ajoutez des
+fichiers ou modules au projet il faudra enrichir ce script et mettre à jour la documentation par exécution de ce-dernier.<br/>
+
+Ce projet suit une arborescence standardisée expliquée dans son README globale <a href="..\README.html">ici</a>. Les fichiers que vous créerez pour ce projet doivent donc être triés selon cette
+arborescence.<br/>
+
+Enfin, les nouvelles fonctionnalités ajoutées à DocGen s'appuient beaucoup sur la fonction <i>Publish</i> de Matlab et notamment sur l'inclusion de balises HTML. Il est donc recommandé la lecture
+des pages de documentation suivantes:
+
+<ul>
+	<li>
+		<a href="https://fr.mathworks.com/help/matlab/matlab_prog/publishing-matlab-code.html">Publish and Share Matlab Code</a>
+	</li>
+	<li>
+		<a href="https://fr.mathworks.com/help/matlab/ref/publish.html">Page de manuel de la fonction Publish de Matlab</a>
+	</li>
+	<li>
+		<a href="https://fr.mathworks.com/help/matlab/matlab_prog/marking-up-matlab-comments-for-publishing.html">Matlab Publish Markup</a>
+	</li>
+	<li>
+		<a href="https://www.sololearn.com/learning/1014">Cours accéléré sur le langage de description HTML créé par SoloLearn</a>
+	</li>
+</ul>
 
 <h3> Exigences concernant les contributions </h3>
 Ce projet suit le paradigme orienté objet. Une maîtrise experte de ce paradigme n'est pas nécessaire pour participer mais une connaissance suffisante est tout de même attendue.
@@ -32,7 +56,7 @@ Quelques conventions de nommage:
 	<li>MA_CONSTANTE</li>
 	<li>MaClasse</li>
 </ul>
-<br/>
+<br/><hr/>
 
 
 <h2> Par où commencer? </h2>

@@ -1,16 +1,47 @@
-<h1> Nom de votre projet </h1>
-Auteur(s):
+<h1> DocGen - DocPageModule </h1>
+Auteur(s): Florian Legendre
+<br/><br/><hr/>
 
 
+<h2> Que contient ce dossier? </h2>
 
-<h2> Que contient ce dossier? </h2> <!-- Détaillez ici le quoi, le pourquoi et (brièvement) le comment de chacun de vos modules -->
+<ul>
+    <li>
+        Header.m => classe abstraite avec que des méthodes statiques qui constitue
+        une boîte à fonctions pour créer le header commun aux pages de manuel de
+        DocGen (le bandeau orange avec les informations sur le projet et la
+        rubrique 'Nous contacter')
+    </li>
+
+    <li>
+        Manual.m => classe abstraite ne contenant que des méthodes statiques qui
+        constitue une boîte à fonctions pour créer les pages de manuel (aussi
+        appelées 'notices') de DocGen. Une page de manuel, ou notice, étant définie
+        comme étant un index + un README. Une page de manuel peut avoir une portée locale
+        (ie. limitée au dossier courant et uniquement ce dossier) ou une portée globale
+        (ie. récursive: le dossier courant et tous ses sous-dossiers.)
+    </li>
+</ul>
+<br/><hr/>
+
 
 <h2> Comment contribuer? </h2>
 
-<h3> Prérequis à la contribution </h3> <!-- Détaillez ici, si c'est pertinent, les outils que vous souhaitez voir utilisés pour toute contribution ici -->
+<h3> Prérequis à la contribution </h3>
+Cf. Le  <a href="..\README.html">README</a> à la racine du projet.
 
-<h3> Exigences concernant les contributions </h3> <!-- Détaillez ici, si c'est pertinent, vos exigences pour toute contribution ici (conventions de nommage, etc.) -->
+<h3> Exigences concernant les contributions </h3>
+Cf. Le  <a href="..\README.html">README</a> à la racine du projet.
+<br/><hr/>
 
 
-
-<h2> Par où commencer? </h2> <!-- Détaillez ici les fichiers à ouvrir ou les scripts à lancer en indiquant éventuellement un ordre afin d'aider vos collaborateurs à prendre en main le projet -->
+<h2> Par où commencer? </h2>
+La difficulté/connaissance du code estimée est notée avec des étoiles *** sur 5:
+<ul>
+  <li>
+    *** Il ne devrait pas y avoir de distinction locale/globale. Il devrait y avoir une seule
+    fonction avec un niveau de profondeur dans l'indexation/documentation. le niveau 1
+    étant le niveau locale, le niveau 'r' pour récursif étant le niveau infini et tout niveau
+    intermédiaire étant un nombre entre 1 et 'r'.
+  </li>
+</ul>

@@ -1,16 +1,73 @@
-<h1> Nom de votre projet </h1>
-Auteur(s):
+<h1> DocGen - IndexModule </h1>
+Auteur(s): Florian Legendre
+<br/><br/><hr/>
 
 
+<h2> Que contient ce dossier? </h2>
+<ul>
+  <li>
+    Index.m => Classe abstraite contenant les méthodes communes à tout type d'index comme le constructeur
+    d'objets et les accesseurs sur propriétés. Les propriétés communes aux index sont la source (à partir de
+    quel point de l'arborescence indexe-t-on), la destination (où place-t-on l'index après sa création) et
+    le pattern (quelle extension ou quel nom de fichier indexe-t-on).<br/>
+  </li>
 
-<h2> Que contient ce dossier? </h2> <!-- Détaillez ici le quoi, le pourquoi et (brièvement) le comment de chacun de vos modules -->
+  <li>
+    IndexA.m => Classe concrète permettant de générer des index alphabétiques. Les index alphabétiques trient
+    leurs entrées selon l'ordre alphabétique. Cette classe ne peut pour l'instant qu'écrire directement dans un fichier
+    sous format HTML et à une échelle locale. A terme cette classe pourra écrire directement dans le fichier de son choix
+    l'index alphabétique généré ou garder en mémoire une structure de donnée reflètant l'index alphabétique qu'elle
+    pourra traduire plus tard dans un fichier. La portée de l'indexation pourra être locale ou récursive.
+    Cette classe fournira les formats suivants: HTML, MarkDown, Latex.<br/>
+  </li>
+
+  <li>
+    IndexT.m => Classe concrète permettant de générer des index hiérarchiques (le 'T' vient de l'anglais <i>Tree</i>). Les index hiérarchiques trient leurs entrées
+    selon un ordre hiérarchique imposé par une arborescence ou une métadonnée quelconque. Cette classe ne peut pour l'instant qu'écrire
+    directement dans un fichier sous format HTML. Toute autre échelle que l'échelle récursive n'aurait pas de sens pour l'index hiérarchique.
+    Comme pour l'index alphabétique, à terme cette classe permettra de stocker l'index généré sous une structure de donnée qu'elle pourra
+    traduire en divers formats dans un fichier. L'avantage du stockage étant qu'on peut effectuer des transformations (enrichissements/réductions)
+    des index générés plus aisément que lors d'une écriture séquentielle dans un fichier...<br/>
+  </li>
+</ul>
+<br/><hr/>
+
+
 
 <h2> Comment contribuer? </h2>
 
-<h3> Prérequis à la contribution </h3> <!-- Détaillez ici, si c'est pertinent, les outils que vous souhaitez voir utilisés pour toute contribution ici -->
+<h3> Prérequis à la contribution </h3>
+Cf. Le  <a href="..\README.html">README</a> à la racine du projet.
 
-<h3> Exigences concernant les contributions </h3> <!-- Détaillez ici, si c'est pertinent, vos exigences pour toute contribution ici (conventions de nommage, etc.) -->
+<h3> Exigences concernant les contributions </h3>
+Cf. Le  <a href="..\README.html">README</a> à la racine du projet.
+<br/><hr/>
+<br/><hr/>
 
 
 
-<h2> Par où commencer? </h2> <!-- Détaillez ici les fichiers à ouvrir ou les scripts à lancer en indiquant éventuellement un ordre afin d'aider vos collaborateurs à prendre en main le projet -->
+<h2> Par où commencer? </h2>
+La difficulté/connaissance du code estimée est notée avec des étoiles *** sur 5:
+<ul>
+  <li>
+    *** Il ne devrait pas y avoir de distinction locale/globale. Il devrait y avoir une seule
+    fonction avec un niveau de profondeur dans l'indexation/documentation. le niveau 1
+    étant le niveau locale, le niveau 'r' pour récursif étant le niveau infini et tout niveau
+    intermédiaire étant un nombre entre 1 et 'r'.
+  </li>
+  <li>
+    **** Implantation d'une structure de données et génération de l'index selon cette structure de données.
+  </li>
+  <li>
+    ** Fournir des méthodes permettant de visualiser/débugger aisément le contenu de la structure de données
+       choisie.
+  </li>
+  <li>
+    **** Implanter un traducteur de la structure de données en format HTML. Faire de même avec les formats
+         MarkDown et Latex.
+  </li>
+  <li>
+    *** Optimiser toutes les méthodes existantes pour éviter les complexités quadratiques si c'est possible!
+  </li>
+</ul>
+<br/><hr/>
