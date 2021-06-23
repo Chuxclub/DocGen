@@ -7,11 +7,11 @@ Notice/
 
 
 ## Bonnes pratiques globales:
-datas/*
-!datas/README.md
+data/*
+!data/README.md
 
-docs/doc_ext/*
-!docs/doc_ext/README.md
+docs/docs_ext/*
+!docs/docs_ext/README.md
 
 lib/*
 !lib/README.md
@@ -23,6 +23,12 @@ res/*
 res/res_ext/*
 !res/res_ext/README.md
 
+*.png
+*.jpeg
+*.jpg
 
-## Vos fichiers ignorés:
 
+## Vos fichiers ignorés (ou vos exceptions):
+!*.tex
+!*.sty
+!DocGen.png
