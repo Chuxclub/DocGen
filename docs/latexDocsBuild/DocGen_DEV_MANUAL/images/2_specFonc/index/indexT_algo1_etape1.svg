@@ -8,8 +8,8 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
-   sodipodi:docname="indexHierarchique_algo1_etape1.svg"
-   inkscape:export-filename="/home/crex/projects/wip/DocGen/docs/latexDocsBuild/DocGen_DEV_MANUAL/images/2_specFonc/index/indexHierarchique_algo1_etape1.png"
+   sodipodi:docname="indexT_algo1_etape1.svg"
+   inkscape:export-filename="/home/crex/projects/wip/DocGen/docs/latexDocsBuild/DocGen_DEV_MANUAL/images/2_specFonc/index/indexT_algo1_etape1.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -26,15 +26,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.8315052"
-     inkscape:cx="343.35324"
-     inkscape:cy="461.21179"
+     inkscape:zoom="6.6520416"
+     inkscape:cx="411.67812"
+     inkscape:cy="454.67244"
      inkscape:window-width="1920"
      inkscape:window-height="1051"
-     inkscape:window-x="1920"
+     inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g8203"
      fit-margin-left="5"
      fit-margin-top="5"
      fit-margin-right="5"
@@ -66,87 +66,87 @@
        style="font-style:normal;font-weight:normal;font-size:20px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6831);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="28.958984"
          y="73.3925"
-         id="tspan145535"><tspan
+         id="tspan957"><tspan
            style="font-size:16px"
-           id="tspan145533">E:\projects\MonProjet\codes\module1\Notice\script1.html
+           id="tspan955">E:\projects\MonProjet\codes\module1\Notice\script1.html
 </tspan></tspan><tspan
          x="28.958984"
          y="98.3925"
-         id="tspan145539"><tspan
+         id="tspan961"><tspan
            style="font-size:16px"
-           id="tspan145537">E:\projects\MonProjet\codes\module1\Notice\Manpage_***.html
+           id="tspan959">E:\projects\MonProjet\codes\module1\Notice\Manpage_***.html
 </tspan></tspan><tspan
          x="28.958984"
          y="123.3925"
-         id="tspan145543"><tspan
+         id="tspan965"><tspan
            style="font-size:16px"
-           id="tspan145541">
+           id="tspan963">
 </tspan></tspan><tspan
          x="28.958984"
          y="148.3925"
-         id="tspan145547"><tspan
+         id="tspan969"><tspan
            style="font-size:16px"
-           id="tspan145545">E:\projects\MonProjet\codes\module1\sousModule1\Notice\script.html
+           id="tspan967">E:\projects\MonProjet\codes\module1\sousModule1\Notice\script.html
 </tspan></tspan><tspan
          x="28.958984"
          y="173.3925"
-         id="tspan145551"><tspan
+         id="tspan973"><tspan
            style="font-size:16px"
-           id="tspan145549">E:\projects\MonProjet\codes\module1\sousModule1\Notice\Manpage_***.html
+           id="tspan971">E:\projects\MonProjet\codes\module1\sousModule1\Notice\Manpage_***.html
 </tspan></tspan><tspan
          x="28.958984"
          y="198.3925"
-         id="tspan145555"><tspan
+         id="tspan977"><tspan
            style="font-size:16px"
-           id="tspan145553">
+           id="tspan975">
 </tspan></tspan><tspan
          x="28.958984"
          y="223.3925"
-         id="tspan145559"><tspan
+         id="tspan981"><tspan
            style="font-size:16px"
-           id="tspan145557">E:\projects\MonProjet\codes\module1\sousModule2\Notice\script.html
+           id="tspan979">E:\projects\MonProjet\codes\module1\sousModule2\Notice\script.html
 </tspan></tspan><tspan
          x="28.958984"
          y="248.3925"
-         id="tspan145563"><tspan
+         id="tspan985"><tspan
            style="font-size:16px"
-           id="tspan145561">E:\projects\MonProjet\codes\module1\sousModule2\Notice\Manpage_***.html
+           id="tspan983">E:\projects\MonProjet\codes\module1\sousModule2\Notice\Manpage_***.html
 </tspan></tspan><tspan
          x="28.958984"
          y="273.3925"
-         id="tspan145567"><tspan
+         id="tspan989"><tspan
            style="font-size:16px"
-           id="tspan145565">
+           id="tspan987">
 </tspan></tspan><tspan
          x="28.958984"
          y="298.3925"
-         id="tspan145571"><tspan
+         id="tspan993"><tspan
            style="font-size:16px"
-           id="tspan145569">E:\projects\MonProjet\codes\module2\sousModule1\Notice\script.html
+           id="tspan991">E:\projects\MonProjet\codes\module2\sousModule1\Notice\script.html
 </tspan></tspan><tspan
          x="28.958984"
          y="323.3925"
-         id="tspan145575"><tspan
+         id="tspan997"><tspan
            style="font-size:16px"
-           id="tspan145573">E:\projects\MonProjet\codes\module2\sousModule1\Notice\Manpage_***.html
+           id="tspan995">E:\projects\MonProjet\codes\module2\sousModule1\Notice\Manpage_***.html
 </tspan></tspan><tspan
          x="28.958984"
          y="348.3925"
-         id="tspan145579"><tspan
+         id="tspan1001"><tspan
            style="font-size:16px"
-           id="tspan145577">
+           id="tspan999">
 </tspan></tspan><tspan
          x="28.958984"
          y="373.3925"
-         id="tspan145583"><tspan
+         id="tspan1005"><tspan
            style="font-size:16px"
-           id="tspan145581">E:\projects\MonProjet\codes\module2\sousModule1\sousSousModule1\Notice\script.html
+           id="tspan1003">E:\projects\MonProjet\codes\module2\sousModule1\sousSousModule1\Notice\script.html
 </tspan></tspan><tspan
          x="28.958984"
          y="398.3925"
-         id="tspan145587"><tspan
+         id="tspan1009"><tspan
    style="font-size:16px"
-   id="tspan145585">E:\projects\MonProjet\codes\module2\sousModule1\sousSousModule1\Notice\Manpage_***.html</tspan>
+   id="tspan1007">E:\projects\MonProjet\codes\module2\sousModule1\sousSousModule1\Notice\Manpage_***.html</tspan>
 </tspan></text>
     <text
        xml:space="preserve"
@@ -155,95 +155,110 @@
        style="font-style:normal;font-weight:normal;font-size:20px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6831-3);fill:#000000;fill-opacity:1;stroke:none"><tspan
          x="28.958984"
          y="73.3925"
-         id="tspan145591"><tspan
+         id="tspan1013"><tspan
            style="font-size:16px"
-           id="tspan145589">module1\Notice\script1.html
+           id="tspan1011">module1\Notice\script1.html
 </tspan></tspan><tspan
          x="28.958984"
          y="98.3925"
-         id="tspan145595"><tspan
+         id="tspan1017"><tspan
            style="font-size:16px"
-           id="tspan145593">module1\Notice\Manpage_***.html
+           id="tspan1015">module1\Notice\Manpage_***.html
 </tspan></tspan><tspan
          x="28.958984"
          y="123.3925"
-         id="tspan145599"><tspan
+         id="tspan1021"><tspan
            style="font-size:16px"
-           id="tspan145597">
+           id="tspan1019">
 </tspan></tspan><tspan
          x="28.958984"
          y="148.3925"
-         id="tspan145603"><tspan
+         id="tspan1025"><tspan
            style="font-size:16px"
-           id="tspan145601">module1\sousModule1\Notice\script.html
+           id="tspan1023">module1\sousModule1\Notice\script.html
 </tspan></tspan><tspan
          x="28.958984"
          y="173.3925"
-         id="tspan145607"><tspan
+         id="tspan1029"><tspan
            style="font-size:16px"
-           id="tspan145605">module1\sousModule1\Notice\Manpage_***.html
+           id="tspan1027">module1\sousModule1\Notice\Manpage_***.html
 </tspan></tspan><tspan
          x="28.958984"
          y="198.3925"
-         id="tspan145611"><tspan
+         id="tspan1033"><tspan
            style="font-size:16px"
-           id="tspan145609">
+           id="tspan1031">
 </tspan></tspan><tspan
          x="28.958984"
          y="223.3925"
-         id="tspan145615"><tspan
+         id="tspan1037"><tspan
            style="font-size:16px"
-           id="tspan145613">module1\sousModule2\Notice\script.html
+           id="tspan1035">module1\sousModule2\Notice\script.html
 </tspan></tspan><tspan
          x="28.958984"
          y="248.3925"
-         id="tspan145619"><tspan
+         id="tspan1041"><tspan
            style="font-size:16px"
-           id="tspan145617">module1\sousModule2\Notice\Manpage_***.html
+           id="tspan1039">module1\sousModule2\Notice\Manpage_***.html
 </tspan></tspan><tspan
          x="28.958984"
          y="273.3925"
-         id="tspan145623"><tspan
+         id="tspan1045"><tspan
            style="font-size:16px"
-           id="tspan145621">
+           id="tspan1043">
 </tspan></tspan><tspan
          x="28.958984"
          y="298.3925"
-         id="tspan145627"><tspan
+         id="tspan1049"><tspan
            style="font-size:16px"
-           id="tspan145625">module2\sousModule1\Notice\script.html
+           id="tspan1047">module2\sousModule1\Notice\script.html
 </tspan></tspan><tspan
          x="28.958984"
          y="323.3925"
-         id="tspan145631"><tspan
+         id="tspan1053"><tspan
            style="font-size:16px"
-           id="tspan145629">module2\sousModule1\Notice\Manpage_***.html
+           id="tspan1051">module2\sousModule1\Notice\Manpage_***.html
 </tspan></tspan><tspan
          x="28.958984"
          y="348.3925"
-         id="tspan145635"><tspan
+         id="tspan1057"><tspan
            style="font-size:16px"
-           id="tspan145633">
+           id="tspan1055">
 </tspan></tspan><tspan
          x="28.958984"
          y="373.3925"
-         id="tspan145639"><tspan
+         id="tspan1061"><tspan
            style="font-size:16px"
-           id="tspan145637">module2\sousModule1\sousSousModule1\Notice\script.html
+           id="tspan1059">module2\sousModule1\sousSousModule1\Notice\script.html
 </tspan></tspan><tspan
          x="28.958984"
          y="398.3925"
-         id="tspan145643"><tspan
+         id="tspan1065"><tspan
    style="font-size:16px"
-   id="tspan145641">module2\sousModule1\sousSousModule1\Notice\Manpage_***.html</tspan>
+   id="tspan1063">module2\sousModule1\sousSousModule1\Notice\Manpage_***.html</tspan>
 </tspan></text>
     <path
        style="fill:none;stroke:#fc0000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 96.938305,108.48547 -0.225002,16.6744 -4.345201,-3.01997 4.367924,3.02566 3.859414,-2.96327"
+       d="m 88.420518,108.07103 -0.216306,25.49785 -4.177263,-4.61802 4.199108,4.62673 3.710253,-4.53132"
        id="path109986" />
     <path
        style="fill:none;stroke:#ff0000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 70.212248,9.5588332 70.408958,112.80407"
        id="path111343" />
+    <g
+       id="g8203"
+       transform="translate(12.827338,4.7631495)">
+      <text
+         xml:space="preserve"
+         style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;fill:#ff0000;stroke-width:0.264583"
+         x="79.324997"
+         y="115.50298"
+         id="text45564"><tspan
+           sodipodi:role="line"
+           id="tspan45562"
+           style="fill:#ff0000;stroke-width:0.264583"
+           x="79.324997"
+           y="115.50298">makeIndexT() =&gt; cropPaths()</tspan></text>
+    </g>
   </g>
 </svg>

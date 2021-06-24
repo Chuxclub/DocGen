@@ -29,6 +29,7 @@ res/res_ext/*
 
 
 ## Vos fichiers ignorés (ou vos exceptions):
+build/
 !*.tex
 !*.sty
 !DocGen.png

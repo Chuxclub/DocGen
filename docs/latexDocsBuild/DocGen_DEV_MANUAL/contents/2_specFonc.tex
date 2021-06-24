@@ -2,9 +2,29 @@
 %\documentclass[../../../CR/pac.tex]{subfiles}
 
 \begin{document}
+	
+%%% ################ STRUCTURE DE DOCGEN  ################# %%%
+\chapter{Fonctionnement global de DocGen}
 
-\chapter{Génération des index}
+%%  ================== DIAGRAMME DE CLASSE ====================  %%
+\section{Diagramme de classe}
 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.225]{../DocGen.png}
+	\caption{Diagramme de classe de DocGen}
+	\label{fig:indexT}
+\end{figure}
+
+
+%%% #################### LE HEADER  #################### %%%
+\chapter{Génération du Header}
+
+
+%%% #################### LES INDEX  #################### %%%
+\chapter{Génération des Index}
+
+%%  ================== INDEX HIERARCHIQUES ====================  %%
 \section{Index hiérarchiques}
 
 \subsection{Définition}
@@ -20,10 +40,11 @@ Ce type d'index est appelé \textit{indexT} dans le code en référance à l'ang
 \end{figure}
 
 \newpage
-\subsection{Solution 1}
+\subsection{Solution 1 : Traitement d'une liste de chemins absolus}
 \bigskip
 \bigskip
-\subsubsection{Description de l'algorithme\\}
+\subsubsection{Description de l'algorithme}
+\vspace{0.5cm}
 \paragraph{Étape 1\\\\}
 On tronque de la liste des chemins récoltés la partie correspondant à la racine où est effectué l'index et on en profite pour mettre les chemins tronqués dans un tableau de chaînes de caractères.\\
 
@@ -51,9 +72,75 @@ Chaque chemin absolu est ensuite traité par la méthode \textit{globalIndexArrM
 	\label{fig:indexT_algo1_etape2}
 \end{center}
 
+\newpage
 \paragraph{Étape 4\\\\}
 
-\paragraph{Bilan\\\\}
+Une fois le tableau de noeud construit nous avons toutes les informations pour traduire celui-ci sous format HTML en écrivant directement dans le fichier voulu. Pour ce faire on tire profit de la récursivité dès lors qu'on s'enfonce ou qu'on remonte des profondeurs. On utilise en revanche une boucle pour le cas où on reste à la même profondeur.
 
+Le résultat est un ensemble de listes HTML imbriquées comme illustré ici:
+\begin{center}
+	\includegraphics[scale=0.6]{images/2_specFonc/index/indexT_algo1_etape4.png}
+	\captionof{figure}{Écriture du tableau de noeuds dans le fichier désigné sous format HTML}
+	\label{fig:indexT_algo1_etape2}
+\end{center}
+
+\bigskip
+\subsubsection{Zoom sur l'étape 3 (fonction globalIndexArrMake())}
+\vspace{0.5cm}
+
+Cette fonction, avec celle de génération du code HTML, est probablement la fonction la plus difficile à comprendre de DocGen et donc je tiens ici à offrir une description détaillée et imagée de son fonctionnement. Tout d'abord, je rappelle ici le code source: \\
+
+\begin{lstlisting}[style=Matlab-editor, caption={Code source de la fonction de transformation de liste de chemins absolus en tableaux de noeuds},captionpos=b]
+function globalIndexArray = globalIndexArrMake(obj, subpathsList)
+  % Algorithm initialization %
+  appendIdx = 1;
+  nbSubpaths = numel(subpathsList);
+  precPathRow = PathsTB.explodeSubpath(subpathsList{1}{1}, PathsTB.setgetVar);
+  nbNodes = numel(precPathRow);
+  for i=1:nbNodes
+	nodePath = [obj.getSrc() PathsTB.setgetVar ...
+	PathsTB.concatSubpathFromNodesRow(precPathRow, 1, i)];
+	globalIndexArray{appendIdx} = [i, precPathRow(i), nodePath];
+	appendIdx = appendIdx + 1;
+  end
+	
+  % Global index making %
+  for i=2:nbSubpaths
+	currentSubpathRow = PathsTB.explodeSubpath(subpathsList{i}{1}, PathsTB.setgetVar);
+	nbNodes = numel(currentSubpathRow);
+	
+	updatePrecPath = false;
+	for j=1:nbNodes
+		if j > numel(precPathRow) || ~strcmp(precPathRow(j), currentSubpathRow(j))
+			updatePrecPath = true;
+		end
+	
+		if updatePrecPath
+			nodePath = [obj.getSrc() PathsTB.setgetVar ...
+			PathsTB.concatSubpathFromNodesRow(currentSubpathRow, 1, j)];
+			globalIndexArray{appendIdx} = [j, currentSubpathRow(j), nodePath];
+			precPathRow(j) = currentSubpathRow(j);
+			appendIdx = appendIdx + 1;
+		end
+	end
+  end
+end
+\end{lstlisting}
+
+\newpage
+\subsubsection{Bilan}
+\vspace{0.5cm}
+
+
+%% ================== INDEX ALPHABETIQUES ==================== %%
+
+
+
+%%% #################### LES NOTICES  #################### %%%
+\chapter{Génération des Notices}
+
+
+%%% ################# LES PAGES DE MANUEL  ################# %%%
+\chapter{Génération des Pages de Manuel}
 
 \end{document}
