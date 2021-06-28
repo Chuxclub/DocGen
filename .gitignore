@@ -12,9 +12,6 @@ res/*
 
 
 ### CUSTOM ###
-!*.tex
-!*.sty
-!DocGen.png
 
 
 ### MATLAB ###

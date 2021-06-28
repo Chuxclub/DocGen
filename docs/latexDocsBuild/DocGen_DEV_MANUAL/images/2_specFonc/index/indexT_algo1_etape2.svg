@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="153.45247mm"
+   height="184.51839mm"
+   viewBox="0 0 153.45247 184.51838"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
+   sodipodi:docname="indexT_algo1_etape2.svg"
+   inkscape:export-filename="/home/crex/projects/wip/DocGen/docs/latexDocsBuild/DocGen_DEV_MANUAL/images/2_specFonc/index/indexT_algo1_etape2.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.8315052"
+     inkscape:cx="-33.072553"
+     inkscape:cy="289.23451"
+     inkscape:window-width="1920"
+     inkscape:window-height="1051"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-left="5"
+     fit-margin-top="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5" />
+  <defs
+     id="defs2">
+    <rect
+       x="28.958023"
+       y="56.311657"
+       width="696.00903"
+       height="356.86841"
+       id="rect6831" />
+    <rect
+       x="28.958023"
+       y="56.311657"
+       width="696.00903"
+       height="356.86841"
+       id="rect6831-3" />
+    <rect
+       x="28.958023"
+       y="56.311657"
+       width="696.00903"
+       height="356.86841"
+       id="rect6831-3-3" />
+  </defs>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-12.358795,-7.8278113)">
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,13.723802,-3.5045208)"
+       id="text6829-6"
+       style="font-style:normal;font-weight:normal;font-size:20px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6831-3);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="28.958984"
+         y="73.3925"
+         id="tspan3519"><tspan
+           style="font-size:16px"
+           id="tspan3517">module1\Notice\script1.html
+</tspan></tspan><tspan
+         x="28.958984"
+         y="98.3925"
+         id="tspan3523"><tspan
+           style="font-size:16px"
+           id="tspan3521">module1\Notice\Manpage_***.html
+</tspan></tspan><tspan
+         x="28.958984"
+         y="123.3925"
+         id="tspan3527"><tspan
+           style="font-size:16px"
+           id="tspan3525">
+</tspan></tspan><tspan
+         x="28.958984"
+         y="148.3925"
+         id="tspan3531"><tspan
+           style="font-size:16px"
+           id="tspan3529">module1\sousModule1\Notice\script.html
+</tspan></tspan><tspan
+         x="28.958984"
+         y="173.3925"
+         id="tspan3535"><tspan
+           style="font-size:16px"
+           id="tspan3533">module1\sousModule1\Notice\Manpage_***.html
+</tspan></tspan><tspan
+         x="28.958984"
+         y="198.3925"
+         id="tspan3539"><tspan
+           style="font-size:16px"
+           id="tspan3537">
+</tspan></tspan><tspan
+         x="28.958984"
+         y="223.3925"
+         id="tspan3543"><tspan
+           style="font-size:16px"
+           id="tspan3541">module1\sousModule2\Notice\script.html
+</tspan></tspan><tspan
+         x="28.958984"
+         y="248.3925"
+         id="tspan3547"><tspan
+           style="font-size:16px"
+           id="tspan3545">module1\sousModule2\Notice\Manpage_***.html
+</tspan></tspan><tspan
+         x="28.958984"
+         y="273.3925"
+         id="tspan3551"><tspan
+           style="font-size:16px"
+           id="tspan3549">
+</tspan></tspan><tspan
+         x="28.958984"
+         y="298.3925"
+         id="tspan3555"><tspan
+           style="font-size:16px"
+           id="tspan3553">module2\sousModule1\Notice\script.html
+</tspan></tspan><tspan
+         x="28.958984"
+         y="323.3925"
+         id="tspan3559"><tspan
+           style="font-size:16px"
+           id="tspan3557">module2\sousModule1\Notice\Manpage_***.html
+</tspan></tspan><tspan
+         x="28.958984"
+         y="348.3925"
+         id="tspan3563"><tspan
+           style="font-size:16px"
+           id="tspan3561">
+</tspan></tspan><tspan
+         x="28.958984"
+         y="373.3925"
+         id="tspan3567"><tspan
+           style="font-size:16px"
+           id="tspan3565">module2\sousModule1\sousSousModule1\Notice\script.html
+</tspan></tspan><tspan
+         x="28.958984"
+         y="398.3925"
+         id="tspan3571"><tspan
+   style="font-size:16px"
+   id="tspan3569">module2\sousModule1\sousSousModule1\Notice\Manpage_***.html</tspan>
+</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,26.390723,114.08823)"
+       id="text6829-6-5"
+       style="font-style:normal;font-weight:normal;font-size:20px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6831-3-3);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="28.958984"
+         y="73.3925"
+         id="tspan3575"><tspan
+           style="font-size:16px"
+           id="tspan3573">module1\Notice\Manpage_***.html
+</tspan></tspan><tspan
+         x="28.958984"
+         y="98.3925"
+         id="tspan3579"><tspan
+           style="font-size:16px"
+           id="tspan3577">
+</tspan></tspan><tspan
+         x="28.958984"
+         y="123.3925"
+         id="tspan3583"><tspan
+           style="font-size:16px"
+           id="tspan3581">module1\sousModule1\Notice\Manpage_***.html
+</tspan></tspan><tspan
+         x="28.958984"
+         y="148.3925"
+         id="tspan3587"><tspan
+           style="font-size:16px"
+           id="tspan3585">
+</tspan></tspan><tspan
+         x="28.958984"
+         y="173.3925"
+         id="tspan3591"><tspan
+           style="font-size:16px"
+           id="tspan3589">module1\sousModule2\Notice\Manpage_***.html
+</tspan></tspan><tspan
+         x="28.958984"
+         y="198.3925"
+         id="tspan3595"><tspan
+           style="font-size:16px"
+           id="tspan3593">
+</tspan></tspan><tspan
+         x="28.958984"
+         y="223.3925"
+         id="tspan3599"><tspan
+           style="font-size:16px"
+           id="tspan3597">module2\sousModule1\Notice\Manpage_***.html
+</tspan></tspan><tspan
+         x="28.958984"
+         y="248.3925"
+         id="tspan3603"><tspan
+           style="font-size:16px"
+           id="tspan3601">
+</tspan></tspan><tspan
+         x="28.958984"
+         y="273.3925"
+         id="tspan3607"><tspan
+   style="font-size:16px"
+   id="tspan3605">module2\sousModule1\sousSousModule1\Notice\Manpage_***.html</tspan>
+</tspan></text>
+    <path
+       style="fill:none;stroke:#fc0000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 59.769825,107.72072 -0.225002,16.6744 -4.345201,-3.01997 4.367924,3.02566 3.859414,-2.96327"
+       id="path109986" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 18.108795,14.697493 90.321612,14.586491"
+       id="path601" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 21.0317,34.749372 98.527562,34.645018"
+       id="path601-3" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 21.300354,54.619411 98.796218,54.515057"
+       id="path601-3-6" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 21.310219,74.468515 77.49586,-0.104354"
+       id="path601-3-6-7" />
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 21.274331,94.116273 112.747899,-0.0746"
+       id="path601-3-6-7-5" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;fill:#ff0000;stroke-width:0.264583"
+       x="65.884003"
+       y="115.50298"
+       id="text45564"><tspan
+         sodipodi:role="line"
+         id="tspan45562"
+         style="fill:#ff0000;stroke-width:0.264583"
+         x="65.884003"
+         y="115.50298">makeIndexT() =&gt; selectFromPaths()</tspan></text>
+  </g>
+</svg>
