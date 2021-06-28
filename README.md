@@ -31,12 +31,12 @@ agréable à la lecture ainsi qu'une table des matières.
 ### Que contient ce dossier?
 Ce projet a été construit sur la base d'un template et contient les dossiers suivants:
 
-* 1_CONFIGME.m => Fichier permettant de configurer DocGen selon votre projet (vous pourrez
-                  y renseigner le nom de votre projet, où sont ses codes sources, etc.)
+* CONFIGME.m => Fichier permettant de configurer DocGen selon votre projet (vous pourrez
+                y renseigner le nom de votre projet, où sont ses codes sources, etc.)
 
-* 2_RUNME.m    => Fichier où vous préciserez les notices locales et où vous génèrerez automatiquement
-                  la documentation de votre projet par exécution de ce script dans MatLab
-                  
+* RUNME.m    => Fichier où vous préciserez les notices locales et où vous génèrerez automatiquement
+                la documentation de votre projet par exécution de ce script dans MatLab
+
 * codes/ => rassemble tous les modules et scripts matlab nécessaires au fonctionnement de DocGen
 
 * data/  => rassemble toutes les données expérimentales ou bases de données. Ce dossier
