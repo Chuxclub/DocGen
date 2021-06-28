@@ -1,0 +1,160 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>IndexA</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-06-28"><meta name="DC.source" content="IndexA.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Index alphab&eacute;tiques</a></li><li><a href="#2">Le code source</a></li></ul></div><h2 id="1">Index alphab&eacute;tiques</h2><pre class="codeinput"><span class="comment">% Auteurs: Florian Legendre (script original)</span>
+<span class="comment">% Objectif: Fournir les m&eacute;thodes sp&eacute;cifiques aux index alphab&eacute;tiques.</span>
+</pre><h2 id="2">Le code source</h2><pre class="codeinput"><span class="keyword">classdef</span> IndexA &lt; Index
+    <span class="keyword">methods</span>
+        <span class="keyword">function</span> obj = IndexA(pattern, src, dest)
+            obj@Index(pattern, src, dest);
+        <span class="keyword">end</span>
+
+        <span class="comment">% ~~~~~~~~~~ Construction de l'index alphab&eacute;tique:</span>
+        <span class="keyword">function</span> makeIndexA(obj, fid)
+            UtilsTB.clearScript();
+
+            <span class="comment">% R&eacute;cup&eacute;ration et tri des scripts publi&eacute;s en html (ils doivent</span>
+            <span class="comment">% donc avoir &eacute;t&eacute; publi&eacute;s avant de lancer cette m&eacute;thode). La</span>
+            <span class="comment">% r&eacute;cup&eacute;ration est limit&eacute;e au dossier courant d&eacute;fini dans la</span>
+            <span class="comment">% propri&eacute;t&eacute; Src de l'indexA instanci&eacute;:</span>
+            fileInfosStruct = FilesTB.getFiles([obj.getSrc() <span class="string">'\Notice'</span>], obj.getPattern(), <span class="string">""</span>);
+            fileNamesArr = PathsTB.excludeFromPathsStruct(<span class="string">'ManPage_'</span>, fileInfosStruct);
+            sortedFilesList = SortsTB.bubbleSortCaseUnsensitive(fileNamesArr);
+
+            <span class="comment">% On &eacute;crit l'index alphab&eacute;tique par des balises html directement</span>
+            <span class="comment">% dans le fichier d&eacute;sign&eacute; par le fid:</span>
+            fprintf(fid, <span class="string">'%% &lt;ul&gt;\n'</span>);
+
+            previousInitial = <span class="string">'a'</span>;
+            <span class="keyword">for</span> i=1:numel(sortedFilesList)
+                <span class="keyword">if</span> (i == 1 &amp;&amp; sortedFilesList{i}(1) == <span class="string">'a'</span>) || sortedFilesList{i}(1) ~= previousInitial
+                    previousInitial = sortedFilesList{i}(1);
+                    fprintf(fid, <span class="string">'%% &lt;/ul&gt;\n'</span>);
+                    fprintf(fid, [<span class="string">'%% &lt;h5&gt; --- '</span> upper(previousInitial) <span class="string">' --- &lt;/h5&gt;\n'</span>]);
+                    fprintf(fid, <span class="string">'%% &lt;ul&gt;\n'</span>);
+                <span class="keyword">end</span>
+
+                linei{i,1} = [<span class="string">'% &lt;li&gt; &lt;a href="'</span> sortedFilesList{i} <span class="string">'"&gt; '</span> sortedFilesList{i}(1:end-5) <span class="string">' &lt;/a&gt;'</span>];
+                fprintf(fid,<span class="string">'%s &lt;/li&gt;\n'</span>,linei{i});
+            <span class="keyword">end</span>
+
+            fprintf(fid, <span class="string">'%% &lt;/ul&gt;\n'</span>);
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Index alphabétiques
+
+% Auteurs: Florian Legendre (script original)
+% Objectif: Fournir les méthodes spécifiques aux index alphabétiques.
+
+
+%%  Le code source
+classdef IndexA < Index
+    methods
+        function obj = IndexA(pattern, src, dest)
+            obj@Index(pattern, src, dest);
+        end
+        
+        % ~~~~~~~~~~ Construction de l'index alphabétique:
+        function makeIndexA(obj, fid)
+            UtilsTB.clearScript();
+            
+            % Récupération et tri des scripts publiés en html (ils doivent 
+            % donc avoir été publiés avant de lancer cette méthode). La 
+            % récupération est limitée au dossier courant défini dans la 
+            % propriété Src de l'indexA instancié:
+            fileInfosStruct = FilesTB.getFiles([obj.getSrc() '\Notice'], obj.getPattern(), "");
+            fileNamesArr = PathsTB.excludeFromPathsStruct('ManPage_', fileInfosStruct);
+            sortedFilesList = SortsTB.bubbleSortCaseUnsensitive(fileNamesArr);
+            
+            % On écrit l'index alphabétique par des balises html directement 
+            % dans le fichier désigné par le fid:
+            fprintf(fid, '%% <ul>\n');
+            
+            previousInitial = 'a';
+            for i=1:numel(sortedFilesList)
+                if (i == 1 && sortedFilesList{i}(1) == 'a') || sortedFilesList{i}(1) ~= previousInitial
+                    previousInitial = sortedFilesList{i}(1);
+                    fprintf(fid, '%% </ul>\n');
+                    fprintf(fid, ['%% <h5> REPLACE_WITH_DASH_DASH- ' upper(previousInitial) ' REPLACE_WITH_DASH_DASH- </h5>\n']);
+                    fprintf(fid, '%% <ul>\n');
+                end
+                
+                linei{i,1} = ['% <li> <a href="' sortedFilesList{i} '"> ' sortedFilesList{i}(1:end-5) ' </a>'];
+                fprintf(fid,'%s </li>\n',linei{i});
+            end
+            
+            fprintf(fid, '%% </ul>\n');
+        end
+    end
+end
+##### SOURCE END #####
+--></body></html>

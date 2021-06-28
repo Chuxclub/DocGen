@@ -1,0 +1,23 @@
+%% Configuration de DocGen
+docgenCodesPath = 'E:\Git\projects\wip\DocGen\codes';
+projectCodesPath = 'E:\Git\projects\wip\DocGen\codes';
+projectGlobalDocDest = 'E:\Git\projects\wip\DocGen\docs';
+addpath(docgenCodesPath);
+
+% ~~~~~~~ Initialisation de DocGen avec configurations ~~~~~~~ %
+% Argument 1: auteurs
+% Argument 2: contact
+% Argument 3: nom du projet
+% Argument 4: nom long du projet
+% Argument 5: chemin vers les codes sources du projet
+% Argument 6: chemin vers la destination de la notice globale
+% Argument 7: chemin vers les modules de DocGen
+% Argument 8: symbole séparation des chemins ('/' SI LINUX)
+docGen = DocGen('Marien Couvertier, Florian Legendre', ...
+                'florian.legendre@etu.univ-poitiers.fr',  ... 
+                docgenCodesPath, ...
+                projectCodesPath, ...
+                projectGlobalDocDest, ...
+                'DocGen', ...       
+                'GAD Matlab créé par Robioss', ...
+                '\');

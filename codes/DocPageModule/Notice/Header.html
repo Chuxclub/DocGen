@@ -1,0 +1,134 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Header</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-06-28"><meta name="DC.source" content="Header.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Index hi&eacute;rarchiques</a></li><li><a href="#2">Le code source</a></li></ul></div><h2 id="1">Index hi&eacute;rarchiques</h2><pre class="codeinput"><span class="comment">% Auteurs: Florian Legendre (script original)</span>
+<span class="comment">% Objectif: Fournir les m&eacute;thodes sp&eacute;cifiques pour g&eacute;n&eacute;rer les header des pages de documentation.</span>
+</pre><h2 id="2">Le code source</h2><pre class="codeinput"><span class="keyword">classdef</span> (Abstract) Header
+    <span class="keyword">methods</span> (Static)
+        <span class="keyword">function</span> makeHeader(fid, title, longTitle, authors, contact)
+            fprintf(fid, <span class="string">'%%%%'</span>);
+            fprintf(fid, <span class="string">'\n%% &lt;html&gt;'</span>);
+            fprintf(fid, <span class="string">' &lt;div class="header" style="background-color: #ffd384; height: fit-content; padding: 20px 20px 5px 20px;  width: auto; "&gt; '</span>);
+            fprintf(fid, [<span class="string">' &lt;h1 style="font-size: 28px; margin: 0 0 10px"&gt; '</span> title <span class="string">' &lt;/h1&gt;'</span>]);
+            fprintf(fid, [<span class="string">' &lt;caption&gt; '</span> longTitle <span class="string">' &lt;/caption&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;'</span>]);
+            fprintf(fid, [<span class="string">'&lt;p style="margin: 0 0 5px; padding:  10px 0 0 0"&gt;Auteurs: '</span> authors <span class="string">'&lt;/p&gt;'</span>]);
+            fprintf(fid, [<span class="string">'&lt;p&gt;Nous contacter: &lt;a href="mailto:'</span> contact <span class="string">'"&gt;'</span> contact <span class="string">'&lt;/a&gt; &lt;/p&gt;'</span>]);
+
+            fprintf(fid, [<span class="string">'&lt;p style="margin: 0 0 10px; padding: 0"&gt; Documentation g&eacute;n&eacute;r&eacute;e le &lt;span style="font-size: 14px; font-weight: bold;"&gt;'</span> datestr(datetime(<span class="string">'today'</span>)) <span class="string">'&lt;/span&gt; par DocGen&lt;/p&gt;'</span>]);
+            fprintf(fid, <span class="string">' &lt;/div&gt;'</span>);
+            fprintf(fid, <span class="string">' &lt;/html&gt;\n'</span>);
+        <span class="keyword">end</span>
+
+        <span class="keyword">function</span> makeHyperButton(fid, href, content)
+            fprintf(fid, <span class="string">'%%%%'</span>);
+            fprintf(fid, <span class="string">'\n%% &lt;html&gt;'</span>);
+            fprintf(fid, <span class="string">'&lt;style&gt;.button {display: block; width: 115px; height: 25px; background: #ffd384; padding: 10px; text-align: center; border-radius: 5px; color: white; font-weight: bold; line-height: 25px; }&lt;/style&gt;'</span>);
+            hyperButton = [<span class="string">'&lt;a href="file:///'</span> [href <span class="string">'\ManPage_Global.html'</span>] <span class="string">'" class="button"&gt;'</span> content <span class="string">'&lt;/a&gt;'</span>];
+            fprintf(fid, <span class="string">"%s"</span>, hyperButton);
+            fprintf(fid, <span class="string">' &lt;/html&gt;\n'</span>);
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Index hiérarchiques
+
+% Auteurs: Florian Legendre (script original)
+% Objectif: Fournir les méthodes spécifiques pour générer les header des pages de documentation.
+
+
+%%  Le code source
+classdef (Abstract) Header
+    methods (Static)
+        function makeHeader(fid, title, longTitle, authors, contact)
+            fprintf(fid, '%%%%');
+            fprintf(fid, '\n%% <html>');
+            fprintf(fid, ' <div class="header" style="background-color: #ffd384; height: fit-content; padding: 20px 20px 5px 20px;  width: auto; "> ');
+            fprintf(fid, [' <h1 style="font-size: 28px; margin: 0 0 10px"> ' title ' </h1>']);
+            fprintf(fid, [' <caption> ' longTitle ' </caption><br/><br/><br/><br/>']);
+            fprintf(fid, ['<p style="margin: 0 0 5px; padding:  10px 0 0 0">Auteurs: ' authors '</p>']);
+            fprintf(fid, ['<p>Nous contacter: <a href="mailto:' contact '">' contact '</a> </p>']);
+            
+            fprintf(fid, ['<p style="margin: 0 0 10px; padding: 0"> Documentation générée le <span style="font-size: 14px; font-weight: bold;">' datestr(datetime('today')) '</span> par DocGen</p>']);
+            fprintf(fid, ' </div>');
+            fprintf(fid, ' </html>\n');
+        end
+        
+        function makeHyperButton(fid, href, content)
+            fprintf(fid, '%%%%');
+            fprintf(fid, '\n%% <html>');
+            fprintf(fid, '<style>.button {display: block; width: 115px; height: 25px; background: #ffd384; padding: 10px; text-align: center; border-radius: 5px; color: white; font-weight: bold; line-height: 25px; }</style>');
+            hyperButton = ['<a href="file:///' [href '\ManPage_Global.html'] '" class="button">' content '</a>'];
+            fprintf(fid, "%s", hyperButton);
+            fprintf(fid, ' </html>\n');
+        end
+    end
+end
+##### SOURCE END #####
+--></body></html>
