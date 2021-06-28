@@ -42,12 +42,18 @@ Une fois cela fait vous pouvez utiliser DocGen en suivant cette méthode:
 Ce projet a été construit sur la base d'un template et contient les dossiers suivants:
 
 * codes/ => rassemble tous les modules et scripts matlab
-<!-- 2. datas/ => rassemble toutes vos données expérimentales (n'est pas versionné par défaut) -->
-* docs/ => rassemble tous les éléments de documentation __globale__ du projet
-<!-- 4. lib/ => rassemble toutes les librairies de fonctions directement utilisables
-   dans les scripts matlab par un simple import. -->
-* res/ => contient toutes les ressources utiles au projet ou parfois des archives
-           du projet
+* data/  => rassemble toutes les données expérimentales ou bases de données. Ce dossier
+            n'est pas utilisé par DocGen mais il est tout de même versionné pour partager
+            l'arborescence de DocGen. Peut-être qu'un jour une fonctionnalité aura besoin
+            de cet espace
+* docs/  => rassemble tous les éléments de documentation __globale__ du projet
+* lib/   => rassemble toutes les librairies de fonctions directement utilisables
+            dans les scripts matlab par un simple addpath(). Comme pour data/, ce dossier
+            n'est pour l'instant pas utilisé par DocGen mais pourrait l'être un jour
+* out/   => espace réservé aux outputs de DocGen utilisés pour générer sa documentation
+            ou fournir des fichiers de debugging (log d'erreurs, etc.)
+* res/   => contient toutes les ressources utiles au projet ou parfois des archives
+            du projet
 
 
 ### Comment contribuer?
