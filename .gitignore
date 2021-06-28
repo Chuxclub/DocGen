@@ -2,7 +2,7 @@
 data/*
 docs/doc_ext/*
 lib/lib_ext/*
-out/
+out/*
 res/*
 !README.md
 
@@ -12,6 +12,9 @@ res/*
 
 
 ### CUSTOM ###
+!res/exemples/*
+!res/scripts_originaux/
+!res/templates/
 
 
 ### MATLAB ###

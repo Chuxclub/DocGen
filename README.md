@@ -16,21 +16,11 @@ agréable à la lecture ainsi qu'une table des matières.
 
 
 ### Comment utiliser ce projet?
-Si vous êtes sous Linux, allez dans le fichier codes/DocGen.m. Dans la fonction
-"noticeGlobale" commentez la ligne associée à Windows et décommentez celle
-associée à Linux.
-
-Maintenant allez dans le fichier PathsTB.m et modifiez la constante SEP_TOKEN
-comme indiqué dans le fichier.
-
-Une fois cela fait vous pouvez utiliser DocGen en suivant cette méthode:
-
-* Dans MatLab, ouvrez DocGenScript
-* Renseignez les chemins absolus des dossiers de votre projet dont vous souhaitez
-   faire la notice
-* Renseignez le paramètre booléen indiquant si vous souhaitez ou non une évaluation
-   de votre code
-* Exécutez le script
+1. Ouvrez le fichier "1_CONFIGME.m" et suivez les commentaires de ce fichier pour
+   configurer DocGen selon votre projet
+2. Ouvrez le fichier "2_RUNME.m" et entrez les notices locales que vous voulez
+   générer
+3. Générez votre documentation en interprétant le script "2_README.m"
 
 
 <!-- ================================== -->
@@ -41,17 +31,29 @@ Une fois cela fait vous pouvez utiliser DocGen en suivant cette méthode:
 ### Que contient ce dossier?
 Ce projet a été construit sur la base d'un template et contient les dossiers suivants:
 
-* codes/ => rassemble tous les modules et scripts matlab
+* 1_CONFIGME.m => Fichier permettant de configurer DocGen selon votre projet (vous pourrez
+                  y renseigner le nom de votre projet, où sont ses codes sources, etc.)
+
+* 2_RUNME.m    => Fichier où vous préciserez les notices locales et où vous génèrerez automatiquement
+                  la documentation de votre projet par exécution de ce script dans MatLab
+                  
+* codes/ => rassemble tous les modules et scripts matlab nécessaires au fonctionnement de DocGen
+
 * data/  => rassemble toutes les données expérimentales ou bases de données. Ce dossier
             n'est pas utilisé par DocGen mais il est tout de même versionné pour partager
             l'arborescence de DocGen. Peut-être qu'un jour une fonctionnalité aura besoin
             de cet espace
-* docs/  => rassemble tous les éléments de documentation __globale__ du projet
+
+* docs/  => rassemble tous les éléments de documentation __globale__ de DocGen, y compris un manuel
+            utilisateur exhaustif et un manuel technique pour les contributeurs de ce projet
+
 * lib/   => rassemble toutes les librairies de fonctions directement utilisables
             dans les scripts matlab par un simple addpath(). Comme pour data/, ce dossier
             n'est pour l'instant pas utilisé par DocGen mais pourrait l'être un jour
+
 * out/   => espace réservé aux outputs de DocGen utilisés pour générer sa documentation
             ou fournir des fichiers de debugging (log d'erreurs, etc.)
+
 * res/   => contient toutes les ressources utiles au projet ou parfois des archives
             du projet
 
