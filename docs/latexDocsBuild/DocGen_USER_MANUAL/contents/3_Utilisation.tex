@@ -1,0 +1,71 @@
+\documentclass[./standalone.tex]{subfiles}
+%\documentclass[../../../CR/pac.tex]{subfiles}
+
+\begin{document}
+
+\section{Comment générer une documentation DocGen?}
+Avec l'installation et la configuration vous avez fait le plus dur! On passe maitenant au plus intéressant: l'utilisation du programme.\\
+
+Pour ce faire ouvrez le fichier RUNME. Vous devriez obtenir ce document:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.4]{images/utilisation1.png}
+    \caption{Le script RUNME ouvert dans Matlab}
+    \label{fig:RUNME_Matlab}
+\end{figure}
+
+Comme indiqué dans la figure \ref{fig:RUNME_Matlab} vous devez être vigilant à deux choses:\\
+
+\begin{enumerate}
+    \item Matlab est en mesure de trouver le fichier CONFIGME (pour une plus grande partageabilité avec Git utilisez la fonction de projet Matlab disponible depuis le 2019a! Sinon ajoutez le chemin avec un clic droit dans l'arborescence à gauche dans Matlab sur le fichier CONFIGME. ÉVITEZ LES CHEMINS ABSOLUS DANS LE RUNME SI VOUS UTILISEZ GIT!)
+    \item Chaque ligne \textit{docGen.makeLocalDoc} indique à DocGen un module à documenter. Pour ajouter d'autres modules copiez-collez une de ces lignes et remplacez la chaîne de caractère (en violet sur l'image) par le nom de votre module.\\
+\end{enumerate}
+
+Il est inutile de toucher à la ligne \textit{docgen.makeGlobalDoc}.\\
+\newpage
+
+Vous pouvez maintenant lancer l'exécution du script! Si tout va bien vous devriez alors obtenir une documentation comme celle-ci:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.33]{images/utilisation2.png}
+    \caption{Page d'accueil DocGen}
+    \label{fig:Homepage_DocGen}
+\end{figure}
+
+
+\section{Enrichissez votre documentation avec des fichiers README.html!}
+
+L'exécution de DocGen vous garantit les points 1 et 2 de la figure 5. Le point 3 peut être fait avec un peu de HTML... Ajoutez des README.html dans les modules documentés et la racine de votre projet et DocGen s'occupera de les ajouter à votre documentation générée.\\
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.6]{images/utilisation3.png}
+    \caption{Exemple de README.html à la racine du projet}
+    \label{fig:Homepage_DocGen}
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.6]{images/utilisation4.png}
+    \caption{Exemple de README.html dans le module DocPageModule de DocGen}
+    \label{fig:Homepage_DocGen}
+\end{figure}
+\newpage
+
+
+\section{Quand générer une documentation DocGen?}
+Il est inutile de relancer le script RUNME de DocGen si vous modifiez un README.html. En revanche pour toute autre modification du code et de sa structure vous devez relancer le script afin de mettre à jour la documentation.\\
+
+Enfin, DocGen utilise pour le moment des chemins absolus comme hyperliens entre les différentes pages de documentation. Ceci simplifiait l'implémentation dans Matlab de ce programme mais implique que si vous voulez pouvoir naviguer librement d'une page à une autre vous devez réexecuter DocGen sur votre ordinateur dans Matlab.\\
+
+Ce dernier point constitue une priorité dans les prochaines mises à jour de ce programme (nous devrions pouvoir partager de la documentation générée par DocGen sans se soucier de la machine sur laquelle celle-ci est ouverte).\\
+
+\section{Comment effacer la documentation d'un module?}
+Vous remarquerez que DocGen crée des dossiers Notice/ dans les modules que vous avez définis pour votre documentation. C'est dans ces dossiers que DocGen range les documentations locales. Effacer ces dossiers efface du même coup la documentation associée.
+
+
+\end{document}

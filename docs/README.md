@@ -14,7 +14,8 @@ Ce dossier regroupe la documentation du projet lui-même et tous les éléments 
               Ces documentations portent généralement sur des libraires extérieures.
 - latexDocsBuild/ => Dossier contenant les documents latex utilisés pour construire le DEV_MANUAL.pdf et USER_MANUAL.pdf
 - ManPage_Global.html => La documentation technique générée par DocGen pour un rapide coup d'oeil des derniers changements
-                         dans l'implémentation des fonctionnalités de DocGen
+                         dans l'implémentation des fonctionnalités de DocGen (relancez le RUNME dans Matlab à la racine du projet
+                         pour profiter des hyperliens!)
 - USER_MANUAL.pdf => Le manuel de l'utilisateur de DocGen
 
 

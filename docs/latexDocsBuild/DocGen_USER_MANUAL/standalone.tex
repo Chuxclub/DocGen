@@ -2,7 +2,7 @@
 % ===================  PREAMBULE ====================== %
 % ===================================================== %
 
-\documentclass[a4paper, french]{report}
+\documentclass[a4paper, french]{article}
 \usepackage{config}
 
 % ===================================================== %
@@ -26,37 +26,12 @@
         \HRule
         \vfill
       
-        Auteur(s): Florian Legendre\medskip \par
+        Auteur(s): Florian Legendre\\
+        Contact: florian-1992@hotmail.fr\medskip \par
         
         \includegraphics[scale=0.7]{creative_commons.png}\par
     \end{flushleft}
 \end{titlepage}
-
-% Explication des légendes et abbréviations Standard
-\newpage
-\begin{LARGE}
-Légendes et Abbréviations utilisées\\\\\\\\
-\end{LARGE}
-\textbf{Question:} Ceci est une question de l'enseignant\\
-\textbf{Réponse:} Ceci est une réponse de l'enseignant ou validée par l'enseignant\\
-\textbf{Réponse:} \textit{Ceci est une réponse du ou d'un des auteurs non validée par l'enseignant}\\\\
-
-\begin{lstlisting}[style=C, caption=Exemple de code source]
-Ceci est du code source.
-Selon les langages, différents mots seront colorés selon 
-si ce sont des mots clefs ou non (comme int, char, etc.).
-\end{lstlisting}
-
-\begin{mdframed}[style=Bash]
-\begin{lstlisting}[style=Bash, caption=Exemple d'une pseudo capture d'écran Bash]
-Ceci est un formattage automatique Latex d'un texte copié-collé
-directement depuis un terminal Bash ayant valeur de capture
-d'écran. La coloration correspond à une coloration quelconque 
-d'un terminal Bash (les chemins étant habituellement coloré et 
-le nom de l'utilisateur aussi comme crex@crex:~$ ...)
-\end{lstlisting}
-\end{mdframed}
-
 
 
 % Sommaire Standard
@@ -77,8 +52,13 @@ le nom de l'utilisateur aussi comme crex@crex:~$ ...)
 
 \part{Installation}
 \subfile{./contents/1_Installation.tex}
+\newpage
+
+\part{Configuration}
+\subfile{./contents/2_Configuration.tex}
+\newpage
 
 \part{Utilisation}
-\subfile{./contents/2_Utilisation.tex}
+\subfile{./contents/3_Utilisation.tex}
 
 \end{document}

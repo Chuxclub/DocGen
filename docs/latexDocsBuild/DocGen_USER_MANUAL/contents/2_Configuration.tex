@@ -1,0 +1,44 @@
+\documentclass[./standalone.tex]{subfiles}
+%\documentclass[../../../CR/pac.tex]{subfiles}
+
+\begin{document}
+\bigskip
+
+\section{Une configuration en deux parties}
+Pour votre première utilisation de DocGen commencez par ouvrir le fichier CONFIGME.m dans Matlab (ou n'importe quel éditeur de texte). Vous noterez que le document est divisé en deux parties:\\
+
+\begin{enumerate}
+    \item Initialisation des chemins 'racines'
+    \item Initialisation de DocGen avec configurations\\
+\end{enumerate}
+
+La première partie consiste à fournir:\\
+
+\begin{enumerate}
+    \item le chemin absolu vers le dossier codes/ de votre DocGen
+    \item le chemin absolu vers la racine des codes sources du projet que vous voulez documenter
+    \item le chemin absolu vers le dossier où DocGen placera la page d'accueil de la documentation générée\\
+\end{enumerate}
+
+Renseignez ces champs et passez à la seconde partie.\\
+
+La seconde partie vous demande d'indiquer les informations qui apparaîtront dans l'entête des pages de documentation générées, à savoir:\\
+
+\begin{enumerate}
+    \item Les auteurs du projet
+    \item L'adresse mail du chef de projet (ou de sa maintenance)
+    \item Le nom court de votre projet
+    \item Le nom long de votre projet
+    \item Le symbole de séparation des chemins relatifs/absolus ('/' sous Linux)\\
+\end{enumerate}
+
+Certaines auront été préremplies en configurant la première partie (cf. les variables dans le script) et ne devraient donc pas être redéfinies.\\
+\bigskip
+
+\section{Configuration pour un fonctionnement avec Git}
+CONFIGME devrait être ajouté au .gitignore si vous utilisez Git! En effet, cela évitera que votre configuration (les chemins absolus de la première partie surtout) ne soit constamment réécrite par celle de vos collègues.\\
+
+Au contraire, le fichier RUNME devrait être partagé avec Git afin d'éviter de repréciser sans arrêt les modules que vous voulez documenter (cf. partie suivante sur l'utilisation de DocGen).
+
+
+\end{document}
