@@ -20,7 +20,7 @@ agréable à la lecture ainsi qu'une table des matières.
    configurer DocGen selon votre projet
 2. Ouvrez le fichier "RUNME.m" et entrez les notices locales que vous voulez
    générer
-3. Générez votre documentation en interprétant le script "RUN.m"
+3. Générez votre documentation en interprétant le script "RUNME.m"
 
 Pour une explication détaillée, rendez-vous sur le manuel utilisateur USER_MANUAL.pdf
 dans le dossier docs/.
